@@ -1,0 +1,12 @@
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+.metadata
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
