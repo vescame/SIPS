@@ -10,7 +10,6 @@ public class Candidato {
 	private String nome;
 	private String sobrenome;
 	private LocalDate dataNascimento;
-	private Campus campus;
 	private Curso curso;
 	private boolean aprovado;
 	private ListaLigada<Integer> notas;
@@ -45,14 +44,6 @@ public class Candidato {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public Campus getCampus() {
-		return campus;
-	}
-
-	public void setCampus(Campus campus) {
-		this.campus = campus;
 	}
 
 	public Curso getCurso() {
