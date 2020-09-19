@@ -2,8 +2,7 @@ package edu.fatec.sips.model;
 
 import java.time.LocalDate;
 
-import edu.fatec.sips.data_structure.ListaLigada;
-import edu.fatec.sips.data_structure.node.Node;
+import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.base.DocumentoGenerico;
 
 public class Candidato {
@@ -12,14 +11,14 @@ public class Candidato {
 	private LocalDate dataNascimento;
 	private Curso curso;
 	private boolean aprovado;
-	private ListaLigada<Integer> notas;
-	private ListaLigada<DocumentoGenerico> documentos;
-	private ListaLigada<Recurso> recursos;
+	private ListaLigadaSimples<Nota> notas;
+	private ListaLigadaSimples<DocumentoGenerico> documentos;
+	private ListaLigadaSimples<Recurso> recursos;
 
 	public Candidato() {
-		this.documentos = new ListaLigada<DocumentoGenerico>();
-		this.recursos = new ListaLigada<Recurso>();
-		this.notas = new ListaLigada<Integer>();
+		this.documentos = new ListaLigadaSimples<DocumentoGenerico>();
+		this.recursos = new ListaLigadaSimples<Recurso>();
+		this.notas = new ListaLigadaSimples<Nota>();
 	}
 
 	public String getNome() {
@@ -62,35 +61,39 @@ public class Candidato {
 		this.aprovado = aprovado;
 	}
 	
-	public ListaLigada<Integer> getNotas() {
+	public ListaLigadaSimples<Nota> getNotas() {
 		return notas;
 	}
+	
+	public void addNota(Nota nota) {
+		this.notas.add(nota);
+	}
 
-	public void setNotas(ListaLigada<Integer> notas) {
+	public void setNotas(ListaLigadaSimples<Nota> notas) {
 		this.notas = notas;
 	}
 
-	public void setDocumentos(ListaLigada<DocumentoGenerico> documentos) {
+	public void setDocumentos(ListaLigadaSimples<DocumentoGenerico> documentos) {
 		this.documentos = documentos;
 	}
 
 	public void addDocumento(DocumentoGenerico documento) {
-		documentos.add(new Node<DocumentoGenerico>(documento));
+		documentos.add(documento);
 	}
 
-	public ListaLigada<DocumentoGenerico> getDocumentos() {
+	public ListaLigadaSimples<DocumentoGenerico> getDocumentos() {
 		return this.documentos;
 	}
 
-	public void setRecursos(ListaLigada<Recurso> recursos) {
+	public void setRecursos(ListaLigadaSimples<Recurso> recursos) {
 		this.recursos = recursos;
 	}
 
 	public void addRecurso(Recurso recurso) {
-		recursos.add(new Node<Recurso>(recurso));
+		recursos.add(recurso);
 	}
 
-	public ListaLigada<Recurso> getRecursos() {
+	public ListaLigadaSimples<Recurso> getRecursos() {
 		return this.recursos;
 	}
 }

@@ -1,13 +1,13 @@
 package edu.fatec.sips.dao;
 
-import edu.fatec.sips.data_structure.ListaLigada;
+import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
 public interface DAOGenerico<T, C> {
 	public T buscarCampo(C campo);
 	
-	public T buscarPorNome(String nome);
+	public ListaLigadaSimples<T> buscarPorNome(String nome);
 	
-	public ListaLigada<T> listar();
+	public ListaLigadaSimples<T> listar();
 	
 	public void salvar(T elemento);
 	

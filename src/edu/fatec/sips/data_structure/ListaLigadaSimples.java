@@ -2,14 +2,12 @@ package edu.fatec.sips.data_structure;
 
 import edu.fatec.sips.data_structure.node.Node;
 
-public class ListaLigada<T> {
+public class ListaLigadaSimples<T> {
 	private Node<T> head;
-	private Node<T> tail;
 	private int size;
 
-	public ListaLigada() {
+	public ListaLigadaSimples() {
 		this.head = null;
-		this.tail = null;
 		this.size = 0;
 	}
 
@@ -17,27 +15,29 @@ public class ListaLigada<T> {
 		return this.size == 0;
 	}
 
-	public void add(Node<T> node) {
+	public void insertFirst(T element) {
+		final Node<T> node = new Node<T>(element);
+		node.setNext(head);
+		head = node;
+		size++;
+	}
+
+	public void add(T element) {
+		final Node<T> node = new Node<T>(element);
 		if (isEmpty()) {
-			insertFirst(node);
+			insertFirst(element);
 		} else {
-			node.setNext(null);
-			tail.setNext(node);
-			tail = node;
+			Node<T> current = head;
+			while (current.getNext() != null) {
+				current = current.getNext();
+			}
+			current.setNext(node);
 			this.size++;
 		}
 	}
 
-	public void insertFirst(Node<T> node) {
-		node.setNext(head);
-		head = node;
-		size++;
-		if (size == 1) {
-			tail = head;
-		}
-	}
-
-	public void insertAt(Node<T> node, int index) {
+	public void insertAt(T element, int index) {
+		final Node<T> node = new Node<T>(element);
 		if (index < 0 || index >= size) {
 			System.err.println("INVALID POSITION");
 		} else {
@@ -52,27 +52,26 @@ public class ListaLigada<T> {
 			node.setNext(current);
 			previous.setNext(node);
 			this.size++;
-
 		}
 	}
 
-	public Node<T> removeFirst() {
+	public T removeFirst() {
 		Node<T> node = head;
 		if (isEmpty()) {
 			System.err.println("EMPTY LIST");
 		} else if (this.size == 1) {
-			this.head = this.tail = null;
+			this.head = null;
 			this.size--;
 		} else {
 			this.head = this.head.getNext();
 			this.size--;
 		}
 
-		return node;
+		return node.getElement();
 	}
 
-	public Node<T> removeLast() {
-		Node<T> node = this.tail;
+	public T removeLast() {
+		Node<T> node = null;
 
 		if (isEmpty()) {
 			System.err.println("EMPTY LIST");
@@ -80,30 +79,29 @@ public class ListaLigada<T> {
 			removeFirst();
 		} else {
 			Node<T> current = this.head;
-			while (current.getNext() != null) {
+			while (current.getNext().getNext() != null) {
 				current = current.getNext();
 			}
+			node = current.getNext();
 			current.setNext(null);
-			this.tail = current;
 			this.size--;
 		}
 
-		return node;
+		return node.getElement();
 	}
 
-	public Node<T> remove(int index) {
-		Node<T> node = null;
-
+	public T remove(int index) {
+		T element = null;
+		
 		if (isEmpty()) {
 			System.err.println("EMPTY LIST");
-		}
-		if (index < 0 || index >= size) {
+		} else if (index < 0 || index >= size) {
 			System.err.println("INVALID POSITION");
 		} else {
 			if (index == 0) {
-				node = removeFirst();
+				element = removeFirst();
 			} else if (index == this.size) {
-				node = removeLast();
+				element = removeLast();
 			} else {
 				int currentIndex = 0;
 				Node<T> current = this.head;
@@ -111,27 +109,25 @@ public class ListaLigada<T> {
 					current = current.getNext();
 					currentIndex++;
 				}
-				node = current;
-				current.setNext(node.getNext().getNext());
+				element = current.getNext().getElement();
+				current.setNext(current.getNext().getNext());
 				this.size--;
 			}
 		}
-
-		return node;
+		
+		return element;
 	}
 
-	public Node<T> peek(int index) {
-		Node<T> node = null;
+	public T peek(int index) {
+		T element = null;
 
 		if (isEmpty()) {
 			System.err.println("EMPTY LIST");
 			return null;
-		}
-
-		if (index < 0 || index >= size) {
+		} else if (index < 0 || index >= size) {
 			System.err.println("INVALID POSITION");
 		} else {
-			node = head;
+			Node<T> node = head;
 			int currentIndex = 0;
 			while (currentIndex < index) {
 				node = node.getNext();
@@ -139,6 +135,14 @@ public class ListaLigada<T> {
 			}
 		}
 
-		return node;
+		return element;
+	}
+	
+	public void print() {
+		Node<T> current = this.head;
+		while (current != null) {
+			System.out.println(current.getElement());
+			current = current.getNext();
+		}
 	}
 }
