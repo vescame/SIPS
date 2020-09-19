@@ -6,7 +6,7 @@ import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.base.DocumentoGenerico;
 
 public class Candidato {
-	private String nome;
+	public String nome;
 	private String sobrenome;
 	private LocalDate dataNascimento;
 	private Curso curso;
