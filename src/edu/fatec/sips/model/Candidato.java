@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
 public class Candidato {
-	public String nome;
+	private int id;
+	private String nome;
 	private String sobrenome;
 	private LocalDate dataNascimento;
 	private Curso curso;
@@ -18,6 +19,28 @@ public class Candidato {
 		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
 		this.notas = new ListaLigadaSimples<Nota>();
+	}
+
+	public Candidato(int id, String nome, String sobrenome, LocalDate dataNascimento, Curso curso, boolean aprovado,
+			ListaLigadaSimples<Nota> notas, ListaLigadaSimples<Documento> documentos,
+			ListaLigadaSimples<Recurso> recursos) {
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.dataNascimento = dataNascimento;
+		this.curso = curso;
+		this.aprovado = aprovado;
+		this.notas = new ListaLigadaSimples<Nota>();
+		this.documentos = new ListaLigadaSimples<Documento>();
+		this.recursos = new ListaLigadaSimples<Recurso>();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -59,11 +82,11 @@ public class Candidato {
 	public void setAprovado(boolean aprovado) {
 		this.aprovado = aprovado;
 	}
-	
+
 	public ListaLigadaSimples<Nota> getNotas() {
 		return notas;
 	}
-	
+
 	public void addNota(Nota nota) {
 		this.notas.adicionar(nota);
 	}
