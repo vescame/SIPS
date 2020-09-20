@@ -8,6 +8,10 @@ public class ListaLigadaSimples<T> {
 		this.primeiro = null;
 		this.tamanho = 0;
 	}
+	
+	public int getSize() {
+		return this.tamanho;
+	}
 
 	public boolean estaVazia() {
 		return this.tamanho == 0;
@@ -116,21 +120,23 @@ public class ListaLigadaSimples<T> {
 		return elemento;
 	}
 
-	public T espiar(int index) {
+	public T espiar(int posicao) {
 		T elemento = null;
 
 		if (estaVazia()) {
-			System.err.println("LISTA VAIZA");
+			System.err.println("LISTA VAZIA");
 			return null;
-		} else if (index < 0 || index >= tamanho) {
+		} else if (posicao < 0 || posicao >= tamanho) {
 			System.err.println("POSICAO INVALIDA");
 		} else {
-			No<T> node = primeiro;
+			No<T> no = primeiro;
 			int currentIndex = 0;
-			while (currentIndex < index) {
-				node = node.getProximo();
+			while (currentIndex < posicao) {
+				no = no.getProximo();
 				currentIndex++;
 			}
+			
+			elemento = no.getElemento();
 		}
 
 		return elemento;
