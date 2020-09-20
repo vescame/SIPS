@@ -43,4 +43,11 @@ public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 	public Candidato remover(Candidato elemento) {
 		throw new NotImplementedException();
 	}
+
+	@Override
+	public int ultimoId() {
+		// busca o id usando a classe de controle de arquivos e retorna o id
+		// para que possa ser usado, por exemplo, para adicionar novos registros sem perder o ID
+		return 0;
+	}
 }

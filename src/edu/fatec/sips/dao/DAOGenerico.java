@@ -16,4 +16,6 @@ public interface DAOGenerico<T, C> {
 	public void atualizar(T elemento);
 	
 	public T remover(T elemento);
+	
+	public int ultimoId();
 }
