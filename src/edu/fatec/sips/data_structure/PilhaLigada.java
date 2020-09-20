@@ -19,9 +19,8 @@ public class PilhaLigada<T> {
 
 	public final T espiar() {
 		T element = null;
-		if (estaVazia()) {
-			System.out.println("PILHA VAZIA");
-		} else {
+		
+		if (!estaVazia()) {
 			element = topo.getElemento();
 		}
 
