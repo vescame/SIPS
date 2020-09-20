@@ -3,6 +3,8 @@ package edu.fatec.sips.dao;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
 public interface DAOGenerico<T, C> {
+	public T buscarPorId(int id);
+	
 	public T buscarCampo(C campo);
 	
 	public ListaLigadaSimples<T> buscarPorNome(String nome);

@@ -8,6 +8,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 
 	@Override
+	public Candidato buscarPorId(int id) {
+		return null;
+	}
+	
+	@Override
 	public Candidato buscarCampo(final Documento campo) {
 		// buscar em todas as `colunas` por essa string
 		// banco.buscar(campo.toString())
@@ -16,13 +21,11 @@ public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 
 	@Override
 	public ListaLigadaSimples<Candidato> buscarPorNome(final String nome) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ListaLigadaSimples<Candidato> listar() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
