@@ -1,4 +1,4 @@
-package edu.fatec.sips.data_structure.node;
+package edu.fatec.sips.data_structure;
 
 public class Node<T> {
 	private Node<T> next;
@@ -30,3 +30,7 @@ public class Node<T> {
 		this.next = element;
 	}
 }
+
+//--> Se não forem criados, outras classes Node, talvez não seja necessário um pacote para o Node, ele pode ser armazenado junto com o pacote das estruturas.
+
+//--> Como combinamos os métodos devem ser em português, para manter o padrão que haviamos comentado na semana passada.

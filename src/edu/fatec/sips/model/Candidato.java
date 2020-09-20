@@ -3,7 +3,6 @@ package edu.fatec.sips.model;
 import java.time.LocalDate;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
-import edu.fatec.sips.model.base.DocumentoGenerico;
 
 public class Candidato {
 	public String nome;
@@ -12,11 +11,11 @@ public class Candidato {
 	private Curso curso;
 	private boolean aprovado;
 	private ListaLigadaSimples<Nota> notas;
-	private ListaLigadaSimples<DocumentoGenerico> documentos;
+	private ListaLigadaSimples<Documento> documentos;
 	private ListaLigadaSimples<Recurso> recursos;
 
 	public Candidato() {
-		this.documentos = new ListaLigadaSimples<DocumentoGenerico>();
+		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
 		this.notas = new ListaLigadaSimples<Nota>();
 	}
@@ -73,15 +72,15 @@ public class Candidato {
 		this.notas = notas;
 	}
 
-	public void setDocumentos(ListaLigadaSimples<DocumentoGenerico> documentos) {
+	public void setDocumentos(ListaLigadaSimples<Documento> documentos) {
 		this.documentos = documentos;
 	}
 
-	public void addDocumento(DocumentoGenerico documento) {
+	public void addDocumento(Documento documento) {
 		documentos.add(documento);
 	}
 
-	public ListaLigadaSimples<DocumentoGenerico> getDocumentos() {
+	public ListaLigadaSimples<Documento> getDocumentos() {
 		return this.documentos;
 	}
 

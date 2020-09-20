@@ -7,7 +7,7 @@ public class Edital {
 	private Curso curso;
 	private Vaga vaga;
 	private Documento documento;
-
+	
 	public int getId() {
 		return id;
 	}

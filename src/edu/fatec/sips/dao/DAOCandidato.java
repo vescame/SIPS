@@ -1,3 +1,4 @@
+package edu.fatec.sips.dao;
 /*
  * package edu.fatec.sips.dao.candidato;
  * 

@@ -1,9 +1,29 @@
 package edu.fatec.sips.model;
 
-import edu.fatec.sips.model.base.DocumentoGenerico;
+public class Documento {
+	private String titulo;
+	private int numero;
 
-public class Documento extends DocumentoGenerico {
-	public Documento(final String nome, final String idDocumento) {
-		super(nome, idDocumento);
+	public Documento(String titulo, int numero) {
+		super();
+		this.titulo = titulo;
+		this.numero = numero;
 	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
 }

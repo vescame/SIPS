@@ -70,3 +70,5 @@ public class Nota {
 		return this.nota;
 	}
 }
+
+//--> A classe nota, seria a classificação do candidato ?

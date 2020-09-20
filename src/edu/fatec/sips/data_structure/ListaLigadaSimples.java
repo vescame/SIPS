@@ -1,7 +1,5 @@
 package edu.fatec.sips.data_structure;
 
-import edu.fatec.sips.data_structure.node.Node;
-
 public class ListaLigadaSimples<T> {
 	private Node<T> head;
 	private int size;
@@ -146,3 +144,5 @@ public class ListaLigadaSimples<T> {
 		}
 	}
 }
+
+//--> Como combinamos os métodos devem ser em português, para manter o padrão que haviamos comentado na semana passada.

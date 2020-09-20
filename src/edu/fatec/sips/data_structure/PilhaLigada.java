@@ -1,7 +1,5 @@
 package edu.fatec.sips.data_structure;
 
-import edu.fatec.sips.data_structure.node.Node;
-
 public class PilhaLigada<T> {
 	private Node<T> top;
 	private int size;
@@ -54,3 +52,5 @@ public class PilhaLigada<T> {
 		return element;
 	}
 }
+
+//--> Como combinamos os métodos devem ser em português, para manter o padrão que haviamos comentado na semana passada.
