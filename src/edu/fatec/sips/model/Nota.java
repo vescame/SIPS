@@ -45,8 +45,9 @@ public class Nota {
 		}
 
 		notaFormatada = notaFormatada.concat(String.valueOf(caractere));
-
-		while ((caractere = pilha.desempilhar()) != null) {
+		
+		while (pilha.espiar() != null) {
+			caractere = pilha.desempilhar();
 			if (countAposPonto < this.CASAS_DECIMAIS) {
 				notaFormatada = notaFormatada.concat(String.valueOf(caractere));
 				countAposPonto++;
