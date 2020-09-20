@@ -1,148 +1,146 @@
 package edu.fatec.sips.data_structure;
 
 public class ListaLigadaSimples<T> {
-	private Node<T> head;
-	private int size;
+	private No<T> primeiro;
+	private int tamanho;
 
 	public ListaLigadaSimples() {
-		this.head = null;
-		this.size = 0;
+		this.primeiro = null;
+		this.tamanho = 0;
 	}
 
-	public boolean isEmpty() {
-		return this.size == 0;
+	public boolean estaVazia() {
+		return this.tamanho == 0;
 	}
 
-	public void insertFirst(T element) {
-		final Node<T> node = new Node<T>(element);
-		node.setNext(head);
-		head = node;
-		size++;
+	public void inserirPrimeiro(T elemento) {
+		final No<T> no = new No<T>(elemento);
+		no.setProximo(primeiro);
+		primeiro = no;
+		tamanho++;
 	}
 
-	public void add(T element) {
-		final Node<T> node = new Node<T>(element);
-		if (isEmpty()) {
-			insertFirst(element);
+	public void adicionar(T elemento) {
+		final No<T> no = new No<T>(elemento);
+		if (estaVazia()) {
+			inserirPrimeiro(elemento);
 		} else {
-			Node<T> current = head;
-			while (current.getNext() != null) {
-				current = current.getNext();
+			No<T> atual = primeiro;
+			while (atual.getProximo() != null) {
+				atual = atual.getProximo();
 			}
-			current.setNext(node);
-			this.size++;
+			atual.setProximo(no);
+			this.tamanho++;
 		}
 	}
 
-	public void insertAt(T element, int index) {
-		final Node<T> node = new Node<T>(element);
-		if (index < 0 || index >= size) {
-			System.err.println("INVALID POSITION");
+	public void inserirNaPosicao(T elemento, int posicao) {
+		final No<T> no = new No<T>(elemento);
+		if (posicao < 0 || posicao >= tamanho) {
+			System.err.println("POSICAO INVALIDA");
 		} else {
-			Node<T> current = head;
-			Node<T> previous = null;
-			int currentIndex = 0;
-			while (currentIndex < index) {
-				previous = current;
-				current = current.getNext();
-				currentIndex++;
+			No<T> atual = primeiro;
+			No<T> anterior = null;
+			int posicaoAtual = 0;
+			while (posicaoAtual < posicao) {
+				anterior = atual;
+				atual = atual.getProximo();
+				posicaoAtual++;
 			}
-			node.setNext(current);
-			previous.setNext(node);
-			this.size++;
+			no.setProximo(atual);
+			anterior.setProximo(no);
+			this.tamanho++;
 		}
 	}
 
-	public T removeFirst() {
-		Node<T> node = head;
-		if (isEmpty()) {
-			System.err.println("EMPTY LIST");
-		} else if (this.size == 1) {
-			this.head = null;
-			this.size--;
+	public T removerPrimeiro() {
+		No<T> no = primeiro;
+		if (estaVazia()) {
+			System.err.println("LISTA VAZIAT");
+		} else if (this.tamanho == 1) {
+			this.primeiro = null;
+			this.tamanho--;
 		} else {
-			this.head = this.head.getNext();
-			this.size--;
+			this.primeiro = this.primeiro.getProximo();
+			this.tamanho--;
 		}
 
-		return node.getElement();
+		return no.getElemento();
 	}
 
-	public T removeLast() {
-		Node<T> node = null;
+	public T removerUltimo() {
+		No<T> no = null;
 
-		if (isEmpty()) {
-			System.err.println("EMPTY LIST");
-		} else if (size == 1) {
-			removeFirst();
+		if (estaVazia()) {
+			System.err.println("LISTA VAZIAT");
+		} else if (tamanho == 1) {
+			removerPrimeiro();
 		} else {
-			Node<T> current = this.head;
-			while (current.getNext().getNext() != null) {
-				current = current.getNext();
+			No<T> atual = this.primeiro;
+			while (atual.getProximo().getProximo() != null) {
+				atual = atual.getProximo();
 			}
-			node = current.getNext();
-			current.setNext(null);
-			this.size--;
+			no = atual.getProximo();
+			atual.setProximo(null);
+			this.tamanho--;
 		}
 
-		return node.getElement();
+		return no.getElemento();
 	}
 
-	public T remove(int index) {
-		T element = null;
-		
-		if (isEmpty()) {
-			System.err.println("EMPTY LIST");
-		} else if (index < 0 || index >= size) {
-			System.err.println("INVALID POSITION");
+	public T removerNaPosicao(int posicao) {
+		T elemento = null;
+
+		if (estaVazia()) {
+			System.err.println("LISTA VAZIA");
+		} else if (posicao < 0 || posicao >= tamanho) {
+			System.err.println("POSICAO INVALIDA");
 		} else {
-			if (index == 0) {
-				element = removeFirst();
-			} else if (index == this.size) {
-				element = removeLast();
+			if (posicao == 0) {
+				elemento = removerPrimeiro();
+			} else if (posicao == this.tamanho) {
+				elemento = removerUltimo();
 			} else {
 				int currentIndex = 0;
-				Node<T> current = this.head;
-				while (currentIndex + 1 < index) {
-					current = current.getNext();
+				No<T> current = this.primeiro;
+				while (currentIndex + 1 < posicao) {
+					current = current.getProximo();
 					currentIndex++;
 				}
-				element = current.getNext().getElement();
-				current.setNext(current.getNext().getNext());
-				this.size--;
+				elemento = current.getProximo().getElemento();
+				current.setProximo(current.getProximo().getProximo());
+				this.tamanho--;
 			}
 		}
-		
-		return element;
+
+		return elemento;
 	}
 
-	public T peek(int index) {
-		T element = null;
+	public T espiar(int index) {
+		T elemento = null;
 
-		if (isEmpty()) {
-			System.err.println("EMPTY LIST");
+		if (estaVazia()) {
+			System.err.println("LISTA VAIZA");
 			return null;
-		} else if (index < 0 || index >= size) {
-			System.err.println("INVALID POSITION");
+		} else if (index < 0 || index >= tamanho) {
+			System.err.println("POSICAO INVALIDA");
 		} else {
-			Node<T> node = head;
+			No<T> node = primeiro;
 			int currentIndex = 0;
 			while (currentIndex < index) {
-				node = node.getNext();
+				node = node.getProximo();
 				currentIndex++;
 			}
 		}
 
-		return element;
+		return elemento;
 	}
-	
-	public void print() {
-		Node<T> current = this.head;
-		while (current != null) {
-			System.out.println(current.getElement());
-			current = current.getNext();
+
+	public void printar() {
+		No<T> atual = this.primeiro;
+		while (atual != null) {
+			System.out.println(atual.getElemento());
+			atual = atual.getProximo();
 		}
 	}
 }
-
-//--> Como combinamos os métodos devem ser em português, para manter o padrão que haviamos comentado na semana passada.

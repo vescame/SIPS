@@ -1,56 +1,56 @@
 package edu.fatec.sips.data_structure;
 
 public class PilhaLigada<T> {
-	private Node<T> top;
-	private int size;
-	
+	private No<T> topo;
+	private int tamanho;
+
 	public PilhaLigada() {
-		top = null;
-		size = 0;
-	}
-	
-	public boolean isEmpty() {
-		return top == null;
-	}
-	
-	public final int getSize() {
-		return size;
+		topo = null;
+		tamanho = 0;
 	}
 
-	public final T peek() {
+	public boolean estaVazia() {
+		return topo == null;
+	}
+
+	public final int getTamanho() {
+		return tamanho;
+	}
+
+	public final T espiar() {
 		T element = null;
-		if (isEmpty()) {
-			System.out.println("EMPTY LIST");
+		if (estaVazia()) {
+			System.out.println("PILHA VAZIA");
 		} else {
-			element = top.getElement();
+			element = topo.getElemento();
 		}
-		
+
 		return element;
 	}
-	
-	public void push(final T element) {
-		final Node<T> node = new Node<T>(element);
-		if (isEmpty()) {
-			top = node;
+
+	public void empilhar(final T elemento) {
+		final No<T> no = new No<T>(elemento);
+		if (estaVazia()) {
+			topo = no;
 		} else {
-			node.setNext(top);
-			top = node;
+			no.setProximo(topo);
+			topo = no;
 		}
-		size++;
+
+		tamanho++;
 	}
-	
-	public final T pop() {
-		T element = null;
-		if (isEmpty()) {
-			System.out.println("EMPTY STACK");
+
+	public final T desempilhar() {
+		T elemento = null;
+
+		if (estaVazia()) {
+			System.out.println("PILHA VAZIA");
 		} else {
-			element = top.getElement();
-			top = top.getNext();
-			size--;
+			elemento = topo.getElemento();
+			topo = topo.getProximo();
+			tamanho--;
 		}
-		
-		return element;
+
+		return elemento;
 	}
 }
-
-//--> Como combinamos os métodos devem ser em português, para manter o padrão que haviamos comentado na semana passada.

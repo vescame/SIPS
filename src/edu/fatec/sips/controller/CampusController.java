@@ -10,12 +10,12 @@ public class CampusController {
 	public void adicionarCampus (int numeroDeCampus) {
 		for (int i = 1; i <= numeroDeCampus ; i++) {
 			Campus campus = new Campus (i, "Fatec", "Leste " + i);
-			listaDeCampus.add(campus);
+			listaDeCampus.adicionar(campus);
 		}
 	}
 	
 	public void visualizarCampus() {
-		listaDeCampus.print();
+		listaDeCampus.printar();
 	}
 	
 }

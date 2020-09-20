@@ -65,7 +65,7 @@ public class Candidato {
 	}
 	
 	public void addNota(Nota nota) {
-		this.notas.add(nota);
+		this.notas.adicionar(nota);
 	}
 
 	public void setNotas(ListaLigadaSimples<Nota> notas) {
@@ -77,7 +77,7 @@ public class Candidato {
 	}
 
 	public void addDocumento(Documento documento) {
-		documentos.add(documento);
+		documentos.adicionar(documento);
 	}
 
 	public ListaLigadaSimples<Documento> getDocumentos() {
@@ -89,7 +89,7 @@ public class Candidato {
 	}
 
 	public void addRecurso(Recurso recurso) {
-		recursos.add(recurso);
+		recursos.adicionar(recurso);
 	}
 
 	public ListaLigadaSimples<Recurso> getRecursos() {
