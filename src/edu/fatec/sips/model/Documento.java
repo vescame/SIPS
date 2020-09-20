@@ -2,10 +2,12 @@ package edu.fatec.sips.model;
 
 public class Documento {
 	private String titulo;
-	private int numero;
-
-	public Documento(String titulo, int numero) {
-		super();
+	private String numero;
+	
+	// numero deve ser String pois há documentos que utilizam
+	// tanto números como letras. não serão realizadas operações
+	// envolvendo cálculos com os documentos
+	public Documento(String titulo, String numero) {
 		this.titulo = titulo;
 		this.numero = numero;
 	}
@@ -18,11 +20,11 @@ public class Documento {
 		this.titulo = titulo;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
