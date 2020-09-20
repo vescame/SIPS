@@ -31,18 +31,18 @@ public class ArquivoController {
 	public Candidato[ ] GravarCandidato (Candidato[ ] candidato  ) throws IOException {	
 	     int i=0;	
 	     String fileName = "ArquivoCandidato.txt";	
-	     BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));	
+	     BufferedWriter escrever = new BufferedWriter(new FileWriter( fileName ));	
 	     //for (i = 0 ; i < 3 ; i++)	
 	          candidato[i] = new Candidato();
 		
 	    // for (i = 0 ; i < 3 ; i++)  {	
 	           candidato[i].nome = JOptionPane.showInputDialog("Digite o nome do candidato:");	
-	           writer.write( candidato[i].nome );  	
-	           writer.newLine();	
+	           escrever.write( candidato[i].nome );  	
+	           escrever.newLine();	
 	           
 	//} 
 	      System.out.println("CANDIDATO GRAVADO COM SUCESSO ");	
-	    writer.close();
+	    escrever.close();
 	  return candidato;
 	  }
 }
