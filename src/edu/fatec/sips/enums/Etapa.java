@@ -1,4 +1,4 @@
-package edu.fatec.sips.tipos;
+package edu.fatec.sips.enums;
 
 public enum Etapa {
 	INSCRICAO("Incrição"),

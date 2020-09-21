@@ -1,6 +1,6 @@
 package edu.fatec.sips.model;
 
-import edu.fatec.sips.tipos.Etapa;
+import edu.fatec.sips.enums.Etapa;
 
 public class Recurso {
 	private Documento documentoCandidato;
