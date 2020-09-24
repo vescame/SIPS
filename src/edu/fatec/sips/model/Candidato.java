@@ -6,7 +6,7 @@ import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
 public class Candidato {
 	private int id;
-	public String nome;
+	private String nome;
 	private String sobrenome;
 	private LocalDate dataNascimento;
 	private Curso curso;
@@ -118,4 +118,12 @@ public class Candidato {
 	public ListaLigadaSimples<Recurso> getRecursos() {
 		return this.recursos;
 	}
+
+	@Override
+	public String toString() {
+		return "Candidato\nid=" + id + "\nnome=" + nome + " " + sobrenome + "\ndataNascimento="
+				+ dataNascimento + "\n" + (aprovado ? "aprovado" : "reprovado") + "";
+	}
+	
+	
 }

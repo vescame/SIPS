@@ -25,6 +25,10 @@ public class CandidatoController {
 		return this.dao.buscarCampo(documento);
 	}
 	
+	public void salvar(final Candidato candidato) {
+		this.dao.salvar(candidato);
+	}
+	
 	public ListaLigadaSimples<Candidato> getPorNome(final String nome) {
 		return this.dao.buscarPorNome(nome);
 	}

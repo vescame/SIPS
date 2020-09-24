@@ -1,4 +1,4 @@
-package edu.fatec.sips.view;
+package edu.fatec.sips.view.candidato;
 
 import javax.swing.JOptionPane;
 

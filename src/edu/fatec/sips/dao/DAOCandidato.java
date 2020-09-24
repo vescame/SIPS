@@ -1,12 +1,16 @@
 package edu.fatec.sips.dao;
 
+import java.io.IOException;
+
+import edu.fatec.sips.controller.ArquivoCandidatoController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Documento;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
-
+	ArquivoCandidatoController arquivoCandidato = new ArquivoCandidatoController();
+	
 	@Override
 	public Candidato buscarPorId(int id) {
 		return null;
@@ -26,12 +30,22 @@ public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 
 	@Override
 	public ListaLigadaSimples<Candidato> listar() {
+		try {
+			return this.arquivoCandidato.listarCandidatos();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
 	@Override
-	public void salvar(final Candidato candidato) {
-		throw new NotImplementedException();
+	public void salvar(final Candidato candidato){
+		try {
+			this.arquivoCandidato.gravarCandidato(candidato);
+		} catch (IOException e) {
+			System.out.println("falha ao salvar candidato");
+		}
 	}
 
 	@Override

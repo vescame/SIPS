@@ -1,62 +1,67 @@
 package edu.fatec.sips.controller;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.LineNumberReader;
+import java.time.LocalDate;
 
-import javax.swing.JOptionPane;
-
+import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 
 public class ArquivoCandidatoController {
+	private final String ARQUIVO = "ArquivoCandidato.txt";
+	private final String SEPARADOR = ";";
 	
-	public int contar() throws FileNotFoundException, IOException {
-		int qtdLinhas;		
-		  try
-		  (
-		     FileReader       leitorArquivo = new FileReader("ArquivoCandidato.txt");
-		     LineNumberReader contador = new LineNumberReader(leitorArquivo);
-		  )
-		  {
-		     while (contador.skip(Long.MAX_VALUE) > 0)
-		     {
-		        // Loop just in case the file is > Long.MAX_VALUE or skip() decides to not read the entire file
-		     }
+	public ListaLigadaSimples<Candidato> listarCandidatos() throws IOException {
+		String linha = new String();
+		ListaLigadaSimples<Candidato> candidatos = new ListaLigadaSimples<Candidato>();
+		
+		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
 
-		     qtdLinhas = contador.getLineNumber()+1 ;
-		  }
+		while ((linha = br.readLine()) != null) {
+			Candidato tempCandidato = quebrarAtributos(linha);
+			candidatos.adicionar(tempCandidato);
+		}
 		
-		return qtdLinhas;
+		br.close();
 		
+		return candidatos;
 	}
-	public void LerCandidato ( Candidato[ ] candidato ) throws IOException	 {	
-		  int i, qtdLinhas;
-		  qtdLinhas = contar();
-		  String nomeArquivo = "ArquivoCandidato.txt";	
-		  BufferedReader ler = new BufferedReader(new FileReader( nomeArquivo ));	
-		  for (i = 0 ; i < qtdLinhas ; i++)	
-		   candidato[i] = new Candidato();
-		  for (i = 0 ; i < qtdLinhas ; i++)   {	
-		    candidato[i].nome = ler.readLine();  	
-		   }			  	
-		  for (i = 0 ; i < qtdLinhas; i++) {	
-		   System.out.println(candidato[i].nome);	
-		  }
-		  ler.close();	
-		  }	
+
+	private Candidato quebrarAtributos(String linha) {
+		Candidato candidato = new Candidato();
+		try {
+			String[] atribs = linha.split(SEPARADOR);
+			candidato.setId(Integer.valueOf(atribs[0]));
+			candidato.setNome(atribs[1]);
+			candidato.setSobrenome(atribs[2]);
+			candidato.setDataNascimento(LocalDate.parse(atribs[3]));
+			// int idCurso = Integer.valueOf(atribs[4]);
+			// Curso curso = ArquivoCursoController.getPorId(idCurso)
+			// candidato.setCurso(curso);
+			candidato.setAprovado(Boolean.valueOf(atribs[5]));
+		} catch (Exception e) {
+			System.out.println("falha ao obter atributo");
+		}
+		
+		return candidato;
+	}
+
+	public void gravarCandidato(final Candidato candidato) throws IOException {
+		FileWriter fw = new FileWriter(ARQUIVO, true);
+		fw.write("\n" + concatenarCandidato(candidato));
+		fw.close();
+	}
 	
-	public Candidato[ ] GravarCandidato (Candidato[ ] candidato  ) throws IOException {	
-		 int i=0;
-		 candidato[i] = new Candidato();
-	     FileWriter fw = new FileWriter("ArquivoCandidato.txt",true);
-	           candidato[i].nome = JOptionPane.showInputDialog("Digite o nome do candidato:");
-	           fw.write( "\n" + candidato[i].nome );
-	           System.out.println("CANDIDATO GRAVADO COM SUCESSO ");	
-	    fw.close();
-	  return candidato;
-	  }
+	private String concatenarCandidato(final Candidato candidato) {
+		StringBuilder linha = new StringBuilder().append(candidato.getId()).append(SEPARADOR)
+				.append(candidato.getNome()).append(SEPARADOR)
+				.append(candidato.getSobrenome()).append(SEPARADOR)
+				.append(candidato.getDataNascimento().toString()).append(SEPARADOR)
+				.append(candidato.getCurso().getId()).append(SEPARADOR)
+				.append(candidato.isAprovado());
+		
+		return linha.toString();
+	}
 }

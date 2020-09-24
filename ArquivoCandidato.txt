@@ -1,3 +1,6 @@
-teste1
-teste2
-teste3
+1;teste1;sobrenome1;1998-09-30;2;true
+2;teste2;sobrenome2;2001-07-14;4;false
+3;teste3;sobrenome2;1989-01-21;5;true
+4;teste4;sobrenome2;1995-03-17;1;false
+0;vinicius;escame;1996-01-11;5;false
+0;evandfon;sobrenome3;1997-11-06;5;true
