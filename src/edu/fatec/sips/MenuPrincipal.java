@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import edu.fatec.sips.view.CampusView;
 import edu.fatec.sips.view.candidato.MenuCandidato;
 
 public class MenuPrincipal {
@@ -20,7 +21,7 @@ public class MenuPrincipal {
 				new MenuCandidato();
 				break;
 			case 2:
-				// new MenuCampus();
+				new CampusView().menuCampus(0);
 				break;
 			case 9:
 				JOptionPane.showMessageDialog(null, "Finalizando SIPS...");

@@ -6,7 +6,6 @@ import edu.fatec.sips.controller.ArquivoCandidatoController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Documento;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 	ArquivoCandidatoController arquivoCandidato = new ArquivoCandidatoController();
@@ -54,8 +53,8 @@ public class DAOCandidato implements DAOGenerico<Candidato, Documento> {
 	}
 
 	@Override
-	public Candidato remover(Candidato elemento) {
-		throw new NotImplementedException();
+	public Candidato remover(Candidato elemento) throws IOException {
+		throw new IOException();
 	}
 
 	@Override

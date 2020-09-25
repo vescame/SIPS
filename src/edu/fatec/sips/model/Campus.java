@@ -12,6 +12,10 @@ public class Campus {
 		this.unidade = unidade;
 	}
 	
+	public Campus() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

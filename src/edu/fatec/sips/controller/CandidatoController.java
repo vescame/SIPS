@@ -1,10 +1,11 @@
 package edu.fatec.sips.controller;
 
+import java.io.IOException;
+
 import edu.fatec.sips.dao.DAOCandidato;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Documento;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class CandidatoController {
 	public DAOCandidato dao;
@@ -37,7 +38,7 @@ public class CandidatoController {
 		this.dao.atualizar(candidato);
 	}
 	
-	public Candidato remover(final Candidato elemento) {
-		throw new NotImplementedException();
+	public Candidato remover(final Candidato elemento) throws IOException {
+		throw new IOException();
 	}
 }

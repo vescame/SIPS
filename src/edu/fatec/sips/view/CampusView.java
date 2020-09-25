@@ -1,5 +1,8 @@
 package edu.fatec.sips.view;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import edu.fatec.sips.controller.CampusController;
@@ -8,7 +11,7 @@ public class CampusView {
 	
 	CampusController campusController = new CampusController();
 	
-	public int menuCampus (int opcao) {
+	public int menuCampus (int opcao) throws NumberFormatException, HeadlessException, IOException {
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("Gerenciar Campus\n 1- Adicionar Campus\n 2- Visualizar Campus\n 99- Sair"));
 			avaliarOpcao(opcao);
@@ -18,7 +21,7 @@ public class CampusView {
 		}
 	}
 	
-	public void avaliarOpcao (int opcao) {
+	public void avaliarOpcao (int opcao) throws NumberFormatException, HeadlessException, IOException {
 		switch (opcao) {
 		case 0:
 			JOptionPane.showMessageDialog(null, "Bem vindo, ao gerenciamento de Campus.");

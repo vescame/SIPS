@@ -1,5 +1,7 @@
 package edu.fatec.sips.dao;
 
+import java.io.IOException;
+
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
 public interface DAOGenerico<T, C> {
@@ -15,7 +17,7 @@ public interface DAOGenerico<T, C> {
 	
 	public void atualizar(T elemento);
 	
-	public T remover(T elemento);
+	public T remover(T elemento) throws IOException;
 	
 	public int ultimoId();
 }
