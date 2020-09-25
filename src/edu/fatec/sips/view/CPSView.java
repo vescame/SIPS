@@ -12,10 +12,10 @@ public class CPSView {
 	CPSController cpsController = new CPSController();
 
 	public int menuCPS(int opcao) throws NumberFormatException, HeadlessException, IOException {
-		if (opcao != 9) {
+		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(
-					"Menu CPS\n 1- Definir vagas remanescentes \n" + " 2- Cadastrar campus\n 3- Visualizar campus \n"
-							+ " 4- Cadastrar cronograma de atividades \n" + " 9- Sair"));
+					"MENU CPS \n\n 1- Definir vagas remanescentes \n" + " 2- Cadastrar campus\n 3- Visualizar campus \n"
+							+ " 4- Cadastrar cronograma de atividades \n" + " 99- Sair"));
 			avaliarOpcao(opcao);
 			return menuCPS(opcao);
 		} else {
@@ -38,7 +38,7 @@ public class CPSView {
 		case 4:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
-		case 9:
+		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
 			break;
 		default:
