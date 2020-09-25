@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import edu.fatec.sips.view.CampusView;
+import edu.fatec.sips.view.CPSView;
 import edu.fatec.sips.view.candidato.MenuCandidato;
 
 public class MenuPrincipal {
@@ -14,14 +14,14 @@ public class MenuPrincipal {
 		while (opc != 9) {
 			opc = Integer
 					.parseInt(JOptionPane.showInputDialog("1 - Menu Candidato\n" +
-							"2 - Menu Câmpus\n" +
+							"2 - Menu CPS\n" +
 							"9 - Finalizar"));
 			switch (opc) {
 			case 1:
 				new MenuCandidato();
 				break;
 			case 2:
-				new CampusView().menuCampus(0);
+				new CPSView().menuCPS(0);
 				break;
 			case 9:
 				JOptionPane.showMessageDialog(null, "Finalizando SIPS...");
