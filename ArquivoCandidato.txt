@@ -7,3 +7,5 @@
 0;Wiliam;Nascimento;1999-09-10;5;true
 0;Wiliam;Silva;2000-10-20;5;false
 0;Fulano;Cipriano;2001-07-23;5;true
+0;ADS;null;1999-10-10;5;false
+0;Cristiano;Ronaldo;1978-10-10;5;true

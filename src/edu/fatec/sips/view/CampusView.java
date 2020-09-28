@@ -28,7 +28,7 @@ public class CampusView {
 	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException {
 		switch (opcao) {
 		case 1:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			campusController.cadastrarEdital();
 			break;
 		case 2:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
