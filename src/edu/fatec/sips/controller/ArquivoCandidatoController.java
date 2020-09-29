@@ -104,7 +104,7 @@ public class ArquivoCandidatoController {
 
 	public void gravarCandidato(final Candidato candidato) throws IOException {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
-		fw.write("\n" + concatenarCandidato(candidato));
+		fw.write(concatenarCandidato(candidato) + "\n");
 		fw.close();
 	}
 	

@@ -1,13 +1,14 @@
 package edu.fatec.sips.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Curso;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ArquivoCursoController {
 	private final String ARQUIVO = "ArquivoCurso.txt";
@@ -64,7 +65,7 @@ public class ArquivoCursoController {
 		return cursos;
 	}
 	
-	private boolean cursoExisteNoArquivo(Curso curso) throws IOException {
+	private boolean cursoExisteNoArquivo(final Curso curso) throws IOException {
 		String linha = new String();
 		boolean cursoExiste = false;
 		
@@ -83,10 +84,10 @@ public class ArquivoCursoController {
 		return cursoExiste;
 	}
 
-	public void gravarCurso(Curso curso) throws IOException {
+	public void gravarCurso(final Curso curso) throws IOException {
 		if (!cursoExisteNoArquivo(curso)) {
 			FileWriter fw = new FileWriter(ARQUIVO, true);
-			fw.write("\n" + concatenarCurso(curso));
+			fw.write(concatenarCurso(curso) + "\n");
 			fw.close();
 			System.out.println("novo curso salvo no arquivo");
 		} else {
@@ -94,12 +95,57 @@ public class ArquivoCursoController {
 		}
 	}
 	
-	public void atualizarCurso(final Curso curso) throws IOException {
-		throw new NotImplementedException();
+	public void atualizarCurso(final Curso cursoAtualizado) throws IOException {
+		String linhaAtual = new String();
+		
+		File arquivoEntrada = new File(this.ARQUIVO);
+		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
+
+		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
+
+		while ((linhaAtual = br.readLine()) != null) {
+			Curso cursoAtual = quebrarAtributos(linhaAtual);
+			
+			if (cursoAtual.getId() == cursoAtualizado.getId()) {
+				cursoAtual = cursoAtualizado;
+			}
+			
+			bw.write(concatenarCurso(cursoAtual) + "\n");
+		}
+		
+		bw.close();
+		br.close();
+		arquivoEntrada.delete();
+		arquivoTemporario.renameTo(new File(this.ARQUIVO));
 	}
 	
 	public Curso removerCurso(final Curso curso) throws IOException {
-		throw new NotImplementedException();
+		Curso retorno = null;
+		String linhaAtual = new String();
+		
+		File arquivoEntrada = new File(this.ARQUIVO);
+		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
+
+		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
+
+		while ((linhaAtual = br.readLine()) != null) {
+			Curso cursoAtual = quebrarAtributos(linhaAtual);
+			
+			if (cursoAtual.equals(curso)) {
+				retorno = cursoAtual;
+			} else {
+				bw.write(concatenarCurso(cursoAtual) + "\n");
+			}
+		}
+		
+		bw.close();
+		br.close();
+		arquivoEntrada.delete();
+		arquivoTemporario.renameTo(new File(this.ARQUIVO));
+		
+		return retorno;
 	}
 
 	private Curso quebrarAtributos(String linha) {

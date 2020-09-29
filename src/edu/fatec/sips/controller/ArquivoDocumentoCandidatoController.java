@@ -51,7 +51,7 @@ public class ArquivoDocumentoCandidatoController {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
 		
 		for (int i = 0; i < documentos.getSize(); ++i) {
-			fw.write("\n" + concatenarDocumento(documentos.espiar(i)));
+			fw.write(concatenarDocumento(documentos.espiar(i)) + "\n");
 		}
 		
 		fw.close();
