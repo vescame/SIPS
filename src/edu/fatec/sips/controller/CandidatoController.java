@@ -2,43 +2,71 @@ package edu.fatec.sips.controller;
 
 import java.io.IOException;
 
-import edu.fatec.sips.dao.DAOCandidato;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
-import edu.fatec.sips.model.Documento;
 
 public class CandidatoController {
-	public DAOCandidato dao;
+	private final ArquivoCandidatoController bdCandidato;
 	
 	public CandidatoController() {
-		this.dao = new DAOCandidato();
+		this.bdCandidato = new ArquivoCandidatoController();
 	}
 	
 	public Candidato getPorId(int id) {
-		return this.dao.buscarPorId(id);
+		Candidato candidato = null;
+		
+		try {
+			candidato = this.bdCandidato.buscarPorId(id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (candidato == null) {
+				System.out.println("candidato de id " + id + " nao encontrado");
+			}
+		}
+		
+		return candidato;
 	}
 	
 	public ListaLigadaSimples<Candidato> listarCandidatos() {
-		return this.dao.listar();
-	}
-	
-	public Candidato getPorDocumento(final Documento documento) {
-		return this.dao.buscarCampo(documento);
+		try {
+			return this.bdCandidato.listarCandidatos();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public void salvar(final Candidato candidato) {
-		this.dao.salvar(candidato);
-	}
-	
-	public ListaLigadaSimples<Candidato> getPorNome(final String nome) {
-		return this.dao.buscarPorNome(nome);
+		try {
+			this.bdCandidato.gravarCandidato(candidato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void atualizar(final Candidato candidato) {
-		this.dao.atualizar(candidato);
+		try {
+			this.bdCandidato.atualizarCandidato(candidato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Candidato remover(final Candidato elemento) throws IOException {
-		throw new IOException();
+	public Candidato remover(final Candidato candidato) {
+		Candidato removido = null;
+		
+		try {
+			removido = this.bdCandidato.removerCandidato(candidato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (removido == null) {
+				System.out.println("curso de id " + candidato.getId() + " nao existe");
+			}
+		}
+		
+		return removido;
 	}
 }
