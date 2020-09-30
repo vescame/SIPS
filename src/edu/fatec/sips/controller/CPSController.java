@@ -21,7 +21,7 @@ public class CPSController {
 	public void visualizarCampus() {
 		String col[] = { "ID", "NOME", "UNIDADE"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-		for (int i = 0; i < listaDeCampus.getSize(); i++) {
+		for (int i = 0; i < listaDeCampus.getTamanho(); i++) {
 			Object[] campus = { listaDeCampus.espiar(i).getId(), listaDeCampus.espiar(i).getNome(),
 					listaDeCampus.espiar(i).getUnidade() };
 			tableModel.addRow(campus);

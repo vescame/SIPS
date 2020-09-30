@@ -29,7 +29,7 @@ public class VisualizarCandidato {
 
 	private String getDocumentos() {
 		String layout = new String();
-		final int tamanho = this.candidato.getDocumentos().getSize();
+		final int tamanho = this.candidato.getDocumentos().getTamanho();
 
 		for (int i = 0; i < tamanho; ++i) {
 			Documento doc = this.candidato.getDocumentos().espiar(i);
@@ -52,7 +52,7 @@ public class VisualizarCandidato {
 	private String getRecursos() {
 		String labelEtapa = new String("Etapa: ");
 		String layout = new String("");
-		final int tamanho = this.candidato.getRecursos().getSize();
+		final int tamanho = this.candidato.getRecursos().getTamanho();
 
 		if (tamanho == 0) {
 			layout = new String("Não há recursos");
@@ -73,7 +73,7 @@ public class VisualizarCandidato {
 
 	private String getNotas() {
 		String layout = new String("Não há notas");
-		final int tamanho = this.candidato.getNotas().getSize();
+		final int tamanho = this.candidato.getNotas().getTamanho();
 
 		for (int i = 0; i < tamanho; ++i) {
 			Nota n = this.candidato.getNotas().espiar(0);

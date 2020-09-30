@@ -50,7 +50,7 @@ public class ArquivoDocumentoCandidatoController {
 	public void gravarDocumentos(final ListaLigadaSimples<Documento> documentos) throws IOException {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
 		
-		for (int i = 0; i < documentos.getSize(); ++i) {
+		for (int i = 0; i < documentos.getTamanho(); ++i) {
 			fw.write(concatenarDocumento(documentos.espiar(i)) + "\n");
 		}
 		

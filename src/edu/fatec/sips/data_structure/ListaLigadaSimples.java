@@ -9,7 +9,7 @@ public class ListaLigadaSimples<T> {
 		this.tamanho = 0;
 	}
 	
-	public int getSize() {
+	public int getTamanho() {
 		return this.tamanho;
 	}
 
