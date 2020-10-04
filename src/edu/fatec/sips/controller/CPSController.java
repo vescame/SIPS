@@ -1,21 +1,38 @@
 package edu.fatec.sips.controller;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import edu.fatec.sips.dao.DAOCPS;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 
 public class CPSController {
 	ListaLigadaSimples<Campus> listaDeCampus = new ListaLigadaSimples<Campus>();
+	Campus campus = new Campus();
+	DAOCPS daocps = new DAOCPS();
+	
+	
+	public void cadastrarCampus() {
+		JLabel labelNomeFaculdade = new JLabel("Nome");
+		JLabel labelUnidadeFaculdade = new JLabel("Unidade");
+		
+		JTextField txtNomeFaculdade = new JTextField();
+		JTextField txtUnidadeFaculdade = new JTextField();
+		
+		Object [] options = {labelNomeFaculdade, txtNomeFaculdade, labelUnidadeFaculdade, txtUnidadeFaculdade};
+		
+		JOptionPane.showMessageDialog(null, options, "CADASTRAR CAMPUS", JOptionPane.PLAIN_MESSAGE);
+		
+		campus.setId(10);
+		campus.setNome(txtNomeFaculdade.getText());
+		campus.setUnidade(txtUnidadeFaculdade.getText());
+		daocps.salvar(campus);		
 
-	public void cadastrarCampus(int numeroDeCampus) {
-		for (int i = 1; i <= numeroDeCampus; i++) {
-			Campus campus = new Campus(i, "Fatec", "Leste " + i);
-			listaDeCampus.adicionar(campus);
-		}
 	}
 
 	public void visualizarCampus() {
@@ -28,5 +45,9 @@ public class CPSController {
 		}
 		JTable table = new JTable(tableModel);
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE CAMPUS", JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	public static void main (String [] args) {
+		new CPSController().cadastrarCampus();
 	}
 }

@@ -29,8 +29,7 @@ public class CPSView {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 2:
-			cpsController.cadastrarCampus(
-					Integer.parseInt(JOptionPane.showInputDialog("Quantidade de campus, a serem adicionados")));
+			cpsController.cadastrarCampus();
 			break;
 		case 3:
 			cpsController.visualizarCampus();

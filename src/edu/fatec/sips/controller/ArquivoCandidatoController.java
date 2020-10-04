@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Curso;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ArquivoCandidatoController {
 	final ArquivoDocumentoCandidatoController documentos;
@@ -74,12 +73,12 @@ public class ArquivoCandidatoController {
 		return candidatos;
 	}
 	
-	public void atualizarCandidato(final Candidato candidato) throws IOException {
-		throw new NotImplementedException();
+	public void atualizarCandidato(final Candidato candidato) throws Exception {
+		throw new Exception();
 	}
 	
-	public Candidato removerCandidato(final Candidato candidato) throws IOException {
-		throw new NotImplementedException();
+	public Candidato removerCandidato(final Candidato candidato) throws Exception {
+		throw new Exception();
 	}
 
 	private Candidato quebrarAtributos(String linha) {

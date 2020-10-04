@@ -85,6 +85,7 @@ public class ArquivoCursoController {
 	}
 
 	public void gravarCurso(final Curso curso) throws IOException {
+		curso.setId(ultimoId());
 		if (!cursoExisteNoArquivo(curso)) {
 			FileWriter fw = new FileWriter(ARQUIVO, true);
 			fw.write(concatenarCurso(curso) + "\n");

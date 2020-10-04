@@ -49,7 +49,7 @@ public class CandidatoController {
 	public void atualizar(final Candidato candidato) {
 		try {
 			this.bdCandidato.atualizarCandidato(candidato);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -59,7 +59,7 @@ public class CandidatoController {
 		
 		try {
 			removido = this.bdCandidato.removerCandidato(candidato);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (removido == null) {
