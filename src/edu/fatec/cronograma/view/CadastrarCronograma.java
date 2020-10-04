@@ -35,7 +35,7 @@ public class CadastrarCronograma {
 		cronoController.inserirAtividade(atividades);
 		int opcao = JOptionPane.showConfirmDialog( null,"Deseja gravar o arquivo", "Gravação",JOptionPane.YES_NO_OPTION);
 		if(opcao==JOptionPane.YES_OPTION) {			
-			
+			System.out.println(cronoController.mostrarAtividades());
 		} else {
 		}
 	}

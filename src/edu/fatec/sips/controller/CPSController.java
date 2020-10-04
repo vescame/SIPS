@@ -31,8 +31,8 @@ public class CPSController {
 		campus.setId(10);
 		campus.setNome(txtNomeFaculdade.getText());
 		campus.setUnidade(txtUnidadeFaculdade.getText());
-		daocps.salvar(campus);		
-
+		daocps.salvar(campus);
+		listaDeCampus.adicionar(campus);
 	}
 
 	public void visualizarCampus() {
