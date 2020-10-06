@@ -14,6 +14,7 @@ public class FilaImplementacaoDinamica <T> {
 		if (isEmpty()) {
 			No<T> no = new No<T>(elemento);
 			primeiro = no;
+			tamanho++;
 		} else {
 
 			No<T> aux = primeiro;
@@ -22,6 +23,7 @@ public class FilaImplementacaoDinamica <T> {
 			}
 			No<T> novo = new No<T>(elemento);
 			aux.setProximo(novo);
+			tamanho++;
 		}
 	}
 
@@ -32,6 +34,7 @@ public class FilaImplementacaoDinamica <T> {
 		} else {
 			elemento_removido = primeiro.getElemento();
 			primeiro = primeiro.getProximo();
+			tamanho--;
 		}
 		return elemento_removido;
 	}
@@ -46,6 +49,26 @@ public class FilaImplementacaoDinamica <T> {
 		return result;
 	}
 
+	
+	public T coletar(int posicao) {
+		T elemento = null;	
+		if (isEmpty()) {
+			System.err.println("FILA VAZIA");
+			return null;
+		} else if (posicao < 0 || posicao >= tamanho) {
+			System.err.println("POSICAO INVALIDA");
+		} else {
+			No<T> no = primeiro;
+			int currentIndex = 0;
+			while (currentIndex < posicao) {
+				no = no.getProximo();
+				currentIndex++;
+			}		
+			elemento = no.getElemento();
+		}	
+		return elemento;
+	}
+	
 	public int getSize() {
 		return this.tamanho;
 	}

@@ -1,0 +1,2 @@
+1;Definir período de isenção;29/09/2020;01/10/2020
+2;Definir data e locais da prova;02/10/2020;07/10/2020

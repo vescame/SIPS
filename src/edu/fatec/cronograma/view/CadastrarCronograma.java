@@ -1,6 +1,7 @@
 package edu.fatec.cronograma.view;
 
 import java.awt.HeadlessException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class CadastrarCronograma {
 	CronogramaController cronoController = new CronogramaController();
 	
 
-	public void Cadastrar() {
+	public void Cadastrar() throws IOException {
 
 		CronogramaDeAtividades atividades = new CronogramaDeAtividades();
 		atividades.setIdAtividade(Integer.parseInt(JOptionPane.showInputDialog("Insira o id da atividade: ")));
@@ -32,11 +33,12 @@ public class CadastrarCronograma {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		cronoController.inserirAtividade(atividades);
-		int opcao = JOptionPane.showConfirmDialog( null,"Deseja gravar o arquivo", "Gravação",JOptionPane.YES_NO_OPTION);
+		int opcao = JOptionPane.showConfirmDialog(null,"Deseja gravar o arquivo", "Gravação",JOptionPane.YES_NO_OPTION);
 		if(opcao==JOptionPane.YES_OPTION) {			
-			System.out.println(cronoController.mostrarAtividades());
+			cronoController.gravarAtividade(atividades);
+			cronoController.visualizarAtividade();
 		} else {
+			System.out.println("Gravação Cancelada");
 		}
 	}
 
