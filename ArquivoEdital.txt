@@ -1,2 +1,5 @@
 1;dsfsdf;ADS;dsfdsf;2020/02/02;2020/02/02;34;dsfsdf;2;
 2;Piroca;COMEX;Voltado para pessoal blá, blá ...;11/11/2020;12/11/2020;0;null;2;
+3;;ADS;;;;0;null;1;
+4;;ADS;;;;0;null;1;
+5;;ADS;;;;0;null;1;

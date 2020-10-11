@@ -125,8 +125,8 @@ public class CampusController {
 	}
 
 	public void visualizarEdital() {
-		String col[] = { "ID", "TITULO", "CURSO", "PUBLICO ALVO", "PERIODO INICIAL", "PERIODO FINAL", "QTD VAGAS",
-				"TIPO VAGA", "CRITERIO" };
+		String col[] = { "ID", "TÍTULO", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS",
+				"TIPO VAGA", "CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeEdital.getTamanho(); i++) {
 			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(),
@@ -137,6 +137,7 @@ public class CampusController {
 			tableModel.addRow(edital);
 		}
 		JTable table = new JTable(tableModel);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE EDITAL", JOptionPane.PLAIN_MESSAGE);
 	}
 
