@@ -37,3 +37,5 @@
 37;;ADS;;  /  /    ;  /  /    ;0;null;1;
 38;Edital para super vagas na Gatec;ADS;;  /  /    ;  /  /    ;0;null;1;
 39;Edital 2021 - Primeiro Semestre;ADS;Volta para os alunos formados, no ensino médio.;11/10/2020;02/02/2021;0;null;3;
+40;;ADS;;  /  /    ;  /  /    ;0;null;1;
+41;titulo;Uninove - Barra Funda;RH;publico alvo;11/10/2020;11/12/2020;30;1;0;2;

@@ -13,7 +13,7 @@ ArquivoEditalController arquivoEdital = new ArquivoEditalController();
 		try {
 			this.arquivoEdital.gravarEdital(edital);
 		} catch (IOException e) {
-			System.out.println("falha ao salvar candidato");
+			System.out.println("falha ao salvar edital");
 		}
 	}
 	
