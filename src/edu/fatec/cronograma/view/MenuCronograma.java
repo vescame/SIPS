@@ -11,9 +11,9 @@ public class MenuCronograma {
 	
 	public void menu() throws IOException {
 		int opc = 0;
-		while (opc != 9) {
-			opc = Integer.parseInt(JOptionPane.showInputDialog("\nESCOLHA UMA OPÇÃO: "
-					+ "\n1) Inserir Atividades no Cronograma" + "\n2) Visualizar Cronograma" + "\n99) Sair"));
+		while (opc != 99) {
+			opc = Integer.parseInt(JOptionPane.showInputDialog("\nCADASTRAR CRONOGRAMA DE ATIVIDADES: "
+					+ "\n1- Inserir Atividades no Cronograma" + "\n2- Visualizar Cronograma" + "\n99- Sair"));
 
 			switch (opc) {
 			case 1:
@@ -23,10 +23,10 @@ public class MenuCronograma {
 				listarCronograma.listar();;
 				break;
 			case 99:
-				JOptionPane.showMessageDialog(null, "Encerrando Menu do Cronograma");
+				JOptionPane.showMessageDialog(null, "Encerrando Sessão...");
 				break;
 			default: 
-				JOptionPane.showMessageDialog(null, "OPÇÃO INVÁLIDA");
+				JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
 			}
 		}
 

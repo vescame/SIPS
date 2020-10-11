@@ -15,7 +15,7 @@ public class CPSView {
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(
 					"MENU CPS \n\n 1- Definir vagas remanescentes \n" + " 2- Cadastrar campus\n 3- Visualizar campus \n"
-							+ " 4- Manter cronograma de atividades \n" + " 99- Sair"));
+							+ " 4- Cadastrar cronograma de atividades \n" + " 99- Sair"));
 			avaliarOpcao(opcao);
 			return menuCPS(opcao);
 		} else {
