@@ -1,9 +1,10 @@
 package edu.fatec.sips.controller;
 
-import java.awt.GradientPaint;
-import java.awt.GridBagLayout;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import edu.fatec.sips.dao.DAOEDITAL;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
@@ -48,6 +50,11 @@ public class CampusController {
 		JLabel labelTitulo = new JLabel("Título do edital");
 		JTextField txtTitulo = new JTextField();
 
+		JLabel labelCampus = new JLabel("Campus");
+		String[] campus = { "Fatec - Leste", "Fatec - Sul", "Uninove - Barra Funda" };
+		JComboBox<String> comboBoxCampus = new JComboBox<String>(campus);
+		comboBoxCampus.setEditable(true);
+
 		JLabel labelCurso = new JLabel("Curso");
 		String[] cursos = { "ADS", "COMEX", "LOG", "RH", "POLI" };
 		JComboBox<String> comboBoxCursos = new JComboBox<String>(cursos);
@@ -58,27 +65,35 @@ public class CampusController {
 
 		JLabel labelPeriodoEdital = new JLabel("Período");
 		JLabel labelPeriodoInicial = new JLabel("Inicial");
-		JTextField txtPeriodoInicial = new JTextField(11);
+		JFormattedTextField txtPeriodoInicial = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		txtPeriodoInicial.setColumns(6);
+		txtPeriodoInicial.setHorizontalAlignment(JTextField.CENTER);
+		JLabel labelIconePeriodoInicial = new JLabel(new ImageIcon("icon-calendar.png"));
 		JLabel labelPeriodoFinal = new JLabel("Final");
-		JTextField txtPeriodoFinal = new JTextField(11);
+		JFormattedTextField txtPeriodoFinal = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		txtPeriodoFinal.setColumns(6);
+		txtPeriodoFinal.setHorizontalAlignment(JTextField.CENTER);
+		JLabel labelIconePeriodoFinal = new JLabel(new ImageIcon("icon-calendar.png"));
 
 		JLabel labelQuantidadeVagas = new JLabel("Quantidade de vagas");
-		JTextField txtQtdVagasAmplaConcorrencia = new JTextField(5);
-		JTextField txtQtdVagasAcoesAfirmativas = new JTextField(5);
-		JTextField txtQtdVagasDeficiente = new JTextField(5);
+		JTextField txtQtdVagasAmplaConcorrencia = new JTextField(3);
+		JTextField txtQtdVagasAcoesAfirmativas = new JTextField(3);
+		JTextField txtQtdVagasDeficiente = new JTextField(3);
 
 		JLabel labelCriterio = new JLabel("Critério");
-		String[] criterio = { "1", "2", "3"};
+		String[] criterio = { "1", "2", "3" };
 		JComboBox<String> comboBoxCriterio = new JComboBox<String>(criterio);
 		comboBoxCursos.setEditable(true);
 
 		JPanel periodoInicial = new JPanel();
 		periodoInicial.add(labelPeriodoInicial);
 		periodoInicial.add(txtPeriodoInicial);
+		periodoInicial.add(labelIconePeriodoInicial);
 
 		JPanel periodoFinal = new JPanel();
 		periodoFinal.add(labelPeriodoFinal);
 		periodoFinal.add(txtPeriodoFinal);
+		periodoFinal.add(labelIconePeriodoFinal);
 
 		JPanel periodoEdital = new JPanel();
 		periodoEdital.add(periodoInicial);
@@ -101,8 +116,9 @@ public class CampusController {
 		quantitativos.add(qtdVagasAcoesAfirmativas);
 		quantitativos.add(qtdVagasDeficiente);
 
-		Object[] options = { labelTitulo, txtTitulo, labelCurso, comboBoxCursos, labelPublicoAlvo, txtPublicoAlvo,
-				labelPeriodoEdital, periodoEdital, labelQuantidadeVagas, quantitativos, labelCriterio, comboBoxCriterio };
+		Object[] options = { labelTitulo, txtTitulo, labelCampus, comboBoxCampus, labelCurso, comboBoxCursos,
+				labelPublicoAlvo, txtPublicoAlvo, labelPeriodoEdital, periodoEdital, labelQuantidadeVagas,
+				quantitativos, labelCriterio, comboBoxCriterio };
 		JOptionPane.showMessageDialog(null, options, "CADASTRAR EDITAL", JOptionPane.PLAIN_MESSAGE);
 
 		edital.setTitulo(txtTitulo.getText());
@@ -125,8 +141,8 @@ public class CampusController {
 	}
 
 	public void visualizarEdital() {
-		String col[] = { "ID", "TÍTULO", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS",
-				"TIPO VAGA", "CRITÉRIO" };
+		String col[] = { "ID", "TÍTULO", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS", "TIPO VAGA",
+				"CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeEdital.getTamanho(); i++) {
 			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(),
@@ -171,5 +187,17 @@ public class CampusController {
 		}
 
 		return removido;
+	}
+
+	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
+
+		MaskFormatter F_Mascara = new MaskFormatter();
+		try {
+			F_Mascara.setMask(formatoDeMascara); // Atribui a mascara
+			F_Mascara.setPlaceholderCharacter(' '); // Caracter para preencimento
+		} catch (Exception excecao) {
+			excecao.printStackTrace();
+		}
+		return F_Mascara;
 	}
 }

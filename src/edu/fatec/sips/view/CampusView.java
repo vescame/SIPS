@@ -34,7 +34,7 @@ public class CampusView {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 3:
-			campusController.visualizarEdital();
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 4:
 			campusController.visualizarCandidatos();
