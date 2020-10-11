@@ -37,3 +37,4 @@
 37;;ADS;;  /  /    ;  /  /    ;0;null;1;
 38;Edital para super vagas na Gatec;ADS;;  /  /    ;  /  /    ;0;null;1;
 39;Edital 2021 - Primeiro Semestre;ADS;Volta para os alunos formados, no ensino médio.;11/10/2020;02/02/2021;0;null;3;
+40;Edital 2022;LOG;qqqqqqq;20/10/2020;22/10/2020;0;null;2;
