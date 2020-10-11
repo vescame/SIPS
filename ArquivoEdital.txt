@@ -37,4 +37,10 @@
 37;;ADS;;  /  /    ;  /  /    ;0;null;1;
 38;Edital para super vagas na Gatec;ADS;;  /  /    ;  /  /    ;0;null;1;
 39;Edital 2021 - Primeiro Semestre;ADS;Volta para os alunos formados, no ensino médio.;11/10/2020;02/02/2021;0;null;3;
+<<<<<<< HEAD
 40;Edital 2022;LOG;qqqqqqq;20/10/2020;22/10/2020;0;null;2;
+=======
+40;;ADS;;  /  /    ;  /  /    ;0;null;1;
+41;titulo;Uninove - Barra Funda;RH;publico alvo;11/10/2020;11/12/2020;30;1;0;2;
+>>>>>>> branch 'master' of https://github.com/vescame/SIPS
+1;Edital - gostosinho no azeite;Uninove - Barra Funda;RH;Para fâs de azeite;11/12/2020;20/12/2020;0;2;0;2;

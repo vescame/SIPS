@@ -12,6 +12,11 @@ public class Campus {
 		this.unidade = unidade;
 	}
 	
+	public Campus(String nome, String unidade) {
+		this.nome = nome;
+		this.unidade = unidade;
+	}
+	
 	public Campus() {
 		
 	}

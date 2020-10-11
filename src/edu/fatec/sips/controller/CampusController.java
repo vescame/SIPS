@@ -122,34 +122,30 @@ public class CampusController {
 		JOptionPane.showMessageDialog(null, options, "CADASTRAR EDITAL", JOptionPane.PLAIN_MESSAGE);
 
 		edital.setTitulo(txtTitulo.getText());
+		edital.setCampus(comboBoxCampus.getSelectedItem().toString());
 		edital.setCurso(comboBoxCursos.getSelectedItem().toString());
 		edital.setPublicoAlvo(txtPublicoAlvo.getText());
 		edital.setPeriodoInicial(txtPeriodoInicial.getText());
 		edital.setPeriodoFinal(txtPeriodoFinal.getText());
-//		edital.setQtdVagas(Integer.parseInt(txtQuantidadeDeVagas.getText()));
-//		edital.setTipoVaga(txtTipoDeVaga.getText());
+		edital.setAmplaConcorrencia(Integer.parseInt(txtQtdVagasAmplaConcorrencia.getText()));
+		edital.setAcoesAfirmativas(Integer.parseInt(txtQtdVagasAcoesAfirmativas.getText()));
+		edital.setAcoesAfirmativas(Integer.parseInt(txtQtdVagasDeficiente.getText()));
 		edital.setCriterio(Integer.parseInt(comboBoxCriterio.getSelectedItem().toString()));
 
 		bdEdital.gravarEdital(edital);
 
-//		System.out.println("Título do edital: " + txtTitulo.getText() + "\n" + "Curso: "
-//				+ comboBoxCursos.getSelectedItem().toString() + "\n" + "Público alvo: " + txtPublicoAlvo.getText()
-//				+ "\n" + "Período inicial: " + txtPeriodoInicial.getText() + "\n" + "Período final: "
-//				+ txtPeriodoFinal.getText() + "\n" + "Quantidade de vagas: " + txtQuantidadeDeVagas.getText() + "\n"
-//				+ "Tipo de vaga: " + txtTipoDeVaga.getText() + "\n" + "Critério: " + txtCriterio.getText().toString());
-
 	}
 
 	public void visualizarEdital() {
-		String col[] = { "ID", "TÍTULO", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS", "TIPO VAGA",
-				"CRITÉRIO" };
+		String col[] = { "ID", "TÍTULO", "CAMPUS","CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS A.C.", "QTD. VAGAS A.A.",
+				"QTD. VAGAS D.","CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeEdital.getTamanho(); i++) {
 			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(),
 					listaDeEdital.espiar(i).getCurso(), listaDeEdital.espiar(i).getPublicoAlvo(),
 					listaDeEdital.espiar(i).getPeriodoInicial(), listaDeEdital.espiar(i).getPeriodoFinal(),
-					listaDeEdital.espiar(i).getQtdVagas(), listaDeEdital.espiar(i).getTipoVaga(),
-					listaDeEdital.espiar(i).getCriterio() };
+					listaDeEdital.espiar(i).getAmplaConcorrencia(), listaDeEdital.espiar(i).getAcoesAfirmativas(),
+					listaDeEdital.espiar(i).getDeficiente(), listaDeEdital.espiar(i).getCriterio() };
 			tableModel.addRow(edital);
 		}
 		JTable table = new JTable(tableModel);

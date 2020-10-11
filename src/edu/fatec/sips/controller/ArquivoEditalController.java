@@ -78,13 +78,15 @@ public class ArquivoEditalController {
 			String[] atribs = linha.split(SEPARADOR);
 			edital.setId(Integer.valueOf(atribs[0]));
 			edital.setTitulo(atribs[1]);
-			edital.setCurso(atribs[2]);
-			edital.setPublicoAlvo(atribs[3]);
-			edital.setPeriodoInicial(atribs[4]);
-			edital.setPeriodoFinal(atribs[5]);
-			edital.setQtdVagas(Integer.valueOf(atribs[6]));
-			edital.setTipoVaga(atribs[7]);
-			edital.setCriterio(Integer.valueOf(atribs[8]));
+			edital.setCampus(atribs[2]);
+			edital.setCurso(atribs[3]);
+			edital.setPublicoAlvo(atribs[4]);
+			edital.setPeriodoInicial(atribs[5]);
+			edital.setPeriodoFinal(atribs[6]);
+			edital.setAmplaConcorrencia(Integer.valueOf(atribs[7]));
+			edital.setAcoesAfirmativas(Integer.valueOf(atribs[8]));
+			edital.setDeficiente(Integer.valueOf(atribs[9]));
+			edital.setCriterio(Integer.valueOf(atribs[10]));
 			
 		} catch (Exception e) {
 			System.out.println("falha ao obter atributo");
@@ -103,12 +105,14 @@ public class ArquivoEditalController {
 		StringBuilder linha = new StringBuilder()//.append(edital.getId()).append(SEPARADOR)
 				.append(ultimoId()).append(SEPARADOR)
 				.append(edital.getTitulo()).append(SEPARADOR)
+				.append(edital.getCampus()).append(SEPARADOR)
 				.append(edital.getCurso()).append(SEPARADOR)
 				.append(edital.getPublicoAlvo()).append(SEPARADOR)
 				.append(edital.getPeriodoInicial().toString()).append(SEPARADOR)
 				.append(edital.getPeriodoFinal().toString()).append(SEPARADOR)
-				.append(edital.getQtdVagas()).append(SEPARADOR)
-				.append(edital.getTipoVaga()).append(SEPARADOR)
+				.append(edital.getAmplaConcorrencia()).append(SEPARADOR)
+				.append(edital.getAcoesAfirmativas()).append(SEPARADOR)
+				.append(edital.getDeficiente()).append(SEPARADOR)
 				.append(edital.getCriterio()).append(SEPARADOR);
 		
 		return linha.toString();

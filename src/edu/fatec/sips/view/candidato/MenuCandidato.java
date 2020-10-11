@@ -16,10 +16,10 @@ public class MenuCandidato {
 				new CadastrarCandidato().cadastrar();
 				break;
 			case 99:
-				JOptionPane.showMessageDialog(null, "Encerrando menu de candidatos");
+				JOptionPane.showMessageDialog(null, "Encerrando sessão...");
 				break;
 			default:
-				JOptionPane.showMessageDialog(null, "OPCAO INVALIDA");
+				JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
 			}
 		}
 	}
