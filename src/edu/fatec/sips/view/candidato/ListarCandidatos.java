@@ -26,7 +26,7 @@ public class ListarCandidatos {
 		candidatos = candidatoController.listarCandidatos();
 		for (int i = 0; i < candidatos.getTamanho(); ++i) {
 			Object[] candidatosTable = { candidatos.espiar(i).getId(), candidatos.espiar(i).getNome(),
-					candidatos.espiar(i).getSobrenome(), candidatos.espiar(i).getDocumentos().espiar(0),
+					candidatos.espiar(i).getSobrenome(), candidatos.espiar(i).getDocumentos(),
 					candidatos.espiar(i).getDataNascimentoString(), candidatos.espiar(i).getCurso(),
 					candidatos.espiar(i).getNotas(), candidatos.espiar(i).getRecursos() };
 			modeloTabela.addRow(candidatosTable);

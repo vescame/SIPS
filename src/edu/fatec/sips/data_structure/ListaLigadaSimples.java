@@ -124,10 +124,10 @@ public class ListaLigadaSimples<T> {
 		T elemento = null;
 
 		if (estaVazia()) {
-			System.err.println("LISTA VAZIA");
+			System.err.println("LISTA VÁZIA !!!");
 			return null;
 		} else if (posicao < 0 || posicao >= tamanho) {
-			System.err.println("POSICAO INVALIDA");
+			System.err.println("POSICAO INVÁLIDA !!!");
 		} else {
 			No<T> no = primeiro;
 			int currentIndex = 0;

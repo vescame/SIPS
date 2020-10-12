@@ -22,7 +22,6 @@ import edu.fatec.sips.view.candidato.ListarCandidatos;
 public class CampusController {
 	private final ArquivoEditalController bdEdital;
 
-	ListaLigadaSimples<Edital> listaDeEdital = new ListaLigadaSimples<Edital>();
 	Edital edital = new Edital();
 	DAOEDITAL daoedital = new DAOEDITAL();
 
@@ -136,12 +135,13 @@ public class CampusController {
 
 	}
 
-	public void visualizarEdital() {
+	public void visualizarEdital() throws IOException {
+		ListaLigadaSimples<Edital> listaDeEdital = this.bdEdital.listarEditais();
 		String col[] = { "ID", "TÍTULO", "CAMPUS","CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS A.C.", "QTD. VAGAS A.A.",
 				"QTD. VAGAS D.","CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeEdital.getTamanho(); i++) {
-			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(),
+			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(), listaDeEdital.espiar(i).getCampus(),
 					listaDeEdital.espiar(i).getCurso(), listaDeEdital.espiar(i).getPublicoAlvo(),
 					listaDeEdital.espiar(i).getPeriodoInicial(), listaDeEdital.espiar(i).getPeriodoFinal(),
 					listaDeEdital.espiar(i).getAmplaConcorrencia(), listaDeEdital.espiar(i).getAcoesAfirmativas(),

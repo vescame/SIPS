@@ -1,5 +1,7 @@
 package edu.fatec.sips.controller;
 
+import java.io.IOException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -12,12 +14,11 @@ import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 
 public class CPSController {
-	ListaLigadaSimples<Campus> listaDeCampus = new ListaLigadaSimples<Campus>();
+	ArquivoCampusController arquivoCampusController = new ArquivoCampusController();
 	Campus campus = new Campus();
 	DAOCPS daocps = new DAOCPS();
 	
-	
-	public void cadastrarCampus() {
+	public void cadastrarCampus() throws IOException {
 		JLabel labelNomeFaculdade = new JLabel("Nome");
 		JLabel labelUnidadeFaculdade = new JLabel("Unidade");
 		
@@ -32,10 +33,10 @@ public class CPSController {
 		campus.setNome(txtNomeFaculdade.getText());
 		campus.setUnidade(txtUnidadeFaculdade.getText());
 		daocps.salvar(campus);
-		listaDeCampus.adicionar(campus);
 	}
 
-	public void visualizarCampus() {
+	public void visualizarCampus() throws IOException {
+		ListaLigadaSimples<Campus> listaDeCampus = this.arquivoCampusController.listarCampus();
 		String col[] = { "ID", "NOME", "UNIDADE"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeCampus.getTamanho(); i++) {
@@ -45,9 +46,5 @@ public class CPSController {
 		}
 		JTable table = new JTable(tableModel);
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE CAMPUS", JOptionPane.PLAIN_MESSAGE);
-	}
-	
-	public static void main (String [] args) {
-		new CPSController().cadastrarCampus();
 	}
 }
