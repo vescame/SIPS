@@ -18,7 +18,7 @@ public class VisualizarCandidato {
 		JOptionPane.showMessageDialog(null,
 				this.getDocumentos().concat("\n").concat(this.getCurso()).concat("\n\n").concat(this.getAprovacao())
 						.concat("\n\n").concat(this.getNotas()).concat("\n\n").concat(this.getRecursos()),
-				"Aluno: " + this.getNomeCompleto() + " - " + this.candidato.getDataNascimentoString(),
+				"Aluno: " + this.getNomeCompleto() + " - " + this.getDataDeNascimento(),
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -68,7 +68,7 @@ public class VisualizarCandidato {
 	}
 
 	private String getDataDeNascimento() {
-		return candidato.getDataNascimento().toString();
+		return candidato.getDataNascimentoString();
 	}
 
 	private String getNotas() {
