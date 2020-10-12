@@ -1,6 +1,7 @@
 package edu.fatec.sips.model;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 
@@ -8,20 +9,22 @@ public class Candidato {
 	private int id;
 	private String nome;
 	private String sobrenome;
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 	private Curso curso;
 	private boolean aprovado;
 	private ListaLigadaSimples<Nota> notas;
 	private ListaLigadaSimples<Documento> documentos;
 	private ListaLigadaSimples<Recurso> recursos;
+	private final SimpleDateFormat sdf;
 
 	public Candidato() {
 		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
 		this.notas = new ListaLigadaSimples<Nota>();
+		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
-	public Candidato(int id, String nome, String sobrenome, LocalDate dataNascimento, Curso curso, boolean aprovado,
+	public Candidato(int id, String nome, String sobrenome, Date dataNascimento, Curso curso, boolean aprovado,
 			ListaLigadaSimples<Nota> notas, ListaLigadaSimples<Documento> documentos,
 			ListaLigadaSimples<Recurso> recursos) {
 		this.id = id;
@@ -33,6 +36,7 @@ public class Candidato {
 		this.notas = new ListaLigadaSimples<Nota>();
 		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
+		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
 	public int getId() {
@@ -59,11 +63,19 @@ public class Candidato {
 		this.sobrenome = sobrenome;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
+	
+	public String getDataNascimentoString() {
+		try {
+			return this.sdf.format(this.dataNascimento);
+		} catch (Exception e) {
+			return "data de nascimento invalida";
+		}
+	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -122,7 +134,7 @@ public class Candidato {
 	@Override
 	public String toString() {
 		return "Candidato\nid=" + id + "\nnome=" + nome + " " + sobrenome + "\ndataNascimento="
-				+ dataNascimento + "\n" + (aprovado ? "aprovado" : "reprovado") + "";
+				+ this.getDataNascimentoString() + "\n" + (aprovado ? "aprovado" : "reprovado") + "";
 	}
 	
 	

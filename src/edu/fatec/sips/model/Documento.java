@@ -39,4 +39,9 @@ public class Documento {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
+	@Override
+	public String toString() {
+		return this.titulo + " - " + this.numero;
+	}
 }

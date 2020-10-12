@@ -6,17 +6,22 @@ public class MenuCandidato {
 	public void menu() {
 		int opc = 0;
 		while (opc != 99) {
-			opc = Integer.parseInt(JOptionPane
-					.showInputDialog("MENU CANDIDATO \n\n 1 - Ler Candidato\n2 - Gravar Candidato\n99 - Finalizar"));
+			opc = Integer.parseInt(JOptionPane.showInputDialog(
+					"MENU CANDIDATO \n\n" +
+					"1 - Visualizar Cronograma de Atividades\n" +
+					"2 - Visualizar Datas de Entrevistas\n" +
+					"3 - Visualizar Resultado Parcial\n" +
+					"4 - Visualizar Resultado Final\n" +
+					"5 - Solicitar Recurso\n" +
+					"99 - Finalizar"));
 			switch (opc) {
 			case 1:
 				new ListarCandidatos().listar();
 				break;
 			case 2:
-				new CadastrarCandidato().cadastrar();
+				// new VisualizarResultadoParcial().resultadoParcial();
 				break;
 			case 99:
-				JOptionPane.showMessageDialog(null, "Encerrando sessão...");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opção Inválida !!!");

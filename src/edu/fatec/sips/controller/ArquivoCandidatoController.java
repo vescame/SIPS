@@ -1,10 +1,12 @@
 package edu.fatec.sips.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
@@ -15,10 +17,12 @@ public class ArquivoCandidatoController {
 	final ArquivoCursoController cursos;
 	private final String ARQUIVO = "ArquivoCandidato.txt";
 	private final String SEPARADOR = ";";
+	private final SimpleDateFormat sdf;
 	
 	public ArquivoCandidatoController() {
 		this.cursos = new ArquivoCursoController();
 		this.documentos = new ArquivoDocumentoCandidatoController();
+		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 	
 	public int ultimoId() throws IOException {
@@ -74,7 +78,28 @@ public class ArquivoCandidatoController {
 	}
 	
 	public void atualizarCandidato(final Candidato candidato) throws Exception {
-		throw new Exception();
+		String linhaAtual = new String();
+		
+		File arquivoEntrada = new File(this.ARQUIVO);
+		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
+
+		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
+
+		while ((linhaAtual = br.readLine()) != null) {
+			Candidato candidatoAtual = quebrarAtributos(linhaAtual);
+			
+			if (candidatoAtual.getId() == candidato.getId()) {
+				candidatoAtual = candidato;
+			}
+			
+			bw.write(concatenarCandidato(candidatoAtual) + "\n");
+		}
+		
+		bw.close();
+		br.close();
+		arquivoEntrada.delete();
+		arquivoTemporario.renameTo(new File(this.ARQUIVO));
 	}
 	
 	public Candidato removerCandidato(final Candidato candidato) throws Exception {
@@ -88,7 +113,7 @@ public class ArquivoCandidatoController {
 			candidato.setId(Integer.valueOf(atribs[0]));
 			candidato.setNome(atribs[1]);
 			candidato.setSobrenome(atribs[2]);
-			candidato.setDataNascimento(LocalDate.parse(atribs[3]));
+			candidato.setDataNascimento(this.sdf.parse(atribs[3]));
 			int idCurso = Integer.valueOf(atribs[4]);
 			Curso curso = cursos.buscarPorId(idCurso);
 			candidato.setCurso(curso);

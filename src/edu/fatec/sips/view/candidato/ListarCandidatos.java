@@ -17,11 +17,17 @@ public class ListarCandidatos {
 		String col[] = { "ID", "NOME", "Sobrenome", "Documentos", "Data de nascimento", "Curso", "Nota", "Recurso"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < candidatos.getTamanho(); ++i) {
-			Object[] campus = { candidatos.espiar(i).getId(), candidatos.espiar(i).getNome(),
-					candidatos.espiar(i).getSobrenome(), candidatos.espiar(i).getDocumentos(),
-					candidatos.espiar(i).getDataNascimento(), candidatos.espiar(i).getCurso(),
-					candidatos.espiar(i).getNotas(), candidatos.espiar(i).getRecursos() };
-			tableModel.addRow(campus);
+			Object[] candidatosTable = {
+						candidatos.espiar(i).getId(),
+						candidatos.espiar(i).getNome(),
+						candidatos.espiar(i).getSobrenome(),
+						candidatos.espiar(i).getDocumentos().espiar(0),
+						candidatos.espiar(i).getDataNascimentoString(),
+						candidatos.espiar(i).getCurso(),
+						candidatos.espiar(i).getNotas(),
+						candidatos.espiar(i).getRecursos()
+					};
+			tableModel.addRow(candidatosTable);
 		}
 		JTable table = new JTable(tableModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
