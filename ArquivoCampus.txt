@@ -3,3 +3,4 @@
 3;teste2;teste2
 4;FAM;Barra Funda
 5;Unicid - Faculdade da vida;Carrão
+6;USP;Leste
