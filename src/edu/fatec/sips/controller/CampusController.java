@@ -9,10 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 import edu.fatec.sips.dao.DAOEDITAL;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
@@ -52,12 +55,12 @@ public class CampusController {
 		JLabel labelCampus = new JLabel("Campus");
 		String[] campus = { "Fatec - Leste", "Fatec - Sul", "Uninove - Barra Funda" };
 		JComboBox<String> comboBoxCampus = new JComboBox<String>(campus);
-		comboBoxCampus.setEditable(true);
+		comboBoxCampus.setEditable(false);
 
 		JLabel labelCurso = new JLabel("Curso");
 		String[] cursos = { "ADS", "COMEX", "LOG", "RH", "POLI" };
 		JComboBox<String> comboBoxCursos = new JComboBox<String>(cursos);
-		comboBoxCursos.setEditable(true);
+		comboBoxCursos.setEditable(false);
 
 		JLabel labelPublicoAlvo = new JLabel("Público alvo");
 		JTextField txtPublicoAlvo = new JTextField();
@@ -67,22 +70,39 @@ public class CampusController {
 		JFormattedTextField txtPeriodoInicial = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
 		txtPeriodoInicial.setColumns(6);
 		txtPeriodoInicial.setHorizontalAlignment(JTextField.CENTER);
+		txtPeriodoInicial.setEditable(false);
 		JLabel labelIconePeriodoInicial = new JLabel(new ImageIcon("icon-calendar.png"));
 		JLabel labelPeriodoFinal = new JLabel("Final");
 		JFormattedTextField txtPeriodoFinal = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
 		txtPeriodoFinal.setColumns(6);
 		txtPeriodoFinal.setHorizontalAlignment(JTextField.CENTER);
+		txtPeriodoFinal.setEditable(false);
 		JLabel labelIconePeriodoFinal = new JLabel(new ImageIcon("icon-calendar.png"));
 
 		JLabel labelQuantidadeVagas = new JLabel("Quantidade de vagas");
-		JTextField txtQtdVagasAmplaConcorrencia = new JTextField(3);
-		JTextField txtQtdVagasAcoesAfirmativas = new JTextField(3);
-		JTextField txtQtdVagasDeficiente = new JTextField(3);
+		JSpinner spinnerQtdeVagasAmplaConcorrencia = new JSpinner();
+		spinnerQtdeVagasAmplaConcorrencia.setModel(new SpinnerNumberModel(0, 0, 100, 1));
+		JFormattedTextField txtQtdVagasAmplaConcorrencia = ((JSpinner.NumberEditor) spinnerQtdeVagasAmplaConcorrencia
+				.getEditor()).getTextField();
+		((NumberFormatter) txtQtdVagasAmplaConcorrencia.getFormatter()).setAllowsInvalid(false);
+
+		
+		JSpinner spinnerQtdeVagasAcoesAfirmativas = new JSpinner();
+		spinnerQtdeVagasAcoesAfirmativas.setModel(new SpinnerNumberModel(0, 0, 100, 1));
+		JFormattedTextField txtQtdVagasAcoesAfirmativas = ((JSpinner.NumberEditor) spinnerQtdeVagasAcoesAfirmativas
+				.getEditor()).getTextField();
+		((NumberFormatter) txtQtdVagasAcoesAfirmativas.getFormatter()).setAllowsInvalid(false);
+
+		JSpinner spinnerQtdeVagasDeficiente = new JSpinner();
+		spinnerQtdeVagasDeficiente.setModel(new SpinnerNumberModel(0, 0, 100, 1));
+		JFormattedTextField txtQtdVagasDeficiente = ((JSpinner.NumberEditor) spinnerQtdeVagasDeficiente.getEditor())
+				.getTextField();
+		((NumberFormatter) txtQtdVagasDeficiente.getFormatter()).setAllowsInvalid(false);
 
 		JLabel labelCriterio = new JLabel("Critério");
 		String[] criterio = { "1", "2", "3" };
 		JComboBox<String> comboBoxCriterio = new JComboBox<String>(criterio);
-		comboBoxCursos.setEditable(true);
+		comboBoxCriterio.setEditable(false);
 
 		JPanel periodoInicial = new JPanel();
 		periodoInicial.add(labelPeriodoInicial);
@@ -100,15 +120,15 @@ public class CampusController {
 
 		JPanel qtdVagasAmplaConcorrencia = new JPanel();
 		qtdVagasAmplaConcorrencia.add(new JLabel("Ampla concorrência"));
-		qtdVagasAmplaConcorrencia.add(txtQtdVagasAmplaConcorrencia);
+		qtdVagasAmplaConcorrencia.add(spinnerQtdeVagasAmplaConcorrencia);
 
 		JPanel qtdVagasAcoesAfirmativas = new JPanel();
 		qtdVagasAcoesAfirmativas.add(new JLabel("Ações afirmativas"));
-		qtdVagasAcoesAfirmativas.add(txtQtdVagasAcoesAfirmativas);
+		qtdVagasAcoesAfirmativas.add(spinnerQtdeVagasAcoesAfirmativas);
 
 		JPanel qtdVagasDeficiente = new JPanel();
 		qtdVagasDeficiente.add(new JLabel("Deficiente"));
-		qtdVagasDeficiente.add(txtQtdVagasDeficiente);
+		qtdVagasDeficiente.add(spinnerQtdeVagasDeficiente);
 
 		JPanel quantitativos = new JPanel();
 		quantitativos.add(qtdVagasAmplaConcorrencia);
@@ -137,15 +157,16 @@ public class CampusController {
 
 	public void visualizarEdital() throws IOException {
 		ListaLigadaSimples<Edital> listaDeEdital = this.bdEdital.listarEditais();
-		String col[] = { "ID", "TÍTULO", "CAMPUS","CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS A.C.", "QTD. VAGAS A.A.",
-				"QTD. VAGAS D.","CRITÉRIO" };
+		String col[] = { "ID", "TÍTULO", "CAMPUS", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS A.C.",
+				"QTD. VAGAS A.A.", "QTD. VAGAS D.", "CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeEdital.getTamanho(); i++) {
-			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(), listaDeEdital.espiar(i).getCampus(),
-					listaDeEdital.espiar(i).getCurso(), listaDeEdital.espiar(i).getPublicoAlvo(),
-					listaDeEdital.espiar(i).getPeriodoInicial(), listaDeEdital.espiar(i).getPeriodoFinal(),
-					listaDeEdital.espiar(i).getAmplaConcorrencia(), listaDeEdital.espiar(i).getAcoesAfirmativas(),
-					listaDeEdital.espiar(i).getDeficiente(), listaDeEdital.espiar(i).getCriterio() };
+			Object[] edital = { listaDeEdital.espiar(i).getId(), listaDeEdital.espiar(i).getTitulo(),
+					listaDeEdital.espiar(i).getCampus(), listaDeEdital.espiar(i).getCurso(),
+					listaDeEdital.espiar(i).getPublicoAlvo(), listaDeEdital.espiar(i).getPeriodoInicial(),
+					listaDeEdital.espiar(i).getPeriodoFinal(), listaDeEdital.espiar(i).getAmplaConcorrencia(),
+					listaDeEdital.espiar(i).getAcoesAfirmativas(), listaDeEdital.espiar(i).getDeficiente(),
+					listaDeEdital.espiar(i).getCriterio() };
 			tableModel.addRow(edital);
 		}
 		JTable table = new JTable(tableModel);

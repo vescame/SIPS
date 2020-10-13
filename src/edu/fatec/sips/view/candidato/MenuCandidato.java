@@ -3,7 +3,6 @@ package edu.fatec.sips.view.candidato;
 import javax.swing.JOptionPane;
 
 import edu.fatec.cronograma.view.ListarCronograma;
-import edu.fatec.sips.controller.CronogramaController;
 
 public class MenuCandidato {
 	public void menu() {
