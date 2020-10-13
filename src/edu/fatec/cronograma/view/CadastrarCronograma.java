@@ -1,45 +1,77 @@
 package edu.fatec.cronograma.view;
 
-import java.awt.HeadlessException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import edu.fatec.sips.controller.CronogramaController;
 import edu.fatec.sips.model.CronogramaDeAtividades;
 
 public class CadastrarCronograma {
 
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	CronogramaController cronoController = new CronogramaController();
+
+	public void cadastrarCronogramaDeAtividades() throws ParseException, IOException {
+		CronogramaDeAtividades cronogramaDeAtividades = new CronogramaDeAtividades();
+		JLabel labelDescricaoDeAtividades = new JLabel("Descrição");
+		JTextField txtDescricaoDaAtividade = new JTextField();
+		
+		JLabel labelData = new JLabel("Data");
+		JFormattedTextField txtDataDeInicio = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		txtDataDeInicio.setHorizontalAlignment(JTextField.CENTER);
+		txtDataDeInicio.setColumns(6);
+		JLabel labelIconeDataDeInicio = new JLabel(new ImageIcon("icon-calendar.png"));
+		JFormattedTextField txtDataDeEntrega = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		txtDataDeEntrega.setHorizontalAlignment(JTextField.CENTER);
+		txtDataDeEntrega.setColumns(6);
+		JLabel labelIconeDataDeEntrega = new JLabel(new ImageIcon("icon-calendar.png"));
+		
+		JPanel painelDeDatas = new JPanel();
+		painelDeDatas.add(new JLabel("Ínicio"));
+		painelDeDatas.add(txtDataDeInicio);
+		painelDeDatas.add(labelIconeDataDeInicio);
+		painelDeDatas.add(new JLabel("Entrega"));
+		painelDeDatas.add(txtDataDeEntrega);
+		painelDeDatas.add(labelIconeDataDeEntrega);
+		
+		Object[] componentes = { labelDescricaoDeAtividades, txtDescricaoDaAtividade, labelData, painelDeDatas};
+
+		JOptionPane.showMessageDialog(null, componentes, "CADASTRAR CRONOGRAMA", JOptionPane.PLAIN_MESSAGE);
+
+		cronogramaDeAtividades.setDescricaoAtividade(txtDescricaoDaAtividade.getText());
+		cronogramaDeAtividades.setDataInicio(formatarDataPtBr(txtDataDeInicio.getText()));
+		cronogramaDeAtividades.setDataEntrega(formatarDataPtBr(txtDataDeEntrega.getText()));
+		cronoController.gravarAtividade(cronogramaDeAtividades);
+		cronoController.visualizarAtividade();
+
+	}
+
+	public Date formatarDataPtBr(String data) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataFormatada;
+		dataFormatada = sdf.parse(data);
+		return dataFormatada;
+	}
 	
+	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
 
-	public void Cadastrar() throws IOException {
-
-		CronogramaDeAtividades atividades = new CronogramaDeAtividades();
-		atividades.setIdAtividade(Integer.parseInt(JOptionPane.showInputDialog("Insira o id da atividade: ")));
-		atividades.setDescricaoAtividade(JOptionPane.showInputDialog("Descreva qual será a atividade: "));
-		Date inicio, entrega;
+		MaskFormatter F_Mascara = new MaskFormatter();
 		try {
-			inicio = sdf.parse(JOptionPane.showInputDialog("Insira a data de inicio: "));
-			atividades.setDataInicio(inicio);
-			entrega = sdf.parse(JOptionPane.showInputDialog("Insira a data de entrega: "));
-			atividades.setDataEntrega(entrega);
-		} catch (HeadlessException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
+			F_Mascara.setMask(formatoDeMascara); // Atribui a mascara
+			F_Mascara.setPlaceholderCharacter(' '); // Caracter para preencimento
+		} catch (Exception excecao) {
+			excecao.printStackTrace();
 		}
-		int opcao = JOptionPane.showConfirmDialog(null,"Deseja gravar o arquivo", "Gravação",JOptionPane.YES_NO_OPTION);
-		if(opcao==JOptionPane.YES_OPTION) {			
-			cronoController.gravarAtividade(atividades);
-			cronoController.visualizarAtividade();
-		} else {
-			System.out.println("Gravação Cancelada");
-		}
+		return F_Mascara;
 	}
 
 }

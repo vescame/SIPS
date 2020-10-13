@@ -19,7 +19,7 @@ public class MenuCandidato {
 					"99 - Finalizar"));
 			switch (opc) {
 			case 1:
-				listarCronograma.listar();
+				listarCronograma.visualizarCronograDeAtividades();
 				break;
 			case 2:
 				// new VisualizarResultadoParcial().resultadoParcial();

@@ -2,6 +2,7 @@ package edu.fatec.sips.view;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +14,7 @@ public class MenuPrincipal {
 	CPSView cpsView = new CPSView();
 	CampusView campusView = new CampusView();
 
-	public int menuPrincipal(int opcao) throws NumberFormatException, HeadlessException, IOException {
+	public int menuPrincipal(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("MENU PRINCIPAL \n\n" + "1 - Menu Candidato\n"
 					+ "2 - Menu CPS\n" + "3 - Menu Campus\n" + "99 - Finalizar"));
@@ -24,7 +25,7 @@ public class MenuPrincipal {
 		}
 	}
 
-	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException {
+	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		switch (opcao) {
 		case 1:
 			menuCandidato.menu();

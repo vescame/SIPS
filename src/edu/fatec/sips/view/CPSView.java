@@ -2,6 +2,7 @@ package edu.fatec.sips.view;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,11 +21,11 @@ public class CPSView {
 	CPSController cpsController = new CPSController();
 	MenuCronograma cronograma = new MenuCronograma();
 
-	public int menuCPS(int opcao) throws NumberFormatException, HeadlessException, IOException {
+	public int menuCPS(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(
 					"MENU CPS \n\n 1- Definir vagas remanescentes \n" + " 2- Cadastrar campus\n 3- Visualizar campus \n"
-							+ " 4- Cadastrar cronograma de atividades \n" + " 99- Sair"));
+							+ " 4- Gerenciar cronograma de atividades \n" + " 99- Sair"));
 			avaliarOpcao(opcao);
 			return menuCPS(opcao);
 		} else {
@@ -32,7 +33,7 @@ public class CPSView {
 		}
 	}
 
-	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException {
+	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		switch (opcao) {
 		case 1:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");

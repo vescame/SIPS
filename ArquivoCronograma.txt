@@ -2,3 +2,10 @@
 2;Definir data e locais da prova;02/10/2020;07/10/2020
 1;teste;10/10/2020;11/10/2020
 3;Correções;12/10/2020;13/10/2020
+0;Atividade de correção;13/10/2020;14/10/2020
+0;Teste com a máscara de data pt-br;13/10/2020;14/10/2020
+0;Teste de alinhamento de textfield;20/10/2020;21/10/2020
+0;Teste com JPanel;31/10/2020;02/11/2020
+0;Teste com JLabel, com ícone;13/10/2020;14/10/2020
+0;Mais uma correção, voltada para os menus.;13/10/2020;14/10/2020
+0;Teste, antes de fazer o commit;13/10/2020;14/10/2020

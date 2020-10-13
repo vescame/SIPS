@@ -16,8 +16,7 @@ public class ListarCronograma {
 	private CronogramaController cronoController = new CronogramaController();
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	public void listar() {
-		
+	public void visualizarCronograDeAtividades() {
 		FilaImplementacaoDinamica<CronogramaDeAtividades> cronograma = cronoController.listarAtividade();
 		String[] coluna = {"ID", "DESCRIÇÃO", "INÍCIO", "ENTREGA"};
 		DefaultTableModel tableModel = new DefaultTableModel(coluna, 0);
