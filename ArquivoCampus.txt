@@ -7,3 +7,4 @@
 7;FIAP;Paulista
 8;UNI10;Paulista
 9;Senac;São Miguel
+10;São Judas;Guilhermina Esperança

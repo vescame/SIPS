@@ -11,3 +11,4 @@
 0;Teste, antes de fazer o commit;13/10/2020;14/10/2020
 0;Teste, pós commit;20/10/2020;21/10/2020
 0;Jogar vídeo game;13/10/2020;14/10/2020
+0;Ínicio das análises de cúrriculo;13/10/2020;29/10/2020
