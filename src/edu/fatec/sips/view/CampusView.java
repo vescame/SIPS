@@ -32,7 +32,7 @@ public class CampusView {
 					+ " 2 - Editar edital \n" + " 3- Visualizar edital \n 4- Visualizar candidatos \n"
 					+ " 5- Visualizar recursos  \n" + " 6- Definir resultado preliminar \n"
 					+ " 7- Visualizar resultado preliminar \n" + " 8- Editar resultados finais \n"
-					+ " 9 - Visualizar resultado final \n" + "10 - Visualizar datas de entrevistas \n"
+					+ " 9 - Visualizar resultado final \n" + " 10 - Visualizar datas de entrevistas \n"
 					+ " 11 - Visualizar cronograma de entrevistas \n" + " 99- Sair"));
 			avaliarOpcao(opcao);
 			return menuCampus(opcao);

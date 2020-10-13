@@ -45,7 +45,7 @@ public class CadastrarCronograma {
 		
 		Object[] componentes = { labelDescricaoDeAtividades, txtDescricaoDaAtividade, labelData, painelDeDatas};
 
-		JOptionPane.showMessageDialog(null, componentes, "CADASTRAR CRONOGRAMA", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, componentes, "CADASTRAR CRONOGRAMA DE ATIVIDADES", JOptionPane.PLAIN_MESSAGE);
 
 		cronogramaDeAtividades.setDescricaoAtividade(txtDescricaoDaAtividade.getText());
 		cronogramaDeAtividades.setDataInicio(formatarDataPtBr(txtDataDeInicio.getText()));

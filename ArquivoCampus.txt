@@ -6,3 +6,4 @@
 6;USP;Leste
 7;FIAP;Paulista
 8;UNI10;Paulista
+9;Senac;São Miguel
