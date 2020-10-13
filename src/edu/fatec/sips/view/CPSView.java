@@ -2,15 +2,24 @@ package edu.fatec.sips.view;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.cronograma.view.MenuCronograma;
 import edu.fatec.sips.controller.CPSController;
+import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.model.Campus;
 
 public class CPSView {
 
 	CPSController cpsController = new CPSController();
 	MenuCronograma cronograma = new MenuCronograma();
+
 	public int menuCPS(int opcao) throws NumberFormatException, HeadlessException, IOException {
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(
@@ -29,13 +38,13 @@ public class CPSView {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 2:
-			cpsController.cadastrarCampus();
+			cadastrarCampus();
 			break;
 		case 3:
-			cpsController.visualizarCampus();
+			visualizarCampus();
 			break;
 		case 4:
-		     cronograma.menu();
+			cronograma.menu();
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
@@ -43,6 +52,33 @@ public class CPSView {
 		default:
 			JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
 		}
+	}
+
+	public void cadastrarCampus() throws IOException {
+		JLabel labelNomeFaculdade = new JLabel("Nome");
+		JLabel labelUnidadeFaculdade = new JLabel("Unidade");
+
+		JTextField txtNomeFaculdade = new JTextField();
+		JTextField txtUnidadeFaculdade = new JTextField();
+
+		Object[] options = { labelNomeFaculdade, txtNomeFaculdade, labelUnidadeFaculdade, txtUnidadeFaculdade };
+
+		JOptionPane.showMessageDialog(null, options, "CADASTRAR CAMPUS", JOptionPane.PLAIN_MESSAGE);
+
+		cpsController.salvarCampus(txtNomeFaculdade, txtUnidadeFaculdade);
+	}
+
+	public void visualizarCampus() throws IOException {
+		ListaLigadaSimples<Campus> listaDeCampus = cpsController.listarCampus();
+		String col[] = { "ID", "NOME", "UNIDADE" };
+		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+		for (int i = 0; i < listaDeCampus.getTamanho(); i++) {
+			Object[] campus = { listaDeCampus.espiar(i).getId(), listaDeCampus.espiar(i).getNome(),
+					listaDeCampus.espiar(i).getUnidade() };
+			tableModel.addRow(campus);
+		}
+		JTable table = new JTable(tableModel);
+		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE CAMPUS", JOptionPane.PLAIN_MESSAGE);
 	}
 
 }
