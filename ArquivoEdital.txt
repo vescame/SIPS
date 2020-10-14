@@ -25,3 +25,4 @@
 25;Super edital;Fatec - Leste;ADS;;  /  /    ;  /  /    ;0;0;0;1;
 26;qualquer coisa;Fatec - Sul;LOG;ajhkjhkh;  /  /    ;  /  /    ;34;1;0;3;
 27;;Fatec - Leste;ADS;;  /  /    ;  /  /    ;0;0;0;1;
+28;;Fatec - Leste;ADS;;  /  /    ;  /  /    ;0;0;0;1;

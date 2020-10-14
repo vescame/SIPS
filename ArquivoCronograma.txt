@@ -14,3 +14,4 @@
 0;Ínicio das análises de cúrriculo;13/10/2020;29/10/2020
 0;Teste de correções de método de menus;20/10/2020;21/10/2020
 0;Assistir o jogo do Brasil X Peru;13/10/2020;13/10/2020
+0;aaaaa;14/10/2020;14/10/2020

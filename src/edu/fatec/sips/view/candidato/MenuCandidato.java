@@ -45,6 +45,15 @@ public class MenuCandidato {
 		case 2:
 			// new VisualizarResultadoParcial().resultadoParcial();
 			break;
+		case 3:
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			break;
+		case 4:
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			break;
+		case 5:
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
 			break;
