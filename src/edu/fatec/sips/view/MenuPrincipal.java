@@ -15,9 +15,26 @@ public class MenuPrincipal {
 	CampusView campusView = new CampusView();
 
 	public int menuPrincipal(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
+		String textoMenu = "<html>"
+				+ "<head>"
+				+ "<style>"
+				+ "table, th, td {border: 1px solid black;border-collapse: collapse;}"
+				+ "td { text-align: center}"
+				+ "</style>"
+				+ "</head>"
+				+ "<body>"
+				+ "<table>"
+				+ "<tr><th colspan='2'>MENU PRINCIPAL</th></tr>"
+				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr><td>1</td><td>Menu Candidato</td></tr>"
+				+ "<tr><td>2</td><td>Menu CPS (Comissão do Processo Seletivo)</td></tr>"
+				+ "<tr><td>3</td><td>Menu Campus</td></tr>"
+				+ "<tr><td>99</td><td>Sair</td></tr>"
+				+ "</table>"
+				+ "</body>"
+				+ "</html>";
 		if (opcao != 99) {
-			opcao = Integer.parseInt(JOptionPane.showInputDialog("MENU PRINCIPAL \n\n" + "1 - Menu Candidato\n"
-					+ "2 - Menu CPS\n" + "3 - Menu Campus\n" + "99 - Finalizar"));
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscrição de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
 			avaliarOpcao(opcao);
 			return menuPrincipal(opcao);
 		} else {
@@ -28,7 +45,7 @@ public class MenuPrincipal {
 	public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		switch (opcao) {
 		case 1:
-			menuCandidato.menu();
+			menuCandidato.menuCandidato(0);
 			break;
 		case 2:
 			cpsView.menuCPS(0);

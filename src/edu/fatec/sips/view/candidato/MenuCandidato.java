@@ -5,30 +5,51 @@ import javax.swing.JOptionPane;
 import edu.fatec.cronograma.view.ListarCronograma;
 
 public class MenuCandidato {
-	public void menu() {
+	
+	public int menuCandidato(int opcao) {
+		String textoMenu = "<html>"
+				+ "<head>"
+				+ "<style>"
+				+ "table, th, td {border: 1px solid black;border-collapse: collapse;}"
+				+ "td { text-align: center}"
+				+ "</style>"
+				+ "</head>"
+				+ "<body>"
+				+ "<table>"
+				+ "<tr><th colspan='2'>MENU CANDIDATO</th></tr>"
+				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr><td>1</td><td>Visualizar Cronograma de Atividades</td></tr>"
+				+ "<tr><td>2</td><td>Visualizar Datas de Entrevistas</td></tr>"
+				+ "<tr><td>3</td><td>Visualizar Resultado Parcial</td></tr>"
+				+ "<tr><td>4</td><td>Visualizar Resultado Final</td></tr>"
+				+ "<tr><td>5</td><td>Solicitar Recurso</td></tr>"
+				+ "<tr><td>99</td><td>Sair</td></tr>"
+				+ "</table>"
+				+ "</body>"
+				+ "</html>";
+		if (opcao != 99) {
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscrição de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
+			avaliarOpcao(opcao);
+			return menuCandidato(opcao);
+		}else {
+			return opcao;
+		}
+	}
+	
+	public void avaliarOpcao (int opcao) {
 		ListarCronograma listarCronograma = new ListarCronograma();
-		int opc = 0;
-		while (opc != 99) {
-			opc = Integer.parseInt(JOptionPane.showInputDialog(
-					"MENU CANDIDATO \n\n" +
-					"1 - Visualizar Cronograma de Atividades\n" +
-					"2 - Visualizar Datas de Entrevistas\n" +
-					"3 - Visualizar Resultado Parcial\n" +
-					"4 - Visualizar Resultado Final\n" +
-					"5 - Solicitar Recurso\n" +
-					"99 - Finalizar"));
-			switch (opc) {
-			case 1:
-				listarCronograma.visualizarCronograDeAtividades();
-				break;
-			case 2:
-				// new VisualizarResultadoParcial().resultadoParcial();
-				break;
-			case 99:
-				break;
-			default:
-				JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
-			}
+		switch (opcao) {
+		case 1:
+			listarCronograma.visualizarCronograDeAtividades();
+			break;
+		case 2:
+			// new VisualizarResultadoParcial().resultadoParcial();
+			break;
+		case 99:
+			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
+			break;
+		default:
+			JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
 		}
 	}
 }

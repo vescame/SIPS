@@ -8,3 +8,6 @@
 8;UNI10;Paulista
 9;Senac;São Miguel
 10;São Judas;Guilhermina Esperança
+11;UNIVESP;Campinas
+12;;
+13;Belenzinho;Belém

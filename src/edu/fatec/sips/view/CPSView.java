@@ -22,10 +22,27 @@ public class CPSView {
 	MenuCronograma cronograma = new MenuCronograma();
 
 	public int menuCPS(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
+		String textoMenu = "<html>"
+				+ "<head>"
+				+ "<style>"
+				+ "table, th, td {border: 1px solid black;border-collapse: collapse;}"
+				+ "td { text-align: center}"
+				+ "</style>"
+				+ "</head>"
+				+ "<body>"
+				+ "<table>"
+				+ "<tr><th colspan='2'>MENU CPS (Comissão do Processo Seletivo)</th></tr>"
+				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr><td>1</td><td>Definir Vagas Remanescentes</td></tr>"
+				+ "<tr><td>2</td><td>Cadastrar Campus</td></tr>"
+				+ "<tr><td>3</td><td>Visualizar Campus</td></tr>"
+				+ "<tr><td>4</td><td>Gerenciar Cronograma de Atividades</td></tr>"
+				+ "<tr><td>99</td><td>Sair</td></tr>"
+				+ "</table>"
+				+ "</body>"
+				+ "</html>";
 		if (opcao != 99) {
-			opcao = Integer.parseInt(JOptionPane.showInputDialog(
-					"MENU CPS \n\n 1- Definir vagas remanescentes \n" + " 2- Cadastrar campus\n 3- Visualizar campus \n"
-							+ " 4- Gerenciar cronograma de atividades \n" + " 99- Sair"));
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscrição de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
 			avaliarOpcao(opcao);
 			return menuCPS(opcao);
 		} else {
@@ -45,7 +62,7 @@ public class CPSView {
 			visualizarCampus();
 			break;
 		case 4:
-			cronograma.menu();
+			cronograma.menuCronogramaDeAtividades(0);
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");

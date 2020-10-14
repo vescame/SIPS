@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
+import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.CampusController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Edital;
@@ -25,15 +26,37 @@ import edu.fatec.sips.model.Edital;
 public class CampusView {
 
 	CampusController campusController = new CampusController();
+	ListarCronograma cronograma = new ListarCronograma();
 
 	public int menuCampus(int opcao) throws NumberFormatException, HeadlessException, IOException {
+		String textoMenu = "<html>"
+				+ "<head>"
+				+ "<style>"
+				+ "table, th, td {border: 1px solid black;border-collapse: collapse;}"
+				+ "td { text-align: center}"
+				+ "</style>"
+				+ "</head>"
+				+ "<body>"
+				+ "<table>"
+				+ "<tr><th colspan='2'>MENU CAMPUS</th></tr>"
+				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr><td>1</td><td>Cadastrar edital</td></tr>"
+				+ "<tr><td>2</td><td>Editar edital</td></tr>"
+				+ "<tr><td>3</td><td>Visualizar edital</td></tr>"
+				+ "<tr><td>4</td><td>Visualizar Candidatos</td></tr>"
+				+ "<tr><td>5</td><td>Visualizar recursos</td></tr>"
+				+ "<tr><td>6</td><td>Definir resultado preliminar</td></tr>"
+				+ "<tr><td>7</td><td>Visualizar resultado preliminar</td></tr>"
+				+ "<tr><td>8</td><td>Editar resultados finais</td></tr>"
+				+ "<tr><td>9</td><td>Visualizar resultado final</td></tr>"
+				+ "<tr><td>10</td><td>Visualizar datas de entrevista</td></tr>"
+				+ "<tr><td>11</td><td>Visualizar cronograma de atividades</td></tr>"
+				+ "<tr><td>99</td><td>Sair</td></tr>"
+				+ "</table>"
+				+ "</body>"
+				+ "</html>";
 		if (opcao != 99) {
-			opcao = Integer.parseInt(JOptionPane.showInputDialog("MENU CAMPUS \n\n 1- Cadastrar edital \n"
-					+ " 2 - Editar edital \n" + " 3- Visualizar edital \n 4- Visualizar candidatos \n"
-					+ " 5- Visualizar recursos  \n" + " 6- Definir resultado preliminar \n"
-					+ " 7- Visualizar resultado preliminar \n" + " 8- Editar resultados finais \n"
-					+ " 9 - Visualizar resultado final \n" + " 10 - Visualizar datas de entrevistas \n"
-					+ " 11 - Visualizar cronograma de entrevistas \n" + " 99- Sair"));
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscrição de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
 			avaliarOpcao(opcao);
 			return menuCampus(opcao);
 		} else {
@@ -74,7 +97,7 @@ public class CampusView {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 11:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			cronograma.visualizarCronograDeAtividades();
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
@@ -174,13 +197,14 @@ public class CampusView {
 				labelPublicoAlvo, txtPublicoAlvo, labelPeriodoEdital, periodoEdital, labelQuantidadeVagas,
 				quantitativos, labelCriterio, comboBoxCriterio };
 		JOptionPane.showMessageDialog(null, options, "CADASTRAR EDITAL", JOptionPane.PLAIN_MESSAGE);
-		
-		campusController.salvarEdital(txtTitulo, comboBoxCampus, comboBoxCursos, txtPublicoAlvo, txtPeriodoInicial, txtPeriodoFinal,
-				txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas, txtQtdVagasDeficiente, comboBoxCriterio);
+
+		campusController.salvarEdital(txtTitulo, comboBoxCampus, comboBoxCursos, txtPublicoAlvo, txtPeriodoInicial,
+				txtPeriodoFinal, txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas, txtQtdVagasDeficiente,
+				comboBoxCriterio);
 
 	}
-	
-	public void visualizarEdital () throws IOException {
+
+	public void visualizarEdital() throws IOException {
 		ListaLigadaSimples<Edital> listaDeEdital = campusController.retornarListaDeEditais();
 		String col[] = { "ID", "TÍTULO", "CAMPUS", "CURSO", "PÚB. ALVO", "P. INICIAL", "P. FINAL", "QTD. VAGAS A.C.",
 				"QTD. VAGAS A.A.", "QTD. VAGAS D.", "CRITÉRIO" };
@@ -198,8 +222,8 @@ public class CampusView {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE EDITAL", JOptionPane.PLAIN_MESSAGE);
 	}
-	
-	public void visualizarCandidatos () {
+
+	public void visualizarCandidatos() {
 		campusController.listarCandidatos();
 	}
 
