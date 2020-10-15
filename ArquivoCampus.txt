@@ -1,14 +1,9 @@
-1;teste1;teste1
-2;teste;teste
-3;teste2;teste2
-4;FAM;Barra Funda
-5;Unicid - Faculdade da vida;Carrão
-6;USP;Leste
-7;FIAP;Paulista
-8;UNI10;Paulista
-9;Senac;São Miguel
-10;São Judas;Guilhermina Esperança
-11;UNIVESP;Campinas
-12;;
-13;Belenzinho;Belém
-14;;
+1;FAM;Barra Funda
+2;Unicid - Faculdade da vida;Carrão
+3;USP;Leste
+4;FIAP;Paulista
+5;UNI10;Paulista
+6;Senac;São Miguel
+7;São Judas;Guilhermina Esperança
+8;UNIVESP;Campinas
+9;Belenzinho;Belém

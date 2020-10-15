@@ -8,17 +8,23 @@ import javax.swing.JTextField;
 
 import edu.fatec.sips.dao.DAOEDITAL;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.model.Campus;
+import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.view.candidato.ListarCandidatos;
 
 public class CampusController {
+	private final ArquivoCampusController bdCampus;
+	private final ArquivoCursoController bdCurso;
 	private final ArquivoEditalController bdEdital;
 
 	Edital edital = new Edital();
 	DAOEDITAL daoedital = new DAOEDITAL();
 
 	public CampusController() {
+		this.bdCampus = new ArquivoCampusController();
 		this.bdEdital = new ArquivoEditalController();
+		this.bdCurso = new ArquivoCursoController();
 	}
 
 	ListarCandidatos listarCandidatos = new ListarCandidatos();
@@ -34,6 +40,24 @@ public class CampusController {
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+	
+	public ListaLigadaSimples<Campus> listarCampus(){
+		try {
+			return this.bdCampus.listarCampus();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ListaLigadaSimples<Curso> listarCursos(){
+		try {
+			return this.bdCurso.listarCursos();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -60,6 +84,18 @@ public class CampusController {
 			throws IOException {
 		ListaLigadaSimples<Edital> listaDeEdital = this.bdEdital.listarEditais();
 		return listaDeEdital;
+	}
+	
+	public ListaLigadaSimples<Campus> retornarListaDeCampus()
+			throws IOException {
+		ListaLigadaSimples<Campus> listaDeCampus = this.bdCampus.listarCampus();
+		return listaDeCampus;
+	}
+	
+	public ListaLigadaSimples<Curso> retornarListaDeCurso()
+			throws IOException {
+		ListaLigadaSimples<Curso> listaDeCursos = this.bdCurso.listarCursos();
+		return listaDeCursos;
 	}
 
 	public void salvar(final Edital edital) {

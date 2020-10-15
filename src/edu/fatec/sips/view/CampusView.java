@@ -21,6 +21,8 @@ import javax.swing.text.NumberFormatter;
 import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.CampusController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.model.Campus;
+import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 
 public class CampusView {
@@ -112,13 +114,11 @@ public class CampusView {
 		JTextField txtTitulo = new JTextField();
 
 		JLabel labelCampus = new JLabel("Campus");
-		String[] campus = { "Fatec - Leste", "Fatec - Sul", "Uninove - Barra Funda" };
-		JComboBox<String> comboBoxCampus = new JComboBox<String>(campus);
+		JComboBox<String> comboBoxCampus = carregarComboBoxCampus();
 		comboBoxCampus.setEditable(false);
 
 		JLabel labelCurso = new JLabel("Curso");
-		String[] cursos = { "ADS", "COMEX", "LOG", "RH", "POLI" };
-		JComboBox<String> comboBoxCursos = new JComboBox<String>(cursos);
+		JComboBox<String> comboBoxCursos = carregarComboBoxCurso();
 		comboBoxCursos.setEditable(false);
 
 		JLabel labelPublicoAlvo = new JLabel("Público alvo");
@@ -225,6 +225,24 @@ public class CampusView {
 
 	public void visualizarCandidatos() {
 		campusController.listarCandidatos();
+	}
+	
+	public JComboBox<String> carregarComboBoxCampus () throws IOException {
+		ListaLigadaSimples<Campus> listaDeCampus = campusController.retornarListaDeCampus();
+		JComboBox<String> campus = new JComboBox<String>();
+		for (int i = 0; i < listaDeCampus.getTamanho() ; i++) {
+			campus.addItem(listaDeCampus.espiar(i).getNome() + " - " + listaDeCampus.espiar(i).getUnidade());
+		}
+		return campus;
+	}
+	
+	public JComboBox<String> carregarComboBoxCurso () throws IOException {
+		ListaLigadaSimples<Curso> listaDeCurso = campusController.retornarListaDeCurso();
+		JComboBox<String> cursos = new JComboBox<String>();
+		for (int i = 0; i < listaDeCurso.getTamanho() ; i++) {
+			cursos.addItem(listaDeCurso.espiar(i).getSigla() + " - " + listaDeCurso.espiar(i).getNome());
+		}
+		return cursos;
 	}
 
 	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
