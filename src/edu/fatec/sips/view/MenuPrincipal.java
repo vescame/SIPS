@@ -6,8 +6,6 @@ import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
-import edu.fatec.sips.view.candidato.MenuCandidato;
-
 public class MenuPrincipal {
 
 	MenuCandidato menuCandidato = new MenuCandidato();

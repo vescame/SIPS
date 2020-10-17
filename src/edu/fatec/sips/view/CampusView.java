@@ -24,7 +24,6 @@ import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
-import edu.fatec.sips.view.candidato.ListarRecursos;
 
 public class CampusView {
 

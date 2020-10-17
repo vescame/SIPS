@@ -1,4 +1,4 @@
-package edu.fatec.sips.view.candidato;
+package edu.fatec.sips.view;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

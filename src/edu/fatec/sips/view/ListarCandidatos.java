@@ -1,4 +1,4 @@
-package edu.fatec.sips.view.candidato;
+package edu.fatec.sips.view;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
