@@ -24,7 +24,7 @@ public class ArquivoCronogramaController {
 		fw.close();
 	}
 
-	private CronogramaDeAtividades quebrarAtributos(String linha) {
+	public CronogramaDeAtividades quebrarAtributos(String linha) {
 		CronogramaDeAtividades atividades = new CronogramaDeAtividades();
 		try {
 			String[] atributos = linha.split(SEPARATOR);
@@ -47,6 +47,52 @@ public class ArquivoCronogramaController {
 			atividades.inserirNoFinal(cronoTemp);
 		}
 		read.close();
+		return atividades;
+	}
+	
+	public FilaImplementacaoDinamica<CronogramaDeAtividades> listarDataInicial() throws IOException {
+		String linha = new String();
+		FilaImplementacaoDinamica<CronogramaDeAtividades> atividades = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
+		BufferedReader read = new BufferedReader(new FileReader(arquivoCronograma));
+		if ((linha = read.readLine()) != null) {
+			CronogramaDeAtividades cronoTemp = pegaDataInicial(linha);
+			atividades.inserirNoFinal(cronoTemp);
+		}
+		read.close();
+		return atividades;
+	}
+	
+	public CronogramaDeAtividades pegaDataInicial(String linha) {
+		CronogramaDeAtividades atividades = new CronogramaDeAtividades();
+		try {
+			String[] dataInicial = linha.split(SEPARATOR);
+			atividades.setDataInicio(sdf.parse(dataInicial[2]));
+		} catch (Exception e) {
+			System.out.println("Falha ao obter atributo cronograma");
+		}
+		return atividades;
+	}
+	
+	public FilaImplementacaoDinamica<CronogramaDeAtividades> listarDataFinal() throws IOException {
+		String linha = new String();
+		FilaImplementacaoDinamica<CronogramaDeAtividades> atividades = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
+		BufferedReader read = new BufferedReader(new FileReader(arquivoCronograma));
+		while ((linha = read.readLine()) != null) {
+			CronogramaDeAtividades cronoTemp = pegaDataFinal(linha);
+			atividades.inserirNoFinal(cronoTemp);
+		}
+		read.close();
+		return atividades;
+	}
+	
+	public CronogramaDeAtividades pegaDataFinal(String linha) {
+		CronogramaDeAtividades atividades = new CronogramaDeAtividades();
+		try {
+			String[] dataFinal = linha.split(SEPARATOR);
+			atividades.setDataEntrega(sdf.parse(dataFinal[3]));
+		} catch (Exception e) {
+			System.out.println("Falha ao obter atributo cronograma");
+		}
 		return atividades;
 	}
 

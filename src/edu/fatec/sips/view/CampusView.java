@@ -19,11 +19,17 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
 import edu.fatec.cronograma.view.ListarCronograma;
+import edu.fatec.sips.controller.ArquivoCronogramaController;
 import edu.fatec.sips.controller.CampusController;
+import edu.fatec.sips.controller.CronogramaController;
+import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
+import edu.fatec.sips.model.CronogramaDeAtividades;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
+
+
 
 public class CampusView {
 
@@ -85,7 +91,8 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			//JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			carregarDataFinal();
 			break;
 		case 7:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
@@ -244,6 +251,20 @@ public class CampusView {
 			cursos.addItem(listaDeCurso.espiar(i).getSigla() + " - " + listaDeCurso.espiar(i).getNome());
 		}
 		return cursos;
+	}
+	
+	public void carregarDataInicial() throws IOException {
+		ArquivoCronogramaController acc = new ArquivoCronogramaController();
+		FilaImplementacaoDinamica<CronogramaDeAtividades> dataInicial = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
+		dataInicial = acc.listarDataInicial();
+		//System.out.println(atividades.printFila());		
+	}
+	
+	public void carregarDataFinal() throws IOException {
+		ArquivoCronogramaController acc = new ArquivoCronogramaController();
+		FilaImplementacaoDinamica<CronogramaDeAtividades> dataFinal = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
+		dataFinal = acc.listarDataFinal();
+		System.out.println(dataFinal.printFila());		
 	}
 
 	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
