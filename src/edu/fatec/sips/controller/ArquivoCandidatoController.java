@@ -120,7 +120,7 @@ public class ArquivoCandidatoController {
 			candidato.setAprovado(Boolean.valueOf(atribs[5]));
 			candidato.setDocumentos(documentos.listarDocumentos(candidato.getId()));
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo");
+			System.out.println("falha ao obter atributo candidato");
 		}
 		
 		return candidato;

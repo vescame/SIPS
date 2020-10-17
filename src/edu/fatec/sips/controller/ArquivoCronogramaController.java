@@ -33,7 +33,7 @@ public class ArquivoCronogramaController {
 			atividades.setDataInicio(sdf.parse(atributos[2]));
 			atividades.setDataEntrega(sdf.parse(atributos[3]));
 		} catch (Exception e) {
-			System.out.println("Falha ao obter atributo");
+			System.out.println("Falha ao obter atributo cronograma");
 		}
 		return atividades;
 	}

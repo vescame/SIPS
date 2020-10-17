@@ -3,21 +3,34 @@ package edu.fatec.sips.model;
 import edu.fatec.sips.enums.Etapa;
 
 public class Recurso {
-	private Documento documentoCandidato;
+	private int id;
+	private int idCandidato;
 	private String descricao;
 	private Etapa etapaRecurso;
+	private boolean aprovado;
+	private boolean fechado;
+	
+	public Recurso() { /* vazio intecionalmente */ }
 	
 	public Recurso(final String descricao, final Etapa etapaRecurso) {
 		this.descricao = descricao;
 		this.etapaRecurso = etapaRecurso;
 	}
-	
-	public Documento getDocumentoCandidato() {
-		return documentoCandidato;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setDocumentoCandidato(Documento documentoCandidato) {
-		this.documentoCandidato = documentoCandidato;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getIdCandidato() {
+		return idCandidato;
+	}
+
+	public void setIdCandidato(int idCandidato) {
+		this.idCandidato = idCandidato;
 	}
 
 	public String getDescricao() {
@@ -34,6 +47,22 @@ public class Recurso {
 
 	public void setEtapaRecurso(Etapa etapaRecurso) {
 		this.etapaRecurso = etapaRecurso;
+	}
+
+	public boolean isAprovado() {
+		return aprovado;
+	}
+
+	public void setAprovado(boolean aprovado) {
+		this.aprovado = aprovado;
+	}
+
+	public boolean isFechado() {
+		return fechado;
+	}
+
+	public void setFechado(boolean fechado) {
+		this.fechado = fechado;
 	}
 
 	/**

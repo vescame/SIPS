@@ -112,7 +112,7 @@ public class ArquivoEditalController {
 			edital.setCriterio(Integer.valueOf(atribs[10]));
 			
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo");
+			System.out.println("falha ao obter atributo edital");
 		}
 		
 		return edital;

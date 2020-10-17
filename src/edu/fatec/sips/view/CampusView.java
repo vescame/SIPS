@@ -24,6 +24,7 @@ import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
+import edu.fatec.sips.view.candidato.ListarRecursos;
 
 public class CampusView {
 
@@ -81,7 +82,8 @@ public class CampusView {
 			visualizarCandidatos();
 			break;
 		case 5:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			// JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			new ListarRecursos().listar();
 			break;
 		case 6:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");

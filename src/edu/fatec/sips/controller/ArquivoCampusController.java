@@ -37,7 +37,7 @@ public class ArquivoCampusController {
 			campus.setNome(atribs[1]);
 			campus.setUnidade(atribs[2]);
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo");
+			System.out.println("falha ao obter atributo campus");
 		}
 		
 		return campus;

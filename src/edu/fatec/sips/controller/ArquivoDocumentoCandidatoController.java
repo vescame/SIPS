@@ -29,6 +29,24 @@ public class ArquivoDocumentoCandidatoController {
 		return tempDocumento.getId() + 1;
 	}
 
+	public Documento getPorDocumento(String documento) throws IOException {
+		Documento documentoEncontrado = null;
+		String linha = new String();
+		
+		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
+
+		while ((linha = br.readLine()) != null) {
+			Documento tempDocumento = quebrarAtributos(linha);
+			if (tempDocumento.getNumero().equals(documento)) {
+				documentoEncontrado = tempDocumento;
+			}
+		}
+		
+		br.close();
+		
+		return documentoEncontrado;
+	}
+
 	public ListaLigadaSimples<Documento> listarDocumentos(final int idCandidato) throws IOException {
 		ListaLigadaSimples<Documento> documentos = new ListaLigadaSimples<Documento>();
 		String linha = new String();
@@ -66,7 +84,7 @@ public class ArquivoDocumentoCandidatoController {
 			documento.setTitulo(atribs[2]);
 			documento.setNumero(atribs[3]);
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo");
+			System.out.println("falha ao obter atributo documento");
 		}
 		
 		return documento;

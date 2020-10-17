@@ -158,7 +158,7 @@ public class ArquivoCursoController {
 			curso.setNome(atribs[2]);
 			curso.setDescricao(atribs[3]);
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo");
+			System.out.println("falha ao obter atributo curso");
 		}
 		
 		return curso;

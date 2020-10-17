@@ -11,7 +11,8 @@ public class CandidatoController {
 	public CandidatoController() {
 		this.bdCandidato = new ArquivoCandidatoController();
 	}
-	
+
+	// transformar num mergesort com busca em árvore binária
 	public Candidato getPorId(int id) {
 		Candidato candidato = null;
 		

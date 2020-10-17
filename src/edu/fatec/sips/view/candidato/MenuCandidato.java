@@ -52,7 +52,7 @@ public class MenuCandidato {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 5:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			new NovoRecurso();
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
