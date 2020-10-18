@@ -91,8 +91,7 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			//JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
-			carregarDataFinal();
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 7:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
@@ -135,12 +134,14 @@ public class CampusView {
 		JLabel labelPeriodoEdital = new JLabel("Período");
 		JLabel labelPeriodoInicial = new JLabel("Inicial");
 		JFormattedTextField txtPeriodoInicial = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		//txtPeriodoInicial = carregarDataInicial();
 		txtPeriodoInicial.setColumns(6);
 		txtPeriodoInicial.setHorizontalAlignment(JTextField.CENTER);
 		txtPeriodoInicial.setEditable(false);
 		JLabel labelIconePeriodoInicial = new JLabel(new ImageIcon("icon-calendar.png"));
 		JLabel labelPeriodoFinal = new JLabel("Final");
 		JFormattedTextField txtPeriodoFinal = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
+		//txtPeriodoInicial = carregarDataFinal();
 		txtPeriodoFinal.setColumns(6);
 		txtPeriodoFinal.setHorizontalAlignment(JTextField.CENTER);
 		txtPeriodoFinal.setEditable(false);
@@ -253,18 +254,16 @@ public class CampusView {
 		return cursos;
 	}
 	
-	public void carregarDataInicial() throws IOException {
+	public FilaImplementacaoDinamica<CronogramaDeAtividades> carregarDataInicial() throws IOException {
 		ArquivoCronogramaController acc = new ArquivoCronogramaController();
 		FilaImplementacaoDinamica<CronogramaDeAtividades> dataInicial = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
-		dataInicial = acc.listarDataInicial();
-		//System.out.println(atividades.printFila());		
+		return dataInicial = acc.listarDataInicial();
 	}
 	
-	public void carregarDataFinal() throws IOException {
+	public FilaImplementacaoDinamica<CronogramaDeAtividades> carregarDataFinal() throws IOException {
 		ArquivoCronogramaController acc = new ArquivoCronogramaController();
 		FilaImplementacaoDinamica<CronogramaDeAtividades> dataFinal = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
-		dataFinal = acc.listarDataFinal();
-		System.out.println(dataFinal.printFila());		
+		return dataFinal = acc.listarDataFinal();	
 	}
 
 	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
