@@ -91,7 +91,8 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			//JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			carregarDataFinal();
 			break;
 		case 7:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
@@ -254,16 +255,18 @@ public class CampusView {
 		return cursos;
 	}
 	
-	public FilaImplementacaoDinamica<CronogramaDeAtividades> carregarDataInicial() throws IOException {
+	public void carregarDataInicial() throws IOException {
 		ArquivoCronogramaController acc = new ArquivoCronogramaController();
 		FilaImplementacaoDinamica<CronogramaDeAtividades> dataInicial = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
-		return dataInicial = acc.listarDataInicial();
+		dataInicial = acc.listarDataInicial();
+		System.out.println(dataInicial.printFila());
 	}
 	
-	public FilaImplementacaoDinamica<CronogramaDeAtividades> carregarDataFinal() throws IOException {
+	public void carregarDataFinal() throws IOException {
 		ArquivoCronogramaController acc = new ArquivoCronogramaController();
 		FilaImplementacaoDinamica<CronogramaDeAtividades> dataFinal = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
-		return dataFinal = acc.listarDataFinal();	
+		dataFinal = acc.listarDataFinal();
+		System.out.println(dataFinal.printFila());
 	}
 
 	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {

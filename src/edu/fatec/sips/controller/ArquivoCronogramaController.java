@@ -77,9 +77,18 @@ public class ArquivoCronogramaController {
 		String linha = new String();
 		FilaImplementacaoDinamica<CronogramaDeAtividades> atividades = new FilaImplementacaoDinamica<CronogramaDeAtividades>();
 		BufferedReader read = new BufferedReader(new FileReader(arquivoCronograma));
+		int ultimo=0,contagem=0;
 		while ((linha = read.readLine()) != null) {
-			CronogramaDeAtividades cronoTemp = pegaDataFinal(linha);
+			ultimo++;
+		}
+		String linha2 = new String();
+		BufferedReader read2 = new BufferedReader(new FileReader(arquivoCronograma));
+		while ((linha2 = read2.readLine()) != null) {
+			if(contagem == ultimo-1) {
+			CronogramaDeAtividades cronoTemp = pegaDataFinal(linha);			
 			atividades.inserirNoFinal(cronoTemp);
+			}
+			contagem++;
 		}
 		read.close();
 		return atividades;
