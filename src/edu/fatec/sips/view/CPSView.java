@@ -25,6 +25,7 @@ public class CPSView {
 		String textoMenu = "<html>"
 				+ "<head>"
 				+ "<style>"
+				+ "table {width: 300px; background-color: white;}"
 				+ "table, th, td {border: 1px solid black;border-collapse: collapse;}"
 				+ "td { text-align: center}"
 				+ "</style>"
