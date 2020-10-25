@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.model.CronogramaDeAtividades;
+import edu.fatec.sips.model.Edital;
 
 public class ArquivoCronogramaController {
 
@@ -17,7 +18,25 @@ public class ArquivoCronogramaController {
 
 	private final String arquivoCronograma = "ArquivoCronograma.txt";
 	private final String SEPARATOR = ";";
+	
+	
+	public int ultimoId() throws IOException {
+		String linha = new String();
+		String linhaAnterior = new String();
+		
+		BufferedReader br = new BufferedReader(new FileReader(arquivoCronograma));
 
+		while ((linha = br.readLine()) != null) {
+			linhaAnterior = linha;
+		}
+		
+		CronogramaDeAtividades temp = quebrarAtributos(linhaAnterior);
+		
+		br.close();
+		
+		return temp.getIdAtividade() + 1;
+	}
+	
 	public void gravar(CronogramaDeAtividades atividade) throws IOException {
 		FileWriter fw = new FileWriter(arquivoCronograma, true);
 		fw.write(concatenarAtividades(atividade) + "\n");
@@ -105,8 +124,9 @@ public class ArquivoCronogramaController {
 		return atividades;
 	}
 
-	public String concatenarAtividades(CronogramaDeAtividades atividade) {
-		StringBuilder linha = new StringBuilder().append(atividade.getIdAtividade()).append(SEPARATOR)
+	public String concatenarAtividades(CronogramaDeAtividades atividade) throws IOException {
+		StringBuilder linha = new StringBuilder()
+				.append(ultimoId()).append(SEPARATOR)
 				.append(atividade.getDescricaoAtividade()).append(SEPARATOR)
 				.append(sdf.format(atividade.getDataInicio())).append(SEPARATOR)
 				.append(sdf.format(atividade.getDataEntrega()));
