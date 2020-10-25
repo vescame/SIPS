@@ -55,3 +55,4 @@ Teste - Campus [id: 15, nome: Teste, unidade: Teste];ADS;;  /  /    ;  /  /    ;
 4;Edital 2006;teste1 - teste1;COMEX - Comércio Exterior;aaassas;  /  /    ;  /  /    ;2;0;0;2;
 5;;teste1 - teste1;COMEX - Comércio Exterior;;  /  /    ;  /  /    ;0;0;0;1;
 6;;FAM - Barra Funda;COMEX - Comércio Exterior;;  /  /    ;  /  /    ;0;0;0;1;
+7;ghgjggjgjh;FAM - Barra Funda;COMEX - Comércio Exterior;khjhkjhk;  /  /    ;  /  /    ;100;0;0;2;
