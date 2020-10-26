@@ -20,10 +20,9 @@ public class MenuCandidato {
 				+ "<tr><th colspan='2'>MENU CANDIDATO</th></tr>"
 				+ "<tr<th>Código</th><th>Opção</th></tr>"
 				+ "<tr><td>1</td><td>Visualizar Cronograma de Atividades</td></tr>"
-				+ "<tr><td>2</td><td>Visualizar Datas de Entrevistas</td></tr>"
-				+ "<tr><td>3</td><td>Visualizar Resultado Parcial</td></tr>"
-				+ "<tr><td>4</td><td>Visualizar Resultado Final</td></tr>"
-				+ "<tr><td>5</td><td>Solicitar Recurso</td></tr>"
+				+ "<tr><td>2</td><td>Visualizar Resultado Preliminar</td></tr>"
+				+ "<tr><td>3</td><td>Visualizar Resultado Final</td></tr>"
+				+ "<tr><td>4</td><td>Solicitar Recurso</td></tr>"
 				+ "<tr><td>99</td><td>Sair</td></tr>"
 				+ "</table>"
 				+ "</body>"
@@ -50,9 +49,6 @@ public class MenuCandidato {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 4:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
-			break;
-		case 5:
 			new NovoRecurso();
 			break;
 		case 99:

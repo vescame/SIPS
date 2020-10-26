@@ -58,8 +58,7 @@ public class CampusView {
 				+ "<tr><td>7</td><td>Visualizar resultado preliminar</td></tr>"
 				+ "<tr><td>8</td><td>Editar resultados finais</td></tr>"
 				+ "<tr><td>9</td><td>Visualizar resultado final</td></tr>"
-				+ "<tr><td>10</td><td>Visualizar datas de entrevista</td></tr>"
-				+ "<tr><td>11</td><td>Visualizar cronograma de atividades</td></tr>"
+				+ "<tr><td>10</td><td>Visualizar cronograma de atividades</td></tr>"
 				+ "<tr><td>99</td><td>Sair</td></tr>"
 				+ "</table>"
 				+ "</body>"
@@ -105,9 +104,6 @@ public class CampusView {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 10:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
-			break;
-		case 11:
 			cronograma.visualizarCronograDeAtividades();
 			break;
 		case 99:
