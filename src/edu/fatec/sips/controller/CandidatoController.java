@@ -3,21 +3,36 @@ package edu.fatec.sips.controller;
 import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.data_structure.No;
+import edu.fatec.sips.data_structure.search.BuscaBinaria;
+import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
+import edu.fatec.sips.data_structure.sorting.ShellSortCandidatos;
 import edu.fatec.sips.model.Candidato;
 
 public class CandidatoController {
 	private final ArquivoCandidatoController bdCandidato;
-	
+
 	public CandidatoController() {
 		this.bdCandidato = new ArquivoCandidatoController();
 	}
 
-	// transformar num mergesort com busca em árvore binária
 	public Candidato getPorId(int id) {
 		Candidato candidato = null;
-		
+
 		try {
-			candidato = this.bdCandidato.buscarPorId(id);
+			ListaLigadaSimples<Candidato> candidatos = bdCandidato.listarCandidatos();
+			
+			// para dados em ordem decrescente oferece o melhor custo benefício
+			ShellSortCandidatos shellSort = new ShellSortCandidatos();
+			
+			for (int i = 0; i < candidatos.getTamanho(); ++i) {
+				shellSort.adicionar(candidatos.espiar(i));
+			}
+			
+			shellSort.shellSort();
+			
+			No<Candidato> p = shellSort.primeiro;
+			candidato = new BuscaBinaria().buscaBinaria(p, id).getElemento();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -25,20 +40,39 @@ public class CandidatoController {
 				System.out.println("candidato de id " + id + " nao encontrado");
 			}
 		}
-		
+
 		return candidato;
 	}
-	
+
+	public MergeSortCandidatos listarCandidatosOrdenados() {
+		try {
+			MergeSortCandidatos mergeSortCandidatos = new MergeSortCandidatos();
+			ListaLigadaSimples<Candidato> candidatos = this.bdCandidato.listarCandidatos();
+
+			for (int i = 0; i < candidatos.getTamanho(); ++i) {
+				mergeSortCandidatos.inserirPrimeiro(candidatos.espiar(i));
+			}
+
+			mergeSortCandidatos.mergeSort();
+
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public ListaLigadaSimples<Candidato> listarCandidatos() {
 		try {
 			return this.bdCandidato.listarCandidatos();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	public void salvar(final Candidato candidato) {
 		try {
 			this.bdCandidato.gravarCandidato(candidato);
@@ -46,7 +80,7 @@ public class CandidatoController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void atualizar(final Candidato candidato) {
 		try {
 			this.bdCandidato.atualizarCandidato(candidato);
@@ -54,10 +88,10 @@ public class CandidatoController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Candidato remover(final Candidato candidato) {
 		Candidato removido = null;
-		
+
 		try {
 			removido = this.bdCandidato.removerCandidato(candidato);
 		} catch (Exception e) {
@@ -67,7 +101,7 @@ public class CandidatoController {
 				System.out.println("curso de id " + candidato.getId() + " nao existe");
 			}
 		}
-		
+
 		return removido;
 	}
 }

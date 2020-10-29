@@ -1,10 +1,13 @@
-package edu.fatec.sips.data_structure;
+package edu.fatec.sips.data_structure.sorting;
 
-public class ListaLigadaSimples<T> {
-	public No<T> primeiro;
+import edu.fatec.sips.data_structure.No;
+import edu.fatec.sips.model.Candidato;
+
+public class ShellSortCandidatos {
+	public No<Candidato> primeiro;
 	private int tamanho;
 
-	public ListaLigadaSimples() {
+	public ShellSortCandidatos() {
 		this.primeiro = null;
 		this.tamanho = 0;
 	}
@@ -17,19 +20,19 @@ public class ListaLigadaSimples<T> {
 		return this.tamanho == 0;
 	}
 
-	public void inserirPrimeiro(T elemento) {
-		final No<T> no = new No<T>(elemento);
+	public void inserirPrimeiro(Candidato elemento) {
+		final No<Candidato> no = new No<Candidato>(elemento);
 		no.setProximo(primeiro);
 		primeiro = no;
 		tamanho++;
 	}
 
-	public void adicionar(T elemento) {
-		final No<T> no = new No<T>(elemento);
+	public void adicionar(Candidato elemento) {
+		final No<Candidato> no = new No<Candidato>(elemento);
 		if (estaVazia()) {
 			inserirPrimeiro(elemento);
 		} else {
-			No<T> atual = primeiro;
+			No<Candidato> atual = primeiro;
 			while (atual.getProximo() != null) {
 				atual = atual.getProximo();
 			}
@@ -38,13 +41,13 @@ public class ListaLigadaSimples<T> {
 		}
 	}
 
-	public void inserirNaPosicao(T elemento, int posicao) {
-		final No<T> no = new No<T>(elemento);
+	public void inserirNaPosicao(Candidato elemento, int posicao) {
+		final No<Candidato> no = new No<Candidato>(elemento);
 		if (posicao < 0 || posicao >= tamanho) {
 			System.err.println("POSICAO INVALIDA");
 		} else {
-			No<T> atual = primeiro;
-			No<T> anterior = null;
+			No<Candidato> atual = primeiro;
+			No<Candidato> anterior = null;
 			int posicaoAtual = 0;
 			while (posicaoAtual < posicao) {
 				anterior = atual;
@@ -57,8 +60,8 @@ public class ListaLigadaSimples<T> {
 		}
 	}
 
-	public T removerPrimeiro() {
-		No<T> no = primeiro;
+	public Candidato removerPrimeiro() {
+		No<Candidato> no = primeiro;
 		if (estaVazia()) {
 			System.err.println("LISTA VAZIAT");
 		} else if (this.tamanho == 1) {
@@ -72,15 +75,15 @@ public class ListaLigadaSimples<T> {
 		return no.getElemento();
 	}
 
-	public T removerUltimo() {
-		No<T> no = null;
+	public Candidato removerUltimo() {
+		No<Candidato> no = null;
 
 		if (estaVazia()) {
 			System.err.println("LISTA VAZIAT");
 		} else if (tamanho == 1) {
 			removerPrimeiro();
 		} else {
-			No<T> atual = this.primeiro;
+			No<Candidato> atual = this.primeiro;
 			while (atual.getProximo().getProximo() != null) {
 				atual = atual.getProximo();
 			}
@@ -92,8 +95,8 @@ public class ListaLigadaSimples<T> {
 		return no.getElemento();
 	}
 
-	public T removerNaPosicao(int posicao) {
-		T elemento = null;
+	public Candidato removerNaPosicao(int posicao) {
+		Candidato elemento = null;
 
 		if (estaVazia()) {
 			System.err.println("LISTA VAZIA");
@@ -106,7 +109,7 @@ public class ListaLigadaSimples<T> {
 				elemento = removerUltimo();
 			} else {
 				int currentIndex = 0;
-				No<T> current = this.primeiro;
+				No<Candidato> current = this.primeiro;
 				while (currentIndex + 1 < posicao) {
 					current = current.getProximo();
 					currentIndex++;
@@ -120,8 +123,8 @@ public class ListaLigadaSimples<T> {
 		return elemento;
 	}
 
-	public T espiar(int posicao) {
-		T elemento = null;
+	public Candidato espiar(int posicao) {
+		Candidato elemento = null;
 
 		if (estaVazia()) {
 			System.err.println("LISTA VÁZIA !!!");
@@ -129,7 +132,7 @@ public class ListaLigadaSimples<T> {
 		} else if (posicao < 0 || posicao >= tamanho) {
 			System.err.println("POSICAO INVÁLIDA !!!");
 		} else {
-			No<T> no = primeiro;
+			No<Candidato> no = primeiro;
 			int currentIndex = 0;
 			while (currentIndex < posicao) {
 				no = no.getProximo();
@@ -143,10 +146,60 @@ public class ListaLigadaSimples<T> {
 	}
 
 	public void printar() {
-		No<T> atual = this.primeiro;
+		No<Candidato> atual = this.primeiro;
 		while (atual != null) {
 			System.out.println(atual.getElemento());
 			atual = atual.getProximo();
+		}
+	}
+
+	public void shellSort() {
+		if (this.primeiro != null) {
+			int intervalo = 0;
+			int comprimento = this.getTamanho();
+			No<Candidato> p = primeiro;
+			
+			while (2 * (3 * intervalo + 1) <= comprimento) {
+				intervalo = 3 * intervalo + 1;
+			}
+			
+			for (int h = intervalo; intervalo > 0; intervalo /= 3) {
+				for (int i = h; i > 0; i--) {
+					for (int j = h - i; j < comprimento; j += intervalo) {
+						p = this.primeiro;
+						
+						int n = 0;
+						for (int k = 0; k < j; k++) {
+							p = p.getProximo();
+							n = k;
+						}
+						
+						No<Candidato> c = p;
+						
+						int temp = n + intervalo;
+						
+						while (c != null) {
+							for (int l = n; l < temp; l++) {
+								if (c != null) {
+									n++;
+									c = c.getProximo();
+								} else {
+									break;
+								}
+							}
+
+							if (c != null) {
+								if (p.getElemento().getId() > c.getElemento().getId()) {
+									Candidato t = p.getElemento();
+									p.setElemento(c.getElemento());
+									c.setElemento(t);
+								}
+							}
+							temp += intervalo;
+						}
+					}
+				}
+			}
 		}
 	}
 }

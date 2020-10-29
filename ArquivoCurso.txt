@@ -1,3 +1,10 @@
 1;COMEX;Comércio Exterior;Curso de Comércio Exterior
 2;ADS;Análise e Desenvolvimento de Sistemas;Curso de Análise e Desenvolvimento de Sistemas
 3;SINT;Sistemas Para Internet;Curso para desenvolver Sistemas Para Internet
+4;POLIM;Polímeros;Curso para trabalhar polímeros como matéria prima
+5;BD;Banco de Dados;O tecnólogo é quem projeta e administra esse complexo arquivo que armazena e organiza informações digitais
+6;GESPORT;Gestão Portuária;Realiza o planejamento de operações em navios porta-contêiner e de mercadorias a granel e líquidas
+7;MANFAT;Manufatura Avançada;É responsável por identificar dispositivos e ferramentas disponíveis no mercado
+8;RADIO;Radiologia;Radiologia não possui semelhança com cursos técnicos ou graduação em Enfermagem
+9;SISBIO;Sistemas Biomédicos;Nos fabricantes dos equipamentos médico-hospitalares, está apto para atuar na elaboração de projetos de produtos e na assistência técnica
+10;SISNAV;Sistemas Navais;Planeja, executa, vistoria, fiscaliza os sistemas de transporte hidroviário e sua interligação com outros modais.

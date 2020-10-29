@@ -42,25 +42,6 @@ public class ArquivoCandidatoController {
 		return temp.getId() + 1;
 	}
 	
-	
-	public Candidato buscarPorId(final int id) throws IOException {
-		Candidato encontrado = null;
-		String linha = new String();
-		
-		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
-
-		while (encontrado == null && (linha = br.readLine()) != null) {
-			Candidato tempCandidato = quebrarAtributos(linha);
-			if (tempCandidato.getId() == id) {
-				encontrado = tempCandidato;
-			}
-		}
-		
-		br.close();
-		
-		return encontrado;
-	}
-	
 	public ListaLigadaSimples<Candidato> listarCandidatos() throws IOException {
 		String linha = new String();
 		ListaLigadaSimples<Candidato> candidatos = new ListaLigadaSimples<Candidato>();
@@ -69,7 +50,7 @@ public class ArquivoCandidatoController {
 
 		while ((linha = br.readLine()) != null) {
 			Candidato tempCandidato = quebrarAtributos(linha);
-			candidatos.adicionar(tempCandidato);
+			candidatos.inserirPrimeiro(tempCandidato);
 		}
 		
 		br.close();

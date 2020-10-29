@@ -18,33 +18,39 @@ public class ListarCandidatos {
 	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DT. NASCIMENTO", "CURSO", "NOTA",
 			"RECURSO" };
 	CandidatoController candidatoController = new CandidatoController();
-	private final ListaLigadaSimples<Candidato> candidatos; 
+	private final ListaLigadaSimples<Candidato> candidatos;
 
 	public ListarCandidatos() {
 		this.modeloTabela = new DefaultTableModel(colunas, 0);
 		this.tabelaUsuarios = new JTable(modeloTabela);
+
 		candidatos = candidatoController.listarCandidatos();
-		for (int i = 0; i < candidatos.getTamanho(); ++i) {
-			Object[] candidatosTable = { candidatos.espiar(i).getId(), candidatos.espiar(i).getNome(),
-					candidatos.espiar(i).getSobrenome(), candidatos.espiar(i).getDocumentos(),
-					candidatos.espiar(i).getDataNascimentoString(), candidatos.espiar(i).getCurso(),
-					candidatos.espiar(i).getNotas(), candidatos.espiar(i).getRecursos() };
-			modeloTabela.addRow(candidatosTable);
+
+		try {
+			for (int i = 0; i < candidatos.getTamanho(); ++i) {
+				Candidato c = candidatos.espiar(i);
+				Object[] candidato = { c.getId(), c.getNome(), c.getSobrenome(), c.getDocumentos().espiar(0),
+						c.getDataNascimentoString(), c.getCurso(), c.getNotas(), c.getRecursos() };
+				modeloTabela.addRow(candidato);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("FALHA AO ADICIONAR CANDIDATO A LISTA");
 		}
 	}
 
 	public void listar() {
 		tabelaUsuarios.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evento) {
-            	selecaoDeLinha(evento);
-            }
-        });
-		
+			public void mouseClicked(MouseEvent evento) {
+				selecaoDeLinha(evento);
+			}
+		});
+
 		tabelaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaUsuarios), "LISTA DE CANDIDATOS", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaUsuarios), "LISTA DE CANDIDATOS",
+				JOptionPane.PLAIN_MESSAGE);
 	}
 
-	private void selecaoDeLinha(java.awt.event.MouseEvent evt) {
+	private void selecaoDeLinha(MouseEvent evt) {
 		final int colunaId = 0;
 		int indexLinhaSelecionada = tabelaUsuarios.getSelectedRow();
 		int idSelecionado = (int) this.modeloTabela.getValueAt(indexLinhaSelecionada, colunaId);
