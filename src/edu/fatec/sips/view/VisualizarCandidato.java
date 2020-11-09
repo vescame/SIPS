@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Documento;
-import edu.fatec.sips.model.Nota;
 import edu.fatec.sips.model.Recurso;
 
 public class VisualizarCandidato {
@@ -17,7 +16,7 @@ public class VisualizarCandidato {
 	public void mostrarTela() {
 		JOptionPane.showMessageDialog(null,
 				this.getDocumentos().concat("\n").concat(this.getCurso()).concat("\n\n").concat(this.getAprovacao())
-						.concat("\n\n").concat(this.getNotas()).concat("\n\n").concat(this.getRecursos()),
+						.concat("\n\n").concat(this.getNota()).concat("\n\n").concat(this.getRecursos()),
 				"Aluno: " + this.getNomeCompleto() + " - " + this.getDataDeNascimento(),
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -71,16 +70,7 @@ public class VisualizarCandidato {
 		return candidato.getDataNascimentoString();
 	}
 
-	private String getNotas() {
-		String layout = new String("Não há notas");
-		final int tamanho = this.candidato.getNotas().getTamanho();
-
-		for (int i = 0; i < tamanho; ++i) {
-			Nota n = this.candidato.getNotas().espiar(0);
-			layout = new String("Notas:\n");
-			layout = layout.concat(n.toString()).concat(" ");
-		}
-
-		return layout;
+	private String getNota() {
+		return String.valueOf(this.candidato.getNota());
 	}
 }

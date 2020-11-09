@@ -30,7 +30,7 @@ public class ListarCandidatos {
 			for (int i = 0; i < candidatos.getTamanho(); ++i) {
 				Candidato c = candidatos.espiar(i);
 				Object[] candidato = { c.getId(), c.getNome(), c.getSobrenome(), c.getDocumentos().espiar(0),
-						c.getDataNascimentoString(), c.getCurso(), c.getNotas(), c.getRecursos() };
+						c.getDataNascimentoString(), c.getCurso(), c.getNota(), c.getRecursos() };
 				modeloTabela.addRow(candidato);
 			}
 		} catch (NullPointerException e) {

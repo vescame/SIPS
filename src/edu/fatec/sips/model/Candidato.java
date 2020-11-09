@@ -12,7 +12,8 @@ public class Candidato {
 	private Date dataNascimento;
 	private Curso curso;
 	private boolean aprovado;
-	private ListaLigadaSimples<Nota> notas;
+	private int nota;
+	private int criterio;
 	private ListaLigadaSimples<Documento> documentos;
 	private ListaLigadaSimples<Recurso> recursos;
 	private final SimpleDateFormat sdf;
@@ -20,20 +21,17 @@ public class Candidato {
 	public Candidato() {
 		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
-		this.notas = new ListaLigadaSimples<Nota>();
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
 	public Candidato(int id, String nome, String sobrenome, Date dataNascimento, Curso curso, boolean aprovado,
-			ListaLigadaSimples<Nota> notas, ListaLigadaSimples<Documento> documentos,
-			ListaLigadaSimples<Recurso> recursos) {
+			ListaLigadaSimples<Documento> documentos, ListaLigadaSimples<Recurso> recursos) {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dataNascimento = dataNascimento;
 		this.curso = curso;
 		this.aprovado = aprovado;
-		this.notas = new ListaLigadaSimples<Nota>();
 		this.documentos = new ListaLigadaSimples<Documento>();
 		this.recursos = new ListaLigadaSimples<Recurso>();
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -66,7 +64,7 @@ public class Candidato {
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	
+
 	public String getDataNascimentoString() {
 		try {
 			return this.sdf.format(this.dataNascimento);
@@ -95,18 +93,6 @@ public class Candidato {
 		this.aprovado = aprovado;
 	}
 
-	public ListaLigadaSimples<Nota> getNotas() {
-		return notas;
-	}
-
-	public void addNota(Nota nota) {
-		this.notas.adicionar(nota);
-	}
-
-	public void setNotas(ListaLigadaSimples<Nota> notas) {
-		this.notas = notas;
-	}
-
 	public void setDocumentos(ListaLigadaSimples<Documento> documentos) {
 		this.documentos = documentos;
 	}
@@ -131,11 +117,26 @@ public class Candidato {
 		return this.recursos;
 	}
 
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+
+	public int getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(int criterio) {
+		this.criterio = criterio;
+	}
+
 	@Override
 	public String toString() {
 		return "Candidato\nid=" + id + "\nnome=" + nome + " " + sobrenome + "\ndataNascimento="
 				+ this.getDataNascimentoString() + "\n" + (aprovado ? "aprovado" : "reprovado") + "";
 	}
-	
-	
+
 }
