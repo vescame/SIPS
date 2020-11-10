@@ -66,7 +66,12 @@ public class ResultadoPreliminar {
 	}
 
 	public ListaLigadaSimples<Edital> carregarDadosDeEditaisListados() {
-		return listaDeEditais = listarEditais();
+		listaDeEditais = listarEditais();
+		for (int i = 0; i < listaDeEditais.getTamanho(); i++) {
+			inserirNotaDeCandidato(listaDeCandidatos, i);
+			inserirCriterioDeCandidato(listaDeCandidatos, i);
+		}
+		return listaDeEditais;
 	}
 
 	public ListaLigadaSimples<Curso> carregarDadosDeCursos() {
@@ -77,24 +82,8 @@ public class ResultadoPreliminar {
 		lista.espiar(i).setNota(sortearNumerosEntreIntervalos(10, 0));
 	}
 
-	public void filtrarCandidatosPorCursoConformeEdital(ListaLigadaSimples<Candidato> candidato,
-			ListaLigadaSimples<Curso> curso) {
-		int n = 1;
-		for (int i = 0; i < curso.getTamanho(); i++) {
-			for (int j = 0; j < candidato.getTamanho(); j++) {
-				if (curso.espiar(i).getId() == n && candidato.espiar(j).getCurso().getId() == n) {
-					System.out.println(candidato.espiar(j).getNome() + " " + candidato.espiar(j).getSobrenome() + " - "
-							+ curso.espiar(i).getSigla());
-					System.out.println(n);
-				}
-			}
-			n++;
-		}
-	}
-
-	public ListaLigadaSimples<Candidato> pegarCandidatosClassificados(
-			ListaLigadaSimples<Candidato> listaDeCandidatosClassificados) {
-		return listaDeCandidatosClassificados;
+	public void inserirCriterioDeCandidato(ListaLigadaSimples<Candidato> lista, int i) {
+		lista.espiar(i).setCriterio(sortearNumerosEntreIntervalos(4, 1));
 	}
 
 	public int sortearNumerosEntreIntervalos(int max, int min) {
@@ -102,17 +91,22 @@ public class ResultadoPreliminar {
 		return numero.nextInt((max - min) + 1) + min;
 	}
 
-	public void inserirCriterioDeCandidato(ListaLigadaSimples<Candidato> lista, int i) {
-		lista.espiar(i).setCriterio(sortearNumerosEntreIntervalos(4, 1));
-	}
-
-	public void gravarResultadoPreliminar() throws IOException {
-		listaDeCandidatos = pegarCandidatosClassificados(carregarNovosDadosDeCandidadosListados());
-		listaDeEditais = carregarDadosDeEditaisListados();
-//		filtrarCandidatosPorCursoConformeEdital(listaDeCandidatos, listaDeCursos);
-		FileWriter fw = new FileWriter(ARQUIVO, true);
-		fw.write(retornarStringDeCandidatosQualificados(listaDeCandidatos, listaDeCursos));
-		fw.close();
+	public ListaLigadaSimples<Candidato> filtrarCandidatosPorCursoConformeEdital(
+			ListaLigadaSimples<Candidato> candidato, ListaLigadaSimples<Curso> curso) {
+		int idDoCurso = 1;
+		ListaLigadaSimples<Candidato> listaAux = new ListaLigadaSimples<Candidato>();
+		for (int i = 0; i < curso.getTamanho(); i++) {
+			for (int j = 0; j < candidato.getTamanho(); j++) {
+				if (curso.espiar(i).getId() == idDoCurso && candidato.espiar(j).getCurso().getId() == idDoCurso) {
+					System.out.println(candidato.espiar(j).getNome() + " " + candidato.espiar(j).getSobrenome() + " - "
+							+ curso.espiar(i).getSigla());
+					System.out.println(idDoCurso);
+					listaAux.adicionar(candidato.espiar(j));
+				}
+			}
+			idDoCurso++;
+		}
+		return listaAux;
 	}
 
 	public int definirCandidatosComMaiorNota(ListaLigadaSimples<Candidato> lista) {
@@ -129,35 +123,38 @@ public class ResultadoPreliminar {
 		return maiorNota;
 	}
 
-	private String retornarStringDeCandidatosQualificados(final ListaLigadaSimples<Candidato> candidato,
-			final ListaLigadaSimples<Curso> curso) {
-		StringBuilder linha = new StringBuilder();
-//		filtrarCandidatosPorCursoConformeEdital(candidato, curso);
-		for (int i = 0; i < candidato.getTamanho(); i++) {
-			for (int j = 0; j < curso.getTamanho(); j++) {
-				if (definirCandidatosComMaiorNota(candidato) == candidato.espiar(i).getNota()
-						&& candidato.espiar(i).getCurso().getSigla().contains(curso.espiar(j).getSigla())) {
-					linha.append(candidato.espiar(i).getId()).append(SEPARADOR).append(candidato.espiar(i).getNome())
-							.append(SEPARADOR).append(candidato.espiar(i).getSobrenome()).append(SEPARADOR)
-							.append(candidato.espiar(i).getDataNascimento().toString()).append(SEPARADOR)
-							.append(candidato.espiar(i).getCurso().getId()).append(SEPARADOR)
-							.append(candidato.espiar(i).isAprovado()).append(SEPARADOR)
-							.append(candidato.espiar(i).getNota()).append(SEPARADOR)
-							.append(candidato.espiar(i).getCriterio()).append("\n");
-				}
-			}
+	public void gravarResultadoPreliminar() throws IOException {
+		listaDeCursos = carregarDadosDeCursos();
+		listaDeCandidatos = filtrarCandidatosPorCursoConformeEdital(carregarNovosDadosDeCandidadosListados(),
+				listaDeCursos);
+		FileWriter fw = new FileWriter(ARQUIVO, true);
+		fw.write(retornarStringDeCandidatosQualificados(listaDeCandidatos, 7));
+		fw.close();
+	}
 
+	private String retornarStringDeCandidatosQualificados(final ListaLigadaSimples<Candidato> candidato, int notaDeCorte) {
+		StringBuilder linha = new StringBuilder();
+		String ponto = ".";
+		System.out.print("Definindo resultado preliminar");
+		for (int i = 0; i < candidato.getTamanho(); i++) {
+			if (candidato.espiar(i).getNota() >= notaDeCorte) {
+				linha.append(candidato.espiar(i).getId()).append(SEPARADOR).append(candidato.espiar(i).getNome())
+						.append(SEPARADOR).append(candidato.espiar(i).getSobrenome()).append(SEPARADOR)
+						.append(candidato.espiar(i).getDataNascimento().toString()).append(SEPARADOR)
+						.append(candidato.espiar(i).getCurso().getId()).append(SEPARADOR)
+						.append(candidato.espiar(i).isAprovado()).append(SEPARADOR)
+						.append(candidato.espiar(i).getNota()).append(SEPARADOR)
+						.append(candidato.espiar(i).getCriterio()).append("\n");
+				System.out.print(ponto);
+			}
 		}
+		System.out.println("\nPronto, resultado preliminar definido, e gravado !!!");
 		return linha.toString();
 	}
 
 	public static void main(String[] args) throws IOException {
 		ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
-		ListaLigadaSimples<Candidato> candidato = new ListaLigadaSimples<Candidato>();
-		ListaLigadaSimples<Curso> curso = new ListaLigadaSimples<Curso>();
-		candidato = resultadoPreliminar.carregarNovosDadosDeCandidadosListados();
-		curso = resultadoPreliminar.carregarDadosDeCursos();
-		resultadoPreliminar.filtrarCandidatosPorCursoConformeEdital(candidato, curso);
+		resultadoPreliminar.gravarResultadoPreliminar();
 	}
 
 }

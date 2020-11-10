@@ -1,1 +1,2 @@
-1;Edital - 2020;USP - Leste;COMEX - Comércio Exterior;Para pessoas tristes;  /  /    ;  /  /    ;2;0;0;2;
+1;aaaa;USP - Leste;COMEX - Comércio Exterior;bbb;  /  /    ;  /  /    ;1;3;0;2;
+2;;FAM - Barra Funda;COMEX - Comércio Exterior;;  /  /    ;  /  /    ;1;2;0;1;
