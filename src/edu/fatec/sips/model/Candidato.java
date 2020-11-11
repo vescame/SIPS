@@ -12,6 +12,7 @@ public class Candidato {
 	private Date dataNascimento;
 	private Curso curso;
 	private boolean aprovado;
+	private boolean desistente;
 	private int nota;
 	private int criterio;
 	private ListaLigadaSimples<Documento> documentos;
@@ -91,6 +92,14 @@ public class Candidato {
 
 	public void setAprovado(boolean aprovado) {
 		this.aprovado = aprovado;
+	}
+
+	public boolean isDesistente() {
+		return desistente;
+	}
+
+	public void setDesistente(boolean desistente) {
+		this.desistente = desistente;
 	}
 
 	public void setDocumentos(ListaLigadaSimples<Documento> documentos) {

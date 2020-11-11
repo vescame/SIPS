@@ -3,8 +3,8 @@ package edu.fatec.sips.data_structure.search;
 import edu.fatec.sips.data_structure.No;
 import edu.fatec.sips.model.Candidato;
 
-public class BuscaBinaria {
-	public No<Candidato> encontrarMeio(No<Candidato> primeiro, No<Candidato> ultimo) {
+public class BuscaBinariaCandidato {
+	private No<Candidato> encontrarMeio(No<Candidato> primeiro, No<Candidato> ultimo) {
 		if (primeiro == null)
 			return null;
 

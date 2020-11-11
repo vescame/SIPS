@@ -4,16 +4,19 @@ import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.data_structure.No;
-import edu.fatec.sips.data_structure.search.BuscaBinaria;
+import edu.fatec.sips.data_structure.search.BuscaBinariaCandidato;
 import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
 import edu.fatec.sips.data_structure.sorting.ShellSortCandidatos;
 import edu.fatec.sips.model.Candidato;
 
 public class CandidatoController {
 	private final ArquivoCandidatoController bdCandidato;
+	// para dados em ordem decrescente oferece o melhor custo benefício
+	ShellSortCandidatos shellSort;
 
 	public CandidatoController() {
 		this.bdCandidato = new ArquivoCandidatoController();
+		this.shellSort = new ShellSortCandidatos();;
 	}
 
 	public Candidato getPorId(int id) {
@@ -22,17 +25,15 @@ public class CandidatoController {
 		try {
 			ListaLigadaSimples<Candidato> candidatos = bdCandidato.listarCandidatos();
 			
-			// para dados em ordem decrescente oferece o melhor custo benefício
-			ShellSortCandidatos shellSort = new ShellSortCandidatos();
-			
-			for (int i = 0; i < candidatos.getTamanho(); ++i) {
-				shellSort.adicionar(candidatos.espiar(i));
-			}
-			
-			shellSort.shellSort();
-			
+			if (this.shellSort.getTamanho() == 0) {
+				for (int i = 0; i < candidatos.getTamanho(); ++i) {
+					shellSort.adicionar(candidatos.espiar(i));
+				}
+				
+				shellSort.shellSort();
+			}			
 			No<Candidato> p = shellSort.primeiro;
-			candidato = new BuscaBinaria().buscaBinaria(p, id).getElemento();
+			candidato = new BuscaBinariaCandidato().buscaBinaria(p, id).getElemento();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

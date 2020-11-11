@@ -76,7 +76,9 @@ public class ArquivoRecursoController {
 
 		while ((linha = br.readLine()) != null) {
 			Recurso temp = quebrarAtributos(linha);
-			cursos.adicionar(temp);
+			if (!temp.isFechado()) {
+				cursos.adicionar(temp);
+			}
 		}
 		
 		br.close();

@@ -15,9 +15,8 @@ import edu.fatec.sips.model.Candidato;
 public class ListarCandidatos {
 	private final JTable tabelaUsuarios;
 	private final DefaultTableModel modeloTabela;
-	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DT. NASCIMENTO", "CURSO", "NOTA",
-			"RECURSO" };
-	CandidatoController candidatoController = new CandidatoController();
+	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DT. NASCIMENTO", "CURSO" };
+	private final CandidatoController candidatoController = new CandidatoController();
 	private final ListaLigadaSimples<Candidato> candidatos;
 
 	public ListarCandidatos() {

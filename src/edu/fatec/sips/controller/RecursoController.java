@@ -50,16 +50,7 @@ public class RecursoController {
 		return null;
 	}
 	
-	public void aprovacaoAutomatizada(final int idRecurso) {
-		// exemplo simples
-		if ((idRecurso % 2) == 0) {
-			aprovarRecurso(idRecurso);
-		} else {
-			reprovarRecurso(idRecurso);
-		}
-	}
-	
-	private void aprovarRecurso(final int idRecurso) {
+	public void aprovarRecurso(final int idRecurso) {
 		try {
 			Recurso recurso = this.dao.buscarPorId(idRecurso);
 			recurso.setAprovado(true);
@@ -70,7 +61,7 @@ public class RecursoController {
 		}
 	}
 	
-	private void reprovarRecurso(final int idRecurso) {
+	public void reprovarRecurso(final int idRecurso) {
 		try {
 			Recurso recurso = this.dao.buscarPorId(idRecurso);
 			recurso.setAprovado(false);

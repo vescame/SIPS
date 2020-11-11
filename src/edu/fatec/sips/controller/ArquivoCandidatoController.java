@@ -13,8 +13,9 @@ import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Curso;
 
 public class ArquivoCandidatoController {
-	final ArquivoDocumentoCandidatoController documentos;
-	final ArquivoCursoController cursos;
+	private final ArquivoDocumentoCandidatoController documentos;
+	private final ArquivoCursoController cursos;
+	private final ArquivoRecursoController recursos;
 	private final String ARQUIVO = "ArquivoCandidato.txt";
 	private final String SEPARADOR = ";";
 	private final SimpleDateFormat sdf;
@@ -22,6 +23,7 @@ public class ArquivoCandidatoController {
 	public ArquivoCandidatoController() {
 		this.cursos = new ArquivoCursoController();
 		this.documentos = new ArquivoDocumentoCandidatoController();
+		this.recursos = new ArquivoRecursoController();
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 	
@@ -99,7 +101,9 @@ public class ArquivoCandidatoController {
 			Curso curso = cursos.buscarPorId(idCurso);
 			candidato.setCurso(curso);
 			candidato.setAprovado(Boolean.valueOf(atribs[5]));
+			candidato.setDesistente(Boolean.valueOf(atribs[6]));
 			candidato.setDocumentos(documentos.listarDocumentos(candidato.getId()));
+			candidato.setRecursos(this.recursos.buscarPorIdCandidato(candidato.getId()));
 		} catch (Exception e) {
 			System.out.println("falha ao obter atributo candidato");
 		}
@@ -119,7 +123,8 @@ public class ArquivoCandidatoController {
 				.append(candidato.getSobrenome()).append(SEPARADOR)
 				.append(candidato.getDataNascimento().toString()).append(SEPARADOR)
 				.append(candidato.getCurso().getId()).append(SEPARADOR)
-				.append(candidato.isAprovado());
+				.append(candidato.isAprovado()).append(SEPARADOR)
+				.append(candidato.isDesistente());
 		
 		return linha.toString();
 	}

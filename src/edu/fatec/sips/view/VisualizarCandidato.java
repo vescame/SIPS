@@ -16,7 +16,7 @@ public class VisualizarCandidato {
 	public void mostrarTela() {
 		JOptionPane.showMessageDialog(null,
 				this.getDocumentos().concat("\n").concat(this.getCurso()).concat("\n\n").concat(this.getAprovacao())
-						.concat("\n\n").concat(this.getNota()).concat("\n\n").concat(this.getRecursos()),
+						.concat("\n\n").concat(this.getRecursos()),
 				"Aluno: " + this.getNomeCompleto() + " - " + this.getDataDeNascimento(),
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -54,7 +54,7 @@ public class VisualizarCandidato {
 		final int tamanho = this.candidato.getRecursos().getTamanho();
 
 		if (tamanho == 0) {
-			layout = new String("Não há recursos");
+			layout = new String("Candidato não abriu recursos");
 		}
 
 		for (int i = 0; i < tamanho; ++i) {
@@ -68,9 +68,5 @@ public class VisualizarCandidato {
 
 	private String getDataDeNascimento() {
 		return candidato.getDataNascimentoString();
-	}
-
-	private String getNota() {
-		return String.valueOf(this.candidato.getNota());
 	}
 }
