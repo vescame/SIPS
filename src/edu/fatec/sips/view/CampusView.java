@@ -18,10 +18,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
+
+
 import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.ArquivoCronogramaController;
 import edu.fatec.sips.controller.CampusController;
-import edu.fatec.sips.controller.CronogramaController;
+import edu.fatec.sips.controller.ResultadoPreliminar;
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
@@ -32,7 +34,7 @@ import edu.fatec.sips.model.Edital;
 
 
 public class CampusView {
-
+	ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
 	CampusController campusController = new CampusController();
 	ListarCronograma cronograma = new ListarCronograma();
 
@@ -87,15 +89,13 @@ public class CampusView {
 			visualizarCandidatos();
 			break;
 		case 5:
-			// JOptionPane.showMessageDialog(null, "FUN플O SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			//JOptionPane.showMessageDialog(null, "FUN플O SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
-			carregarDataFinal();
+			resultadoPreliminar.gravarResultadoPreliminar();
 			break;
 		case 7:
-			JOptionPane.showMessageDialog(null, "FUN플O SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			resultadoPreliminar.visualizarResultadoPreliminar();;
 			break;
 		case 8:
 			JOptionPane.showMessageDialog(null, "FUN플O SENDO DESENVOLVIDA \n\n Tente mais tarde :)");

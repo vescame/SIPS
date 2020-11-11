@@ -4,6 +4,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Curso;
@@ -132,7 +137,26 @@ public class ResultadoPreliminar {
 		fw.close();
 	}
 
-	private String retornarStringDeCandidatosQualificados(final ListaLigadaSimples<Candidato> candidato, int notaDeCorte) {
+	public void visualizarResultadoPreliminar() throws IOException {
+		String col[] = { "ID CAND.", "CAND. NOME", "CAND. SOBRENOME", "DT. NASC.", "ID CURSO", "APROVADO", "NOTA",
+				"CRITÉRIO" };
+		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+		for (int i = 0; i < listaDeCandidatos.getTamanho(); i++) {
+			if (listaDeCandidatos.espiar(i).getNota() >= 7) {
+				Object[] edital = { listaDeCandidatos.espiar(i).getId(), listaDeCandidatos.espiar(i).getNome(),
+						listaDeCandidatos.espiar(i).getSobrenome(), listaDeCandidatos.espiar(i).getDataNascimento(),
+						listaDeCandidatos.espiar(i).getCurso().getId(), listaDeCandidatos.espiar(i).isAprovado(),
+						listaDeCandidatos.espiar(i).getNota(), listaDeCandidatos.espiar(i).getCriterio() };
+				tableModel.addRow(edital);
+			}
+		}
+		JTable table = new JTable(tableModel);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JOptionPane.showMessageDialog(null, new JScrollPane(table), "RESULTADO PRELIMINAR", JOptionPane.PLAIN_MESSAGE);
+	}
+
+	private String retornarStringDeCandidatosQualificados(final ListaLigadaSimples<Candidato> candidato,
+			int notaDeCorte) {
 		StringBuilder linha = new StringBuilder();
 		String ponto = ".";
 		System.out.print("Definindo resultado preliminar");
