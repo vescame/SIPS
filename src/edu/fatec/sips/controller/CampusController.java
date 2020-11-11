@@ -62,7 +62,7 @@ public class CampusController {
 	}
 
 	public void salvarEdital(JTextField txtTitulo, JComboBox<String> comboBoxCampus, JComboBox<String> comboBoxCursos,
-			JTextField txtPublicoAlvo, JFormattedTextField txtPeriodoInicial, JFormattedTextField txtPeriodoFinal,
+			JTextField txtPublicoAlvo, JTextField txtPeriodoInicial, JTextField txtPeriodoFinal,
 			JFormattedTextField txtQtdVagasAmplaConcorrencia, JFormattedTextField txtQtdVagasAcoesAfirmativas,
 			JFormattedTextField txtQtdVagasDeficiente, JComboBox<String> comboBoxCriterio) throws IOException {
 		edital.setTitulo(txtTitulo.getText());
@@ -73,7 +73,7 @@ public class CampusController {
 		edital.setPeriodoFinal(txtPeriodoFinal.getText());
 		edital.setAmplaConcorrencia(Integer.parseInt(txtQtdVagasAmplaConcorrencia.getText()));
 		edital.setAcoesAfirmativas(Integer.parseInt(txtQtdVagasAcoesAfirmativas.getText()));
-		edital.setAcoesAfirmativas(Integer.parseInt(txtQtdVagasDeficiente.getText()));
+		edital.setDeficiente(Integer.parseInt(txtQtdVagasDeficiente.getText()));
 		edital.setCriterio(Integer.parseInt(comboBoxCriterio.getSelectedItem().toString()));
 
 		bdEdital.gravarEdital(edital);

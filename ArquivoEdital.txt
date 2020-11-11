@@ -1,2 +1,1 @@
-1;aaaa;USP - Leste;COMEX - Comércio Exterior;bbb;  /  /    ;  /  /    ;1;3;0;2;
-2;;FAM - Barra Funda;COMEX - Comércio Exterior;;  /  /    ;  /  /    ;1;2;0;1;
+1;Edital - 2020;USP - Leste;ADS - Análise e Desenvolvimento de Sistemas;Formandos, no ensino médio;26/10/2020;12/12/2021;10;5;2;3;

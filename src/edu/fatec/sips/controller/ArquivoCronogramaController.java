@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.model.CronogramaDeAtividades;
-import edu.fatec.sips.model.Edital;
 
 public class ArquivoCronogramaController {
 
@@ -100,7 +99,9 @@ public class ArquivoCronogramaController {
 		while ((linha = read.readLine()) != null) {
 			ultimo++;
 		}
+		@SuppressWarnings("unused")
 		String linha2 = new String();
+		@SuppressWarnings("resource")
 		BufferedReader read2 = new BufferedReader(new FileReader(arquivoCronograma));
 		while ((linha2 = read2.readLine()) != null) {
 			if(contagem == ultimo-1) {
