@@ -56,7 +56,7 @@ public class CandidatoController {
 
 			mergeSortCandidatos.mergeSort();
 
-			return null;
+			return mergeSortCandidatos;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
