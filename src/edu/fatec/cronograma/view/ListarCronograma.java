@@ -2,9 +2,11 @@ package edu.fatec.cronograma.view;
 
 import java.text.SimpleDateFormat;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.controller.CronogramaController;
@@ -25,9 +27,17 @@ public class ListarCronograma {
 			sdf.format(cronograma.coletar(i).getDataInicio()), sdf.format(cronograma.coletar(i).getDataEntrega())};
 			tableModel.addRow(atividades);
 		}
-		JTable tabela = new JTable(tableModel);
-		tabela.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		JOptionPane.showMessageDialog(null, new JScrollPane(tabela), "CRONOGRAMA DE ATIVIDADES", JOptionPane.PLAIN_MESSAGE);
+		JTable table = new JTable(tableModel);
+		DefaultTableCellRenderer rendar = new DefaultTableCellRenderer();
+		rendar.setHorizontalAlignment(JLabel.CENTER);
+		for (int numCol = 0; numCol < table.getColumnCount(); numCol++) {
+			for (int i = 0; i <= numCol; i++) {
+				table.getColumnModel().getColumn(i).setPreferredWidth(250);
+				table.getColumnModel().getColumn(i).setCellRenderer(rendar);
+			}
+		}
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JOptionPane.showMessageDialog(null, new JScrollPane(table), "CRONOGRAMA DE ATIVIDADES", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 }

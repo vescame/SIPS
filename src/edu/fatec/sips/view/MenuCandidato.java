@@ -1,13 +1,17 @@
 package edu.fatec.sips.view;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import edu.fatec.cronograma.view.ListarCronograma;
+import edu.fatec.sips.controller.ResultadoPreliminar;
 
 public class MenuCandidato {
 	
-	public int menuCandidato(int opcao) {
-		String textoMenu = "<html>"
+	public int menuCandidato(int opcao) throws IOException {
+		String textoMenu =
+				"<html>"
 				+ "<head>"
 				+ "<style>"
 				+ "table {width: 300px; background-color: white;}"
@@ -36,14 +40,15 @@ public class MenuCandidato {
 		}
 	}
 	
-	public void avaliarOpcao (int opcao) {
+	public void avaliarOpcao (int opcao) throws IOException {
 		ListarCronograma listarCronograma = new ListarCronograma();
+		ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
 		switch (opcao) {
 		case 1:
 			listarCronograma.visualizarCronograDeAtividades();
 			break;
 		case 2:
-			// new VisualizarResultadoParcial().resultadoParcial();
+			resultadoPreliminar.visualizarResultadoPreliminar();
 			break;
 		case 3:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");

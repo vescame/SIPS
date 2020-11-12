@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.cronograma.view.MenuCronograma;
@@ -97,6 +98,14 @@ public class CPSView {
 			tableModel.addRow(campus);
 		}
 		JTable table = new JTable(tableModel);
+		DefaultTableCellRenderer rendar = new DefaultTableCellRenderer();
+		rendar.setHorizontalAlignment(JLabel.CENTER);
+		for (int numCol = 0; numCol < table.getColumnCount(); numCol++) {
+			for (int i = 0; i <= numCol; i++) {
+				table.getColumnModel().getColumn(i).setPreferredWidth(250);
+				table.getColumnModel().getColumn(i).setCellRenderer(rendar);
+			}
+		}
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE CAMPUS", JOptionPane.PLAIN_MESSAGE);
 	}
 
