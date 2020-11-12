@@ -4,9 +4,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
@@ -138,7 +140,7 @@ public class ResultadoPreliminar {
 	}
 
 	public void visualizarResultadoPreliminar() throws IOException {
-		String col[] = { "ID CAND.", "CAND. NOME", "CAND. SOBRENOME", "DT. NASC.", "ID CURSO", "APROVADO", "NOTA",
+		String col[] = { "ID CANDIDATO", "NOME CANDIDATO", "SOBRENOME CANDIDATO", "DATA DE NASCIMENTO", "ID CURSO", "APROVADO", "NOTA CANDIDATO",
 				"CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for (int i = 0; i < listaDeCandidatos.getTamanho(); i++) {
@@ -151,6 +153,14 @@ public class ResultadoPreliminar {
 			}
 		}
 		JTable table = new JTable(tableModel);
+		DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+		defaultTableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+		for (int numCol = 0; numCol < table.getColumnCount(); numCol++) {
+			for (int i = 0; i <= numCol; i++) {
+				table.getColumnModel().getColumn(i).setPreferredWidth(250);
+				table.getColumnModel().getColumn(i).setCellRenderer(defaultTableCellRenderer);
+			}
+		}
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JOptionPane.showMessageDialog(null, new JScrollPane(table), "RESULTADO PRELIMINAR", JOptionPane.PLAIN_MESSAGE);
 	}

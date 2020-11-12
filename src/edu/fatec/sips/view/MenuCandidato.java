@@ -10,7 +10,8 @@ import edu.fatec.sips.controller.ResultadoPreliminar;
 public class MenuCandidato {
 	
 	public int menuCandidato(int opcao) throws IOException {
-		String textoMenu = "<html>"
+		String textoMenu =
+				"<html>"
 				+ "<head>"
 				+ "<style>"
 				+ "table {width: 300px; background-color: white;}"

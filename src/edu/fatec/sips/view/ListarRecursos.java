@@ -3,9 +3,11 @@ package edu.fatec.sips.view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.controller.CandidatoController;
@@ -47,7 +49,14 @@ public class ListarRecursos {
 				selecaoDeLinha(evento);
 			}
 		});
-
+		DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+		defaultTableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+		for (int numCol = 0; numCol < tabelaRecursos.getColumnCount(); numCol++) {
+			for (int i = 0; i <= numCol; i++) {
+				tabelaRecursos.getColumnModel().getColumn(i).setPreferredWidth(250);
+				tabelaRecursos.getColumnModel().getColumn(i).setCellRenderer(defaultTableCellRenderer);
+			}
+		}
 		tabelaRecursos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaRecursos), "LISTA DE RECURSOS",
 				JOptionPane.PLAIN_MESSAGE);

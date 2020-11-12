@@ -3,9 +3,11 @@ package edu.fatec.sips.view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.controller.CandidatoController;
@@ -15,7 +17,7 @@ import edu.fatec.sips.model.Candidato;
 public class ListarCandidatos {
 	private final JTable tabelaUsuarios;
 	private final DefaultTableModel modeloTabela;
-	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DT. NASCIMENTO", "CURSO" };
+	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DATA DE NASCIMENTO", "CURSO" };
 	private final CandidatoController candidatoController = new CandidatoController();
 	private final ListaLigadaSimples<Candidato> candidatos;
 
@@ -43,7 +45,14 @@ public class ListarCandidatos {
 				selecaoDeLinha(evento);
 			}
 		});
-
+		DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+		defaultTableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+		for (int numCol = 0; numCol < tabelaUsuarios.getColumnCount(); numCol++) {
+			for (int i = 0; i <= numCol; i++) {
+				tabelaUsuarios.getColumnModel().getColumn(i).setPreferredWidth(250);
+				tabelaUsuarios.getColumnModel().getColumn(i).setCellRenderer(defaultTableCellRenderer);
+			}
+		}
 		tabelaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaUsuarios), "LISTA DE CANDIDATOS",
 				JOptionPane.PLAIN_MESSAGE);

@@ -13,7 +13,8 @@ public class MenuPrincipal {
 	CampusView campusView = new CampusView();
 
 	public int menuPrincipal(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
-		String textoMenu = "<html>"
+		String textoMenu =
+				"<html>"
 				+ "<head>"
 				+ "<style>"
 				+ "table {width: 300px; background-color: white;}"
