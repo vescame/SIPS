@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.controller.CandidatoController;
-import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
 import edu.fatec.sips.model.Candidato;
 

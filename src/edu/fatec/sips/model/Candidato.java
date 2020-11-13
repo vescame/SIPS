@@ -14,6 +14,7 @@ public class Candidato {
 	private boolean aprovado;
 	private boolean desistente;
 	private int nota;
+	private Edital edital;
 	private int criterio;
 	private ListaLigadaSimples<Documento> documentos;
 	private ListaLigadaSimples<Recurso> recursos;
@@ -140,6 +141,14 @@ public class Candidato {
 
 	public void setCriterio(int criterio) {
 		this.criterio = criterio;
+	}
+
+	public Edital getEdital() {
+		return edital;
+	}
+
+	public void setEdital(Edital edital) {
+		this.edital = edital;
 	}
 
 	@Override

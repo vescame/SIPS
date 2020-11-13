@@ -6,4 +6,4 @@
 6;Senac;São Miguel
 7;São Judas;Guilhermina Esperança
 8;UNIVESP;Campinas
-9;Belenzinho;Belém
+9;Belenzinho;Belém10

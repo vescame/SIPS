@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.ResultadoPreliminar;
+import edu.fatec.sips.enums.Etapa;
+import edu.fatec.sips.model.ResultadoFinal;
 
 public class MenuCandidato {
 	
@@ -27,6 +29,7 @@ public class MenuCandidato {
 				+ "<tr><td>2</td><td>Visualizar Resultado Preliminar</td></tr>"
 				+ "<tr><td>3</td><td>Visualizar Resultado Final</td></tr>"
 				+ "<tr><td>4</td><td>Solicitar Recurso</td></tr>"
+				+ "<tr><td>5</td><td>Desistir</td></tr>"
 				+ "<tr><td>99</td><td>Sair</td></tr>"
 				+ "</table>"
 				+ "</body>"
@@ -51,10 +54,13 @@ public class MenuCandidato {
 			resultadoPreliminar.visualizarResultadoPreliminar();
 			break;
 		case 3:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			new ResultadosCandidato(Etapa.RESULTADO_FINAL);
 			break;
 		case 4:
 			new NovoRecurso();
+			break;
+		case 5:
+			new DesistenciaCandidato();
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Encerrando sessão...");
