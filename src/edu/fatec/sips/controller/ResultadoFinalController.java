@@ -8,7 +8,7 @@ import edu.fatec.sips.data_structure.sorting.QuickSortResultadoFinal;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.model.ResultadoFinal;
-import edu.fatec.sips.model.ResultadoPreliminar;
+import edu.fatec.sips..ResultadoPreliminar;
 
 public class ResultadoFinalController {
 	private ArquivoResultadoFinalController bdResFinal;
