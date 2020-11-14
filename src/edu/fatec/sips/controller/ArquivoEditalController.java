@@ -7,13 +7,25 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.model.Campus;
+import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 
 public class ArquivoEditalController {
 	
 	private final String ARQUIVO = "ArquivoEdital.txt";
 	private final String SEPARADOR = ";";
+	private final CursoController cursoController;
+	private final ArquivoCampusController arquivoCampusController;
+	
+	
 		
+	public ArquivoEditalController() {
+		this.cursoController = new CursoController();
+		this.arquivoCampusController = new ArquivoCampusController();
+	}
+
+
 	public int ultimoId() throws IOException {
 		String linha = new String();
 		String linhaAnterior = new String();
@@ -101,8 +113,12 @@ public class ArquivoEditalController {
 			String[] atribs = linha.split(SEPARADOR);
 			edital.setId(Integer.valueOf(atribs[0]));
 			edital.setTitulo(atribs[1]);
-			edital.setCampus(atribs[2]);
-			edital.setCurso(atribs[3]);
+			int idCampus = Integer.valueOf(atribs[2]);
+			Campus campus = arquivoCampusController.buscarPorId(idCampus);
+			edital.setCampus(campus);
+			int idCurso = Integer.valueOf(atribs[3]);
+			Curso curso = cursoController.getPorId(idCurso);
+			edital.setCurso(curso);
 			edital.setPublicoAlvo(atribs[4]);
 			edital.setPeriodoInicial(atribs[5]);
 			edital.setPeriodoFinal(atribs[6]);
@@ -128,8 +144,8 @@ public class ArquivoEditalController {
 		StringBuilder linha = new StringBuilder()//.append(edital.getId()).append(SEPARADOR)
 				.append(ultimoId()).append(SEPARADOR)
 				.append(edital.getTitulo()).append(SEPARADOR)
-				.append(edital.getCampus()).append(SEPARADOR)
-				.append(edital.getCurso()).append(SEPARADOR)
+				.append(edital.getCampus().getId()).append(SEPARADOR)
+				.append(edital.getCurso().getId()).append(SEPARADOR)
 				.append(edital.getPublicoAlvo()).append(SEPARADOR)
 				.append(edital.getPeriodoInicial().toString()).append(SEPARADOR)
 				.append(edital.getPeriodoFinal().toString()).append(SEPARADOR)

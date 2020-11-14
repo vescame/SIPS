@@ -43,7 +43,7 @@ public class Campus {
 
 	@Override
 	public String toString() {
-		return "Campus [id: " + id + ", nome: " + nome + ", unidade: " + unidade + "]";
+		return this.nome + " - "+ this.unidade;
 	}
 	
 }

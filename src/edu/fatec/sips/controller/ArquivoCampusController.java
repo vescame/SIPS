@@ -12,6 +12,24 @@ public class ArquivoCampusController {
 	private final String ARQUIVO = "ArquivoCampus.txt";
 	private final String SEPARADOR = ";";
 	
+	public Campus buscarPorId(final int id) throws IOException {
+		Campus encontrado = null;
+		String linha = new String();
+		
+		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
+
+		while (encontrado == null && (linha = br.readLine()) != null) {
+			Campus tempCampus = quebrarAtributos(linha);
+			if (tempCampus.getId() == id) {
+				encontrado = tempCampus;
+			}
+		}
+		
+		br.close();
+		
+		return encontrado;
+	}
+	
 	public int ultimoId() throws IOException {
 		String linha = new String();
 		String linhaAnterior = new String();

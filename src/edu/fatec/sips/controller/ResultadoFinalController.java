@@ -8,7 +8,7 @@ import edu.fatec.sips.data_structure.sorting.QuickSortResultadoFinal;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.model.ResultadoFinal;
-import edu.fatec.sips..ResultadoPreliminar;
+import edu.fatec.sips.ResultadoPreliminar;
 
 public class ResultadoFinalController {
 	private ArquivoResultadoFinalController bdResFinal;
@@ -16,7 +16,7 @@ public class ResultadoFinalController {
 	private MergeSortCandidatos candidatos;
 	private ListaLigadaSimples<Edital> editais;
 	private ListaLigadaSimples<Curso> cursos;
-	private ListaLigadaSimples<ResultadoPreliminar> resultadoPreliminar;
+	private ListaLigadaSimples<ResultadoPreliminarController> resultadoPreliminar;
 	
 	public ResultadoFinalController() {
 		try {
@@ -25,7 +25,7 @@ public class ResultadoFinalController {
 			this.candidatos = new CandidatoController().listarCandidatosOrdenados();
 			this.cursos = new ArquivoCursoController().listarCursos();
 			this.editais = new ArquivoEditalController().listarEditais();
-			this.resultadoPreliminar = new ListaLigadaSimples<ResultadoPreliminar>();
+			this.resultadoPreliminar = new ListaLigadaSimples<ResultadoPreliminarController>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

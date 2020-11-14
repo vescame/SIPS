@@ -3,8 +3,8 @@ package edu.fatec.sips.model;
 public class Edital {
 	private int id;
 	private String titulo;
-	private String campus;
-	private String curso;
+	private Campus campus;
+	private Curso curso;
 	private String publicoAlvo;
 	private String periodoInicial;
 	private String periodoFinal;
@@ -25,16 +25,16 @@ public class Edital {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getCampus() {
+	public Campus getCampus() {
 		return campus;
 	}
-	public void setCampus(String campus) {
+	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
-	public String getCurso() {
+	public Curso getCurso() {
 		return curso;
 	}
-	public void setCurso(String curso) {
+	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 	public String getPublicoAlvo() {

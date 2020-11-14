@@ -6,7 +6,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
-import edu.fatec.sips.dao.DAOEDITAL;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 import edu.fatec.sips.model.Curso;
@@ -19,7 +18,7 @@ public class CampusController {
 	private final ArquivoEditalController bdEdital;
 
 	Edital edital = new Edital();
-	DAOEDITAL daoedital = new DAOEDITAL();
+	EditalController editalController = new EditalController();
 
 	public CampusController() {
 		this.bdCampus = new ArquivoCampusController();
@@ -29,6 +28,22 @@ public class CampusController {
 
 	ListarCandidatos listarCandidatos = new ListarCandidatos();
 
+	public Campus getPorId(int id) {
+		Campus encontrado = null;
+
+		try {
+			encontrado = this.bdCampus.buscarPorId(id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (encontrado == null) {
+				System.out.println("campus de id " + id + " nao encontrado");
+			}
+		}
+
+		return encontrado;
+	}
+	
 	public void listarCandidatos() {
 		listarCandidatos.listar();
 	}
@@ -61,13 +76,13 @@ public class CampusController {
 		return null;
 	}
 
-	public void salvarEdital(JTextField txtTitulo, JComboBox<String> comboBoxCampus, JComboBox<String> comboBoxCursos,
+	public void salvarEdital(JTextField txtTitulo, Campus campus, Curso curso,
 			JTextField txtPublicoAlvo, JTextField txtPeriodoInicial, JTextField txtPeriodoFinal,
 			JFormattedTextField txtQtdVagasAmplaConcorrencia, JFormattedTextField txtQtdVagasAcoesAfirmativas,
 			JFormattedTextField txtQtdVagasDeficiente, JComboBox<String> comboBoxCriterio) throws IOException {
 		edital.setTitulo(txtTitulo.getText());
-		edital.setCampus(comboBoxCampus.getSelectedItem().toString());
-		edital.setCurso(comboBoxCursos.getSelectedItem().toString());
+		edital.setCampus(campus);
+		edital.setCurso(curso);
 		edital.setPublicoAlvo(txtPublicoAlvo.getText());
 		edital.setPeriodoInicial(txtPeriodoInicial.getText());
 		edital.setPeriodoFinal(txtPeriodoFinal.getText());

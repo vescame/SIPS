@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import edu.fatec.cronograma.view.ListarCronograma;
-import edu.fatec.sips.controller.ResultadoPreliminar;
+import edu.fatec.sips.controller.ResultadoPreliminarController;
 import edu.fatec.sips.enums.Etapa;
 import edu.fatec.sips.model.ResultadoFinal;
 
@@ -45,7 +45,7 @@ public class MenuCandidato {
 	
 	public void avaliarOpcao (int opcao) throws IOException {
 		ListarCronograma listarCronograma = new ListarCronograma();
-		ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
+		ResultadoPreliminarController resultadoPreliminar = new ResultadoPreliminarController();
 		switch (opcao) {
 		case 1:
 			listarCronograma.visualizarCronograDeAtividades();

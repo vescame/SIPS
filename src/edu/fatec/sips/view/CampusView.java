@@ -22,7 +22,8 @@ import javax.swing.text.NumberFormatter;
 import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.ArquivoCronogramaController;
 import edu.fatec.sips.controller.CampusController;
-import edu.fatec.sips.controller.ResultadoPreliminar;
+import edu.fatec.sips.controller.EditalController;
+import edu.fatec.sips.controller.ResultadoPreliminarController;
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
@@ -31,9 +32,10 @@ import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 
 public class CampusView {
-	ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
+	ResultadoPreliminarController resultadoPreliminar = new ResultadoPreliminarController();
 	CampusController campusController = new CampusController();
 	ListarCronograma cronograma = new ListarCronograma();
+	EditalController editalController = new EditalController();
 
 	public int menuCampus(int opcao) throws NumberFormatException, HeadlessException, IOException {
 		String textoMenu = "<html>" + "<head>" + "<style>" + "table {width: 300px; background-color: white;}"
@@ -77,10 +79,10 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			resultadoPreliminar.gravarResultadoPreliminar();
+//			resultadoPreliminar.gravarResultadoPreliminar();
 			break;
 		case 7:
-			resultadoPreliminar.visualizarResultadoPreliminar();
+//			resultadoPreliminar.visualizarResultadoPreliminar();
 			break;
 		case 8:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
@@ -104,11 +106,11 @@ public class CampusView {
 		JTextField txtTitulo = new JTextField();
 
 		JLabel labelCampus = new JLabel("Campus");
-		JComboBox<String> comboBoxCampus = carregarComboBoxCampus();
+		JComboBox<Campus> comboBoxCampus = carregarComboBoxCampus();
 		comboBoxCampus.setEditable(false);
 
 		JLabel labelCurso = new JLabel("Curso");
-		JComboBox<String> comboBoxCursos = carregarComboBoxCurso();
+		JComboBox<Curso> comboBoxCursos = carregarComboBoxCurso();
 		comboBoxCursos.setEditable(false);
 
 		JLabel labelPublicoAlvo = new JLabel("Público alvo");
@@ -187,16 +189,21 @@ public class CampusView {
 		Object[] options = { labelTitulo, txtTitulo, labelCampus, comboBoxCampus, labelCurso, comboBoxCursos,
 				labelPublicoAlvo, txtPublicoAlvo, labelPeriodoEdital, periodoEdital, labelQuantidadeVagas,
 				quantitativos, labelCriterio, comboBoxCriterio };
-		JOptionPane.showMessageDialog(null, options, "CADASTRAR EDITAL", JOptionPane.PLAIN_MESSAGE);
 
-		campusController.salvarEdital(txtTitulo, comboBoxCampus, comboBoxCursos, txtPublicoAlvo, txtPeriodoInicial,
-				txtPeriodoFinal, txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas, txtQtdVagasDeficiente,
-				comboBoxCriterio);
+		int resposta = JOptionPane.showConfirmDialog(null, options, "CADASTRAR EDITAL", JOptionPane.OK_OPTION,
+				JOptionPane.PLAIN_MESSAGE);
+
+		if (resposta == JOptionPane.OK_OPTION) {
+			Curso curso = (Curso) comboBoxCursos.getModel().getSelectedItem();
+			Campus campus = (Campus) comboBoxCampus.getModel().getSelectedItem();
+			campusController.salvarEdital(txtTitulo, campus, curso, txtPublicoAlvo, txtPeriodoInicial, txtPeriodoFinal,
+					txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas, txtQtdVagasDeficiente, comboBoxCriterio);
+		}
 
 	}
 
 	public void visualizarEdital() throws IOException {
-		ListaLigadaSimples<Edital> listaDeEdital = campusController.retornarListaDeEditais();
+		ListaLigadaSimples<Edital> listaDeEdital = editalController.listarEditais();
 		String col[] = { "ID", "TÍTULO", "CAMPUS", "CURSO", "PÚBLICO ALVO", "PERÍODO INICIAL", "PERÍODO FINAL",
 				"QTD. VAGAS AMPLA CONCORRÊNCIA", "QTD. VAGAS AÇÕES AFIRMATIVAS", "QTD. VAGAS DEFICIENTE", "CRITÉRIO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
@@ -226,20 +233,20 @@ public class CampusView {
 		campusController.listarCandidatos();
 	}
 
-	public JComboBox<String> carregarComboBoxCampus() throws IOException {
+	public JComboBox<Campus> carregarComboBoxCampus() throws IOException {
 		ListaLigadaSimples<Campus> listaDeCampus = campusController.retornarListaDeCampus();
-		JComboBox<String> campus = new JComboBox<String>();
+		JComboBox<Campus> campus = new JComboBox<Campus>();
 		for (int i = 0; i < listaDeCampus.getTamanho(); i++) {
-			campus.addItem(listaDeCampus.espiar(i).getNome() + " - " + listaDeCampus.espiar(i).getUnidade());
+			campus.addItem(listaDeCampus.espiar(i));
 		}
 		return campus;
 	}
 
-	public JComboBox<String> carregarComboBoxCurso() throws IOException {
+	public JComboBox<Curso> carregarComboBoxCurso() throws IOException {
 		ListaLigadaSimples<Curso> listaDeCurso = campusController.retornarListaDeCurso();
-		JComboBox<String> cursos = new JComboBox<String>();
+		JComboBox<Curso> cursos = new JComboBox<Curso>();
 		for (int i = 0; i < listaDeCurso.getTamanho(); i++) {
-			cursos.addItem(listaDeCurso.espiar(i).getSigla() + " - " + listaDeCurso.espiar(i).getNome());
+			cursos.addItem(listaDeCurso.espiar(i));
 		}
 		return cursos;
 	}
