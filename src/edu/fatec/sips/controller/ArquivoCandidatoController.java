@@ -109,6 +109,8 @@ public class ArquivoCandidatoController {
 			candidato.setRecursos(this.recursos.buscarPorIdCandidato(candidato.getId()));
 			Edital edital = this.editais.buscarPorId(Integer.valueOf(atribs[7]));
 			candidato.setEdital(edital);
+			candidato.setNota(Integer.valueOf(atribs[8]));
+			candidato.setCriterio(Integer.valueOf(atribs[9]));
 		} catch (Exception e) {
 			System.out.println("falha ao obter atributo candidato");
 		}
@@ -130,7 +132,8 @@ public class ArquivoCandidatoController {
 				.append(candidato.getCurso().getId()).append(SEPARADOR)
 				.append(candidato.isAprovado()).append(SEPARADOR)
 				.append(candidato.isDesistente()).append(SEPARADOR)
-				.append(candidato.getEdital().getId());
+				.append(candidato.getEdital().getId()).append(SEPARADOR)
+				.append(candidato.getNota());
 		
 		return linha.toString();
 	}

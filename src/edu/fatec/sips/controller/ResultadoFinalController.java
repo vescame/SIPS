@@ -8,7 +8,10 @@ import edu.fatec.sips.data_structure.sorting.QuickSortResultadoFinal;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.model.ResultadoFinal;
+<<<<<<< HEAD
 import edu.fatec.sips.ResultadoPreliminar;
+=======
+>>>>>>> branch 'master' of https://github.com/vescame/SIPS
 
 public class ResultadoFinalController {
 	private ArquivoResultadoFinalController bdResFinal;
