@@ -12,3 +12,4 @@
 12;199;Entrevista;solicito recurso;false;false
 13;137;Entrevista;entrevistador desagradavel;false;true
 14;1;Análise de Currículo;null;false;false
+15;1;Entrevista;Caro responsável, fui barrado na porta.;false;false

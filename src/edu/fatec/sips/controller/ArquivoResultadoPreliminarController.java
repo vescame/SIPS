@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Edital;
-import edu.fatec.sips.model.ResultadoFinal;
+import edu.fatec.sips.model.ResultadoPreliminar;
 import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class ArquivoResultadoPreliminarController {
@@ -18,12 +18,10 @@ public class ArquivoResultadoPreliminarController {
 	private final SimpleDateFormat sdf;
 	private final CandidatoController candidatoController;
 	private final EditalController editalController;
-	private final CursoController cursoController;
 
 	public ArquivoResultadoPreliminarController() {
 		this.candidatoController = new CandidatoController();
 		this.editalController = new EditalController();
-		this.cursoController = new CursoController();
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
@@ -44,14 +42,14 @@ public class ArquivoResultadoPreliminarController {
 		return temp.getId() + 1;
 	}
 
-	public ListaLigadaSimples<ResultadoFinal> listarResultado() throws IOException {
+	public ListaLigadaSimples<ResultadoPreliminar> listarResultado() throws IOException {
 		String linha = new String();
-		ListaLigadaSimples<ResultadoFinal> resultados = new ListaLigadaSimples<ResultadoFinal>();
+		ListaLigadaSimples<ResultadoPreliminar> resultados = new ListaLigadaSimples<ResultadoPreliminar>();
 
 		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
 
 		while ((linha = br.readLine()) != null) {
-			ResultadoFinal tmpResultado = quebrarAtributos(linha);
+			ResultadoPreliminar tmpResultado = quebrarAtributos(linha);
 			resultados.inserirPrimeiro(tmpResultado);
 		}
 
@@ -76,16 +74,15 @@ public class ArquivoResultadoPreliminarController {
 		return resultadoPreliminar;
 	}
 
-	public void gravarCandidato(final ResultadoFinal resultado) throws IOException {
+	public void gravarCandidato(final ResultadoPreliminar resultado) throws IOException {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
 		fw.write(concatenarCandidato(resultado) + "\n");
 		fw.close();
 	}
 
-	private String concatenarCandidato(final ResultadoFinal resultado) {
-		StringBuilder linha = new StringBuilder().append(resultado.getId()).append(SEPARADOR)
-				.append(String.valueOf(resultado.isAprovado())).append(SEPARADOR)
-				.append(this.sdf.format(resultado.getDataAprovacao())).append(SEPARADOR);
+	private String concatenarCandidato(final ResultadoPreliminar resultado) {
+		StringBuilder linha = new StringBuilder()
+				.append(resultado.getId()).append(SEPARADOR);
 
 		return linha.toString();
 	}

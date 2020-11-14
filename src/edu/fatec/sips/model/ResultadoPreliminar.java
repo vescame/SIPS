@@ -4,7 +4,7 @@ public class ResultadoPreliminar {
 	private int id;
 	private Candidato candidato;
 	private Edital edital;
-	private Curso curso;
+	// O edital não é necessário, pois já tem esse dado no candidato
 	
 	public Candidato getCandidato() {
 		return candidato;
@@ -18,12 +18,7 @@ public class ResultadoPreliminar {
 	public void setEdital(Edital edital) {
 		this.edital = edital;
 	}
-	public Curso getCurso() {
-		return curso;
-	}
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
+
 	public int getId() {
 		return id;
 	}

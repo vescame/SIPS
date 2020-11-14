@@ -1,12 +1,11 @@
-package edu.fatec.sips.dao;
+package edu.fatec.sips.controller;
 
 import java.io.IOException;
 
-import edu.fatec.sips.controller.ArquivoCampusController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 
-public class DAOCPS {
+public class ArquivoCpsController {
 	ArquivoCampusController arquivoCampus = new ArquivoCampusController();
 	
 	public void salvar(final Campus campus){

@@ -11,6 +11,7 @@ public class Candidato {
 	private String sobrenome;
 	private Date dataNascimento;
 	private Curso curso;
+	// O curso não é necessário, pois já tem esse dado no Edital
 	private boolean aprovado;
 	private boolean desistente;
 	private int nota;

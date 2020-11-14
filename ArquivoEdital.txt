@@ -8,3 +8,4 @@
 8;Edital - 2020;1;7;Trabalhar com industruia textil;26/10/2020;12/12/2021;11;4;5;1;
 9;Edital - 2020;9;9;Medicina em sistemas e softwares;26/10/2020;12/12/2021;9;5;1;2;
 10;Edital - 2020;5;10;Trabalhar com sistemas navais;26/10/2020;12/12/2021;10;3;0;3;
+11;Edital P;10;7;Geral;26/10/2020;01/01/2022;10;4;4;2;

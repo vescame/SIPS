@@ -7,3 +7,4 @@
 7;São Judas;Guilhermina Esperança
 8;UNIVESP;Campinas
 9;Belenzinho;Belém10
+10;Anhanguera;Sul
