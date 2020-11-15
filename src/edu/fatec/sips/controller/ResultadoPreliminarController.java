@@ -72,16 +72,16 @@ public class ResultadoPreliminarController {
 		return removido;
 	}
 	
-	public ResultadoPreliminar retornarResultadoPreliminar(){
+	public void definirResultadoPreliminar(){
 		CandidatoController candidatoController = new CandidatoController();
 		ListaLigadaSimples<Candidato> listaDeCandidato = candidatoController.listarCandidatos();
 		ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
 		for (int i = 0; i < listaDeCandidato.getTamanho(); i++) {
 			if (listaDeCandidato.espiar(i).getNota() >= 7) {
 				resultadoPreliminar.setCandidato(listaDeCandidato.espiar(i));
+				salvar(resultadoPreliminar);
 			}
 		}
-		return resultadoPreliminar;
 	}
 
 }

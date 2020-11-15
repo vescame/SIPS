@@ -16,8 +16,8 @@ import edu.fatec.sips.model.ResultadoPreliminar;
 public class ResultadoPreliminarView {
 	private ResultadoPreliminarController resultadoPreliminarController = new ResultadoPreliminarController();
 
-	public void determinarResultadoPreliminar() {
-		resultadoPreliminarController.salvar(resultadoPreliminarController.retornarResultadoPreliminar());
+	public void definirResultadoPreliminar() throws IOException {
+		resultadoPreliminarController.definirResultadoPreliminar();
 	}
 
 	public void visualizarResultadoPreliminar() throws IOException {

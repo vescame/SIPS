@@ -77,7 +77,7 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-			new ResultadoPreliminarView().determinarResultadoPreliminar();
+			new ResultadoPreliminarView().definirResultadoPreliminar();
 			break;
 		case 7:
 			new ResultadoPreliminarView().visualizarResultadoPreliminar();
