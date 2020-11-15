@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import edu.fatec.sips.controller.CandidatoController;
 import edu.fatec.sips.controller.DocumentoCandidatoController;
 import edu.fatec.sips.controller.ResultadoFinalController;
-import edu.fatec.sips.model.ResultadoPreliminar;
 import edu.fatec.sips.enums.Etapa;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Documento;
@@ -25,7 +24,7 @@ public class ResultadosCandidato {
 				ResultadoFinal resFinal = new ResultadoFinalController().getPorCandidato(candidato.getId());
 				mostrarResultado(resFinal.isAprovado());
 			} else if (etapa == Etapa.RESULTADO_PRELIMINAR) {
-				// ResultadoPreliminar resPreliminar = new edu.fatec.sips.controller.ResultadoPreliminar()
+				// ResultadoPreliminarView resPreliminar = new edu.fatec.sips.controller.ResultadoPreliminar()
 					// .getPorCandidato(candidato.getDocumentos().espiar(0).toString());
 			}
 			

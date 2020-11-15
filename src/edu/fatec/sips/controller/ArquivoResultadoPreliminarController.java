@@ -1,28 +1,41 @@
 package edu.fatec.sips.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
-import edu.fatec.sips.model.Edital;
-import edu.fatec.sips.model.ResultadoPreliminar;
 import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class ArquivoResultadoPreliminarController {
 	private final String ARQUIVO = "ArquivoResultadoPreliminar.txt";
 	private final String SEPARADOR = ";";
-	private final SimpleDateFormat sdf;
 	private final CandidatoController candidatoController;
-	private final EditalController editalController;
 
 	public ArquivoResultadoPreliminarController() {
 		this.candidatoController = new CandidatoController();
-		this.editalController = new EditalController();
-		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
+	}
+
+	public ResultadoPreliminar buscarPorId(final int id) throws IOException {
+		ResultadoPreliminar encontrado = null;
+		String linha = new String();
+
+		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
+
+		while (encontrado == null && (linha = br.readLine()) != null) {
+			ResultadoPreliminar tempResultadoPreliminar = quebrarAtributos(linha);
+			if (tempResultadoPreliminar.getId() == id) {
+				encontrado = tempResultadoPreliminar;
+			}
+		}
+
+		br.close();
+
+		return encontrado;
 	}
 
 	public int ultimoId() throws IOException {
@@ -42,20 +55,20 @@ public class ArquivoResultadoPreliminarController {
 		return temp.getId() + 1;
 	}
 
-	public ListaLigadaSimples<ResultadoPreliminar> listarResultado() throws IOException {
+	public ListaLigadaSimples<ResultadoPreliminar> listarResultadoPreliminar() throws IOException {
 		String linha = new String();
-		ListaLigadaSimples<ResultadoPreliminar> resultados = new ListaLigadaSimples<ResultadoPreliminar>();
+		ListaLigadaSimples<ResultadoPreliminar> resultadoPreliminar = new ListaLigadaSimples<ResultadoPreliminar>();
 
 		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));
 
 		while ((linha = br.readLine()) != null) {
 			ResultadoPreliminar tmpResultado = quebrarAtributos(linha);
-			resultados.inserirPrimeiro(tmpResultado);
+			resultadoPreliminar.inserirPrimeiro(tmpResultado);
 		}
 
 		br.close();
 
-		return resultados;
+		return resultadoPreliminar;
 	}
 
 	private ResultadoPreliminar quebrarAtributos(String linha) {
@@ -65,25 +78,77 @@ public class ArquivoResultadoPreliminarController {
 			resultadoPreliminar.setId(Integer.valueOf(atribs[0]));
 			Candidato candidato = this.candidatoController.getPorId(Integer.valueOf(atribs[1]));
 			resultadoPreliminar.setCandidato(candidato);
-			Edital edital = this.editalController.getPorId(Integer.valueOf(atribs[2]));
-			resultadoPreliminar.setEdital(edital);
 		} catch (Exception e) {
-			System.out.println("falha ao obter atributo resultado final");
+			System.out.println("falha ao obter atributo resultado preliminar");
 		}
 
 		return resultadoPreliminar;
 	}
 
-	public void gravarCandidato(final ResultadoPreliminar resultado) throws IOException {
+	public void gravarResultadoPreliminar(final ResultadoPreliminar resultadoPreliminar) throws IOException {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
-		fw.write(concatenarCandidato(resultado) + "\n");
+		fw.write(concatenarResultadoPreliminar(resultadoPreliminar) + "\n");
 		fw.close();
 	}
 
-	private String concatenarCandidato(final ResultadoPreliminar resultado) {
+	private String concatenarResultadoPreliminar(final ResultadoPreliminar resultadoPreliminar) throws IOException {
 		StringBuilder linha = new StringBuilder()
-				.append(resultado.getId()).append(SEPARADOR);
+				.append(ultimoId()).append(SEPARADOR)
+				.append(resultadoPreliminar.getCandidato().getId());
 
 		return linha.toString();
+	}
+
+	public void atualizarResultadoPreliminar(final ResultadoPreliminar resultadoPreliminar) throws IOException {
+		String linhaAtual = new String();
+
+		File arquivoEntrada = new File(this.ARQUIVO);
+		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
+
+		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
+
+		while ((linhaAtual = br.readLine()) != null) {
+			ResultadoPreliminar resultadoPreliminarAtual = quebrarAtributos(linhaAtual);
+
+			if (resultadoPreliminarAtual.getId() == resultadoPreliminar.getId()) {
+				resultadoPreliminarAtual = resultadoPreliminar;
+			}
+
+			bw.write(concatenarResultadoPreliminar(resultadoPreliminarAtual) + "\n");
+		}
+
+		bw.close();
+		br.close();
+		arquivoEntrada.delete();
+		arquivoTemporario.renameTo(new File(this.ARQUIVO));
+	}
+
+	public ResultadoPreliminar removerPreliminar(final ResultadoPreliminar resultadoPreliminar) throws IOException {
+		ResultadoPreliminar retorno = null;
+		String linhaAtual = new String();
+
+		File arquivoEntrada = new File(this.ARQUIVO);
+		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
+
+		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
+
+		while ((linhaAtual = br.readLine()) != null) {
+			ResultadoPreliminar resultadoPreliminarAtual = quebrarAtributos(linhaAtual);
+
+			if (resultadoPreliminarAtual.equals(resultadoPreliminar)) {
+				retorno = resultadoPreliminarAtual;
+			} else {
+				bw.write(concatenarResultadoPreliminar(resultadoPreliminarAtual) + "\n");
+			}
+		}
+
+		bw.close();
+		br.close();
+		arquivoEntrada.delete();
+		arquivoTemporario.renameTo(new File(this.ARQUIVO));
+
+		return retorno;
 	}
 }

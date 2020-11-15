@@ -23,7 +23,6 @@ import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.controller.ArquivoCronogramaController;
 import edu.fatec.sips.controller.CampusController;
 import edu.fatec.sips.controller.EditalController;
-import edu.fatec.sips.controller.ResultadoPreliminarController;
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
@@ -32,7 +31,6 @@ import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 
 public class CampusView {
-	ResultadoPreliminarController resultadoPreliminar = new ResultadoPreliminarController();
 	CampusController campusController = new CampusController();
 	ListarCronograma cronograma = new ListarCronograma();
 	EditalController editalController = new EditalController();
@@ -79,10 +77,10 @@ public class CampusView {
 			new ListarRecursos().listar();
 			break;
 		case 6:
-//			resultadoPreliminar.gravarResultadoPreliminar();
+			new ResultadoPreliminarView().determinarResultadoPreliminar();
 			break;
 		case 7:
-//			resultadoPreliminar.visualizarResultadoPreliminar();
+			new ResultadoPreliminarView().visualizarResultadoPreliminar();
 			break;
 		case 8:
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
