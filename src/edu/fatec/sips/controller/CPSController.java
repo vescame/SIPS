@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.swing.JTextField;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.file_controller.ArquivoCampusController;
+import edu.fatec.sips.file_controller.ArquivoCpsController;
 import edu.fatec.sips.model.Campus;
 
 public class CPSController {

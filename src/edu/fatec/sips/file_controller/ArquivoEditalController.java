@@ -1,4 +1,4 @@
-package edu.fatec.sips.controller;
+package edu.fatec.sips.file_controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import edu.fatec.sips.controller.CursoController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
 import edu.fatec.sips.model.Curso;

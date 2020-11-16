@@ -7,6 +7,7 @@ import edu.fatec.sips.data_structure.No;
 import edu.fatec.sips.data_structure.search.BuscaBinariaCandidato;
 import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
 import edu.fatec.sips.data_structure.sorting.ShellSortCandidatos;
+import edu.fatec.sips.file_controller.ArquivoCandidatoController;
 import edu.fatec.sips.model.Candidato;
 
 public class CandidatoController {

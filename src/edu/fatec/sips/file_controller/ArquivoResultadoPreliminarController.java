@@ -1,4 +1,4 @@
-package edu.fatec.sips.controller;
+package edu.fatec.sips.file_controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import edu.fatec.sips.controller.CandidatoController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.ResultadoPreliminar;

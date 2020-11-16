@@ -2,6 +2,7 @@ package edu.fatec.sips.controller;
 
 import java.io.IOException;
 
+import edu.fatec.sips.file_controller.ArquivoDocumentoCandidatoController;
 import edu.fatec.sips.model.Documento;
 
 public class DocumentoCandidatoController {

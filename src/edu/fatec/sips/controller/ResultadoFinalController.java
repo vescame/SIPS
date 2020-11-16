@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.data_structure.sorting.QuickSortResultadoFinal;
+import edu.fatec.sips.file_controller.ArquivoCursoController;
+import edu.fatec.sips.file_controller.ArquivoEditalController;
+import edu.fatec.sips.file_controller.ArquivoResultadoFinalController;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;

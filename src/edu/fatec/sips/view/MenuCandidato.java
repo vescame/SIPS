@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import edu.fatec.cronograma.view.ListarCronograma;
 import edu.fatec.sips.enums.Etapa;
 
 public class MenuCandidato {

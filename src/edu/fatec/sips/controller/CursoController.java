@@ -3,6 +3,7 @@ package edu.fatec.sips.controller;
 import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.file_controller.ArquivoCursoController;
 import edu.fatec.sips.model.Curso;
 
 public class CursoController {

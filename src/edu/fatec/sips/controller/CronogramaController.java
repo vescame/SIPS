@@ -3,6 +3,7 @@ package edu.fatec.sips.controller;
 import java.io.IOException;
 
 import edu.fatec.sips.data_structure.FilaImplementacaoDinamica;
+import edu.fatec.sips.file_controller.ArquivoCronogramaController;
 import edu.fatec.sips.model.CronogramaDeAtividades;
 
 public class CronogramaController {

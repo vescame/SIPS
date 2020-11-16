@@ -1,4 +1,4 @@
-package edu.fatec.sips.controller;
+package edu.fatec.sips.file_controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -7,6 +7,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.file_controller.ArquivoCampusController;
+import edu.fatec.sips.file_controller.ArquivoCursoController;
+import edu.fatec.sips.file_controller.ArquivoEditalController;
 import edu.fatec.sips.model.Campus;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;

@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import edu.fatec.cronograma.view.MenuCronograma;
 import edu.fatec.sips.controller.CPSController;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Campus;
