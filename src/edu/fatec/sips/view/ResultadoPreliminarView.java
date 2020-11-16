@@ -26,14 +26,18 @@ public class ResultadoPreliminarView {
 		String col[] = { "ID CANDIDATO", "NOME CANDIDATO", "SOBRENOME CANDIDATO", "ID EDITAL", "CURSO EDITAL",
 				"NOTA CANDIDATO" };
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-		for (int i = 0; i < listaDeResultadoPrelimar.getTamanho(); i++) {
-			Object[] edital = { listaDeResultadoPrelimar.espiar(i).getCandidato().getId(),
-					listaDeResultadoPrelimar.espiar(i).getCandidato().getNome(),
-					listaDeResultadoPrelimar.espiar(i).getCandidato().getSobrenome(),
-					listaDeResultadoPrelimar.espiar(i).getCandidato().getEdital().getId(),
-					listaDeResultadoPrelimar.espiar(i).getCandidato().getEdital().getCurso().getSigla() + " - "
-							+ listaDeResultadoPrelimar.espiar(i).getCandidato().getEdital().getCurso().getNome(),
-					listaDeResultadoPrelimar.espiar(i).getCandidato().getNota() };
+		final int tamanho = listaDeResultadoPrelimar.getTamanho();
+		for (int i = 0; i < tamanho; i++) {
+			final ResultadoPreliminar res = listaDeResultadoPrelimar.espiar(i);
+			Object[] edital = {
+					res.getCandidato().getId(),
+					res.getCandidato().getNome(),
+					res.getCandidato().getSobrenome(),
+					res.getCandidato().getEdital().getId(),
+					res.getCandidato().getEdital().getCurso().getSigla() + " - " +
+					res.getCandidato().getEdital().getCurso().getNome(),
+					res.getCandidato().getNota()
+			};
 			tableModel.addRow(edital);
 		}
 		JTable table = new JTable(tableModel);
@@ -46,6 +50,6 @@ public class ResultadoPreliminarView {
 			}
 		}
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		JOptionPane.showMessageDialog(null, new JScrollPane(table), "LISTA DE EDITAL", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, new JScrollPane(table), "RESULTADO PRELIMINAR", JOptionPane.PLAIN_MESSAGE);
 	}
 }

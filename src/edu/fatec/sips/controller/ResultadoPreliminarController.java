@@ -7,11 +7,12 @@ import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class ResultadoPreliminarController {
-
+	private ListaLigadaSimples<ResultadoPreliminar> resultados;
 	private ArquivoResultadoPreliminarController bdResultadoPreliminar;
 
 	public ResultadoPreliminarController() {
 		this.bdResultadoPreliminar = new ArquivoResultadoPreliminarController();
+		this.resultados = new ListaLigadaSimples<ResultadoPreliminar>();
 	}
 
 	public ResultadoPreliminar getPorId(int id) {
@@ -40,14 +41,6 @@ public class ResultadoPreliminarController {
 		return null;
 	}
 
-	public void salvar(final ResultadoPreliminar resultadoPreliminar) {
-		try {
-			this.bdResultadoPreliminar.gravarResultadoPreliminar(resultadoPreliminar);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void atualizar(final ResultadoPreliminar resultadoPreliminar) {
 		try {
 			this.bdResultadoPreliminar.atualizarResultadoPreliminar(resultadoPreliminar);
@@ -71,17 +64,31 @@ public class ResultadoPreliminarController {
 
 		return removido;
 	}
-	
-	public void definirResultadoPreliminar(){
+
+	public void definirResultadoPreliminar() {
 		CandidatoController candidatoController = new CandidatoController();
 		ListaLigadaSimples<Candidato> listaDeCandidato = candidatoController.listarCandidatos();
-		ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
+		long start = System.nanoTime();
 		for (int i = 0; i < listaDeCandidato.getTamanho(); i++) {
-			if (listaDeCandidato.espiar(i).getNota() >= 7) {
-				resultadoPreliminar.setCandidato(listaDeCandidato.espiar(i));
-				salvar(resultadoPreliminar);
+			final Candidato c = listaDeCandidato.espiar(i);
+			if (c.getNota() >= 7) {
+				ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
+				resultadoPreliminar.setCandidato(c);
+				this.resultados.adicionar(resultadoPreliminar);
 			}
 		}
+		try {
+			final int tamanho = this.resultados.getTamanho();
+			for (int i = 0; i < tamanho; ++i) {
+				final ResultadoPreliminar resultadoPreliminar = resultados.espiar(i);
+				this.bdResultadoPreliminar.gravarResultadoPreliminar(resultadoPreliminar);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		long end = System.nanoTime();
+		long elapsedTime = end - start;
+		System.out.println(elapsedTime / 1000000000);
 	}
 
 }

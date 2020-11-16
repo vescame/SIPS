@@ -3,8 +3,8 @@ package edu.fatec.sips.controller;
 import java.io.IOException;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
-import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
 import edu.fatec.sips.data_structure.sorting.QuickSortResultadoFinal;
+import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Curso;
 import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.model.ResultadoFinal;
@@ -13,7 +13,7 @@ import edu.fatec.sips.model.ResultadoFinal;
 public class ResultadoFinalController {
 	private ArquivoResultadoFinalController bdResFinal;
 	private ArquivoEditalController ctrlEdital;
-	private MergeSortCandidatos candidatos;
+	private ListaLigadaSimples<Candidato> candidatos;
 	private ListaLigadaSimples<Edital> editais;
 	private ListaLigadaSimples<Curso> cursos;
 	private ListaLigadaSimples<ResultadoPreliminarController> resultadoPreliminar;

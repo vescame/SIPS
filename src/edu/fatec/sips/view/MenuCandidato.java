@@ -43,13 +43,12 @@ public class MenuCandidato {
 	
 	public void avaliarOpcao (int opcao) throws IOException {
 		ListarCronograma listarCronograma = new ListarCronograma();
-//		ResultadoPreliminarController resultadoPreliminar = new ResultadoPreliminarController();
 		switch (opcao) {
 		case 1:
 			listarCronograma.visualizarCronograDeAtividades();
 			break;
 		case 2:
-//			resultadoPreliminar.visualizarResultadoPreliminar();
+			new ResultadosCandidato(Etapa.RESULTADO_PRELIMINAR);
 			break;
 		case 3:
 			new ResultadosCandidato(Etapa.RESULTADO_FINAL);

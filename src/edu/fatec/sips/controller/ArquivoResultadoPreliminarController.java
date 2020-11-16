@@ -12,6 +12,7 @@ import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class ArquivoResultadoPreliminarController {
+	private int ultId = 0;
 	private final String ARQUIVO = "ArquivoResultadoPreliminar.txt";
 	private final String SEPARADOR = ";";
 	private final CandidatoController candidatoController;
@@ -39,6 +40,10 @@ public class ArquivoResultadoPreliminarController {
 	}
 
 	public int ultimoId() throws IOException {
+		if (ultId != 0) {
+			return ++ultId;
+		}
+
 		String linha = new String();
 		String linhaAnterior = new String();
 
@@ -52,7 +57,9 @@ public class ArquivoResultadoPreliminarController {
 
 		br.close();
 
-		return temp.getId() + 1;
+		ultId = temp.getId() + 1;
+
+		return ultId;
 	}
 
 	public ListaLigadaSimples<ResultadoPreliminar> listarResultadoPreliminar() throws IOException {
@@ -92,8 +99,7 @@ public class ArquivoResultadoPreliminarController {
 	}
 
 	private String concatenarResultadoPreliminar(final ResultadoPreliminar resultadoPreliminar) throws IOException {
-		StringBuilder linha = new StringBuilder()
-				.append(ultimoId()).append(SEPARADOR)
+		StringBuilder linha = new StringBuilder().append(ultimoId()).append(SEPARADOR)
 				.append(resultadoPreliminar.getCandidato().getId());
 
 		return linha.toString();
