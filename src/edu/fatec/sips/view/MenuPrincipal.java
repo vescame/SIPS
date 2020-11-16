@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 public class MenuPrincipal {
 
 	MenuCandidato menuCandidato = new MenuCandidato();
-	CPSView cpsView = new CPSView();
-	CampusView campusView = new CampusView();
+	MenuCPS cpsView = new MenuCPS();
+	MenuCampus menuCampus = new MenuCampus();
 
 	public int menuPrincipal(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
 		String textoMenu =
@@ -51,7 +51,7 @@ public class MenuPrincipal {
 			cpsView.menuCPS(0);
 			break;
 		case 3:
-			campusView.menuCampus(0);
+			menuCampus.menuCampus(0);
 			break;
 		case 99:
 			JOptionPane.showMessageDialog(null, "Finalizando SIPS ...");

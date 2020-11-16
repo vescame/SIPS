@@ -24,7 +24,7 @@ public class CadastrarCronograma {
 		CronogramaDeAtividades cronogramaDeAtividades = new CronogramaDeAtividades();
 		JLabel labelDescricaoDeAtividades = new JLabel("Descrição");
 		JTextField txtDescricaoDaAtividade = new JTextField();
-		
+
 		JLabel labelData = new JLabel("Data");
 		JFormattedTextField txtDataDeInicio = new JFormattedTextField(criarMascaraDeEntrada("##/##/####"));
 		txtDataDeInicio.setHorizontalAlignment(JTextField.CENTER);
@@ -34,7 +34,7 @@ public class CadastrarCronograma {
 		txtDataDeEntrega.setHorizontalAlignment(JTextField.CENTER);
 		txtDataDeEntrega.setColumns(6);
 		JLabel labelIconeDataDeEntrega = new JLabel(new ImageIcon("icon-calendar.png"));
-		
+
 		JPanel painelDeDatas = new JPanel();
 		painelDeDatas.add(new JLabel("Ínicio"));
 		painelDeDatas.add(txtDataDeInicio);
@@ -42,17 +42,16 @@ public class CadastrarCronograma {
 		painelDeDatas.add(new JLabel("Entrega"));
 		painelDeDatas.add(txtDataDeEntrega);
 		painelDeDatas.add(labelIconeDataDeEntrega);
-		
-		Object[] componentes = { labelDescricaoDeAtividades, txtDescricaoDaAtividade, labelData, painelDeDatas};
 
-		JOptionPane.showMessageDialog(null, componentes, "CADASTRAR CRONOGRAMA DE ATIVIDADES", JOptionPane.PLAIN_MESSAGE);
+		Object[] componentes = { labelDescricaoDeAtividades, txtDescricaoDaAtividade, labelData, painelDeDatas };
+
+		JOptionPane.showMessageDialog(null, componentes, "CADASTRAR CRONOGRAMA DE ATIVIDADES",
+				JOptionPane.PLAIN_MESSAGE);
 
 		cronogramaDeAtividades.setDescricaoAtividade(txtDescricaoDaAtividade.getText());
 		cronogramaDeAtividades.setDataInicio(formatarDataPtBr(txtDataDeInicio.getText()));
 		cronogramaDeAtividades.setDataEntrega(formatarDataPtBr(txtDataDeEntrega.getText()));
 		cronoController.gravarAtividade(cronogramaDeAtividades);
-		cronoController.visualizarAtividade();
-
 	}
 
 	public Date formatarDataPtBr(String data) throws ParseException {
@@ -61,7 +60,7 @@ public class CadastrarCronograma {
 		dataFormatada = sdf.parse(data);
 		return dataFormatada;
 	}
-	
+
 	public MaskFormatter criarMascaraDeEntrada(String formatoDeMascara) {
 
 		MaskFormatter F_Mascara = new MaskFormatter();

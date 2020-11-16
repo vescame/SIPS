@@ -8,3 +8,5 @@
 8;UNIVESP;Campinas
 9;Belenzinho;Belém10
 10;Anhanguera;Sul
+11;Fatec;Leste
+12;Fatec;Sul
