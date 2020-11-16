@@ -11,28 +11,25 @@ import edu.fatec.sips.model.Candidato;
 
 public class CandidatoController {
 	private final ArquivoCandidatoController bdCandidato;
-	// para dados em ordem decrescente oferece o melhor custo benefício
-	ShellSortCandidatos shellSort;
+	private ListaLigadaSimples<Candidato> candidatos;
 
 	public CandidatoController() {
 		this.bdCandidato = new ArquivoCandidatoController();
-		this.shellSort = new ShellSortCandidatos();;
 	}
 
 	public Candidato getPorId(int id) {
 		Candidato candidato = null;
+		
+		// para dados em ordem decrescente oferece o melhor custo benefício
+		ShellSortCandidatos shellSort = new ShellSortCandidatos();
 
 		try {
-			ListaLigadaSimples<Candidato> candidatos = bdCandidato.listarCandidatos();
-			
-			if (this.shellSort.getTamanho() == 0) {
-				for (int i = 0; i < candidatos.getTamanho(); ++i) {
-					shellSort.adicionar(candidatos.espiar(i));
-				}
-				
-				shellSort.shellSort();
-			}			
-			No<Candidato> p = shellSort.primeiro;
+			if (candidatos == null) {
+				candidatos = bdCandidato.listarCandidatos();
+				shellSort.shellSort(candidatos.primeiro, candidatos.getTamanho());
+			}
+
+			No<Candidato> p = candidatos.primeiro;
 			candidato = new BuscaBinariaCandidato().buscaBinaria(p, id).getElemento();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -45,23 +42,18 @@ public class CandidatoController {
 		return candidato;
 	}
 
-	public MergeSortCandidatos listarCandidatosOrdenados() {
+	public ListaLigadaSimples<Candidato> listarCandidatosOrdenados() {
+		ListaLigadaSimples<Candidato> candidatos = null;
 		try {
+			candidatos = this.bdCandidato.listarCandidatos();
+			
 			MergeSortCandidatos mergeSortCandidatos = new MergeSortCandidatos();
-			ListaLigadaSimples<Candidato> candidatos = this.bdCandidato.listarCandidatos();
-
-			for (int i = 0; i < candidatos.getTamanho(); ++i) {
-				mergeSortCandidatos.inserirPrimeiro(candidatos.espiar(i));
-			}
-
-			mergeSortCandidatos.mergeSort();
-
-			return mergeSortCandidatos;
+			mergeSortCandidatos.mergeSort(candidatos.primeiro);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return candidatos;
 	}
 
 	public ListaLigadaSimples<Candidato> listarCandidatos() {

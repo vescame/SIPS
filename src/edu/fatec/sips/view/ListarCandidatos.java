@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import edu.fatec.sips.controller.CandidatoController;
-import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
+import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Candidato;
 
 public class ListarCandidatos {
@@ -19,7 +19,7 @@ public class ListarCandidatos {
 	private final DefaultTableModel modeloTabela;
 	private final String colunas[] = { "ID", "NOME", "SOBRENOME", "DOCUMENTOS", "DATA DE NASCIMENTO", "CURSO" };
 	private final CandidatoController candidatoController = new CandidatoController();
-	private final MergeSortCandidatos candidatos;
+	private final ListaLigadaSimples<Candidato> candidatos;
 
 	public ListarCandidatos() {
 		this.modeloTabela = new DefaultTableModel(colunas, 0);
