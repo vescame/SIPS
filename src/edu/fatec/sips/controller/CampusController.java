@@ -97,6 +97,25 @@ public class CampusController {
 		bdEdital.gravarEdital(edital);
 
 	}
+	
+	public void atualizarEdital(JTextField txtTitulo, Campus campus, Curso curso,
+			JTextField txtPublicoAlvo, JTextField txtPeriodoInicial, JTextField txtPeriodoFinal,
+			JFormattedTextField txtQtdVagasAmplaConcorrencia, JFormattedTextField txtQtdVagasAcoesAfirmativas,
+			JFormattedTextField txtQtdVagasDeficiente, JComboBox<String> comboBoxCriterio) throws Exception {
+		edital.setTitulo(txtTitulo.getText());
+		edital.setCampus(campus);
+		edital.setCurso(curso);
+		edital.setPublicoAlvo(txtPublicoAlvo.getText());
+		edital.setPeriodoInicial(txtPeriodoInicial.getText());
+		edital.setPeriodoFinal(txtPeriodoFinal.getText());
+		edital.setAmplaConcorrencia(Integer.parseInt(txtQtdVagasAmplaConcorrencia.getText()));
+		edital.setAcoesAfirmativas(Integer.parseInt(txtQtdVagasAcoesAfirmativas.getText()));
+		edital.setDeficiente(Integer.parseInt(txtQtdVagasDeficiente.getText()));
+		edital.setCriterio(Integer.parseInt(comboBoxCriterio.getSelectedItem().toString()));
+
+		bdEdital.atualizarEdital(edital);;
+
+	}
 
 	public ListaLigadaSimples<Edital> retornarListaDeEditais()
 			throws IOException {

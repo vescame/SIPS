@@ -39,7 +39,7 @@ public class MenuCampus {
 			new CadastrarEdital().cadastrarEdital();
 			break;
 		case 2:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			new EditarEdital().editarEdital();
 			break;
 		case 3:
 			new VisualizarEdital().visualizarEdital();
