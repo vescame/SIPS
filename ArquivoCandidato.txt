@@ -56,7 +56,7 @@
 56;Edwin;Culver;8/27/1989;3;false;false;4;6;3
 57;Skye;Steele;2/22/1981;6;false;false;7;9;3
 58;Carolina;Dias;8/16/1990;6;false;false;7;7;1
-59;JÃºlia;Castro;8/27/1980;6;false;false;7;6;2
+59;Júlia;Castro;8/27/1980;6;false;false;7;6;2
 60;Sandra;Walz;12/14/1978;7;false;false;8;9;3
 61;Alan;Anderson;6/28/1984;6;false;false;7;10;3
 62;Giovanna;Ribeiro;6/17/1974;3;false;false;4;9;1
@@ -73,9 +73,9 @@
 73;Martim;Rocha;8/25/2000;7;false;false;8;7;1
 74;Victoria;Woods;02/03/1974;9;false;false;9;5;3
 75;Beatrice;Silva;5/26/1973;10;false;false;10;7;1
-76;LetÃ­cia;Castro;7/26/1975;8;false;false;6;6;3
+76;Letícia;Castro;7/26/1975;8;false;false;6;6;3
 77;Camila;Goncalves;10/15/1990;4;false;false;2;10;3
-78;JÃºlia;Alves;10/16/1974;2;false;false;1;8;1
+78;Júlia;Alves;10/16/1974;2;false;false;1;8;1
 79;Freddie;Lambert;01/09/1988;10;false;false;10;7;3
 80;Riley;Bray;10/17/1998;3;false;false;4;9;2
 81;Alicia;Dever;08/01/1988;2;false;false;1;10;1
@@ -123,7 +123,7 @@
 123;Melissa;Craig;04/08/2000;6;false;false;7;9;2
 124;Tamara;Flowers;06/06/1979;10;false;false;10;6;3
 125;Manuela;Cardoso;10/21/1975;10;false;false;10;9;3
-126;VitÃ³ria;Almeida;2/17/1976;10;false;false;10;10;1
+126;Vitória;Almeida;2/17/1976;10;false;false;10;10;1
 127;Louis;Lawrence;8/30/1976;9;false;false;9;7;3
 128;Aline;Araujo;5/19/1976;10;false;false;10;6;1
 129;Frank;Williams;11/21/1971;2;false;false;1;9;1
@@ -140,12 +140,12 @@
 140;Ava;Potter;12/12/1988;3;false;false;4;9;2
 141;Taylor;Mason;10/15/1979;4;false;false;2;9;2
 142;Leonardo;Cardoso;11/12/1979;5;false;false;5;10;2
-143;JosÃ©;Azevedo;6/28/1977;3;false;false;4;8;3
+143;José;Azevedo;6/28/1977;3;false;false;4;8;3
 144;Maria;Jones;6/24/1985;6;false;false;7;7;2
 145;Zelma;Chung;5/17/1976;3;false;false;4;6;2
 146;Sam;Collier;06/02/1984;2;false;false;1;10;1
 147;Carolina;Silva;6/26/1980;10;false;false;10;7;3
-148;JoÃ£o;Costa;01/05/1992;3;false;false;4;6;2
+148;João;Costa;01/05/1992;3;false;false;4;6;2
 149;Naomi;Newton;11/18/1969;2;false;false;1;7;3
 150;Ben;Begum;2/14/1995;3;false;false;4;6;2
 151;Sarah;Rocha;11/07/1999;7;false;false;8;5;1
@@ -166,7 +166,7 @@
 166;Angeline;Carpenter;9/30/1968;1;false;false;3;8;3
 167;Ruth;Ouellette;4/26/1984;9;false;false;9;9;3
 168;Luiz;Cardoso;2/27/1968;1;false;false;3;6;2
-169;VinÃ­cius;Costa;01/05/2001;6;false;false;7;8;3
+169;Vinícius;Costa;01/05/2001;6;false;false;7;8;3
 170;Luana;Sousa;10/25/1969;1;false;false;3;8;3
 171;Gabriel;Carvalho;2/26/2001;10;false;false;10;10;3
 172;Harriet;Parkin;4/19/1973;5;false;false;5;8;1
@@ -187,7 +187,7 @@
 187;Nancy;Hernandez;4/23/1982;10;false;false;10;5;3
 188;Leila;Fernandes;8/14/1985;1;false;false;3;8;1
 189;Ann;Miller;11/02/1986;6;false;false;7;8;2
-190;TÃ¢nia;Santos;09/11/1976;1;false;false;3;6;1
+190;Tânia;Santos;09/11/1976;1;false;false;3;6;1
 191;Nicolash;Costa;12/11/1991;4;false;false;2;9;3
 192;James;Vincent;10/27/1978;8;false;false;6;7;2
 193;Arthur;Hunter;1/29/1993;8;false;false;6;10;3
@@ -223,7 +223,7 @@
 223;Douglas;Silva;08/11/2000;4;false;false;2;10;2
 224;Charles;Schaffer;2/19/1993;3;false;false;4;10;3
 225;Mollie;Abbott;5/29/1991;2;false;false;1;7;3
-226;KauÃª;Cunha;5/18/1998;10;false;false;10;6;2
+226;Kauê;Cunha;5/18/1998;10;false;false;10;6;2
 227;Carol;Robinson;7/30/1989;3;false;false;4;6;1
 228;Rebecca;Godfrey;12/04/1990;1;false;false;3;6;2
 229;Douglas;Santos;6/21/1990;5;false;false;5;10;1
@@ -231,13 +231,13 @@
 231;David;Nance;07/01/1975;6;false;false;7;5;2
 232;John;Waters;11/18/1985;6;false;false;7;7;3
 233;Matilda;Hyde;09/04/1974;5;false;false;5;8;3
-234;FÃ¡bio;Rodrigues;12/11/1967;1;false;false;3;9;1
+234;Fábio;Rodrigues;12/11/1967;1;false;false;3;9;1
 235;Giovanna;Oliveira;9/28/1997;5;false;false;5;10;1
 236;Maria;Jones;8/27/1996;8;false;false;6;8;1
 237;Gabriela;Correia;08/12/1983;6;false;false;7;10;3
 238;Wade;Allard;10/31/1980;5;false;false;5;7;1
 239;Harvey;Holmes;10/19/1999;7;false;false;8;6;2
-240;CauÃ£;Araujo;1/14/1982;9;false;false;9;10;3
+240;Cauã;Araujo;1/14/1982;9;false;false;9;10;3
 241;Alex;Pereira;02/03/1986;9;false;false;9;5;2
 242;Amanda;Pinto;9/28/2000;4;false;false;2;8;1
 243;Katherine;Goodwin;4/21/1986;2;false;false;1;7;3
@@ -260,7 +260,7 @@
 260;Livia;Castro;10/11/1994;6;false;false;7;8;3
 261;Alex;Ribeiro;12/11/1979;2;false;false;1;10;3
 262;Davi;Dias;1/25/1990;7;false;false;8;5;3
-263;LuÃ­s;Goncalves;7/31/1993;9;false;false;9;6;2
+263;Luís;Goncalves;7/31/1993;9;false;false;9;6;2
 264;Larissa;Fernandes;07/06/1984;8;false;false;6;8;2
 265;Henry;Storey;5/13/1995;6;false;false;7;5;3
 266;Evelyn;Hicks;09/09/1980;1;false;false;3;6;1
