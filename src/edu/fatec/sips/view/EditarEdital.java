@@ -42,7 +42,7 @@ public class EditarEdital {
 		this.tabelaDeEditais = new JTable(modeloTabela);
 
 		editais = editalController.listarEditais();
-
+		
 		try {
 			for (int i = 0; i < editais.getTamanho(); ++i) {
 				Edital editalModel = editais.espiar(i);
@@ -50,7 +50,7 @@ public class EditarEdital {
 						editalModel.getCurso(), editalModel.getPublicoAlvo(), editalModel.getPeriodoInicial(),
 						editalModel.getPeriodoFinal(), editalModel.getAmplaConcorrencia(),
 						editalModel.getAcoesAfirmativas(), editalModel.getDeficiente(), editalModel.getCriterio() };
-				modeloTabela.addRow(editalOject);
+				modeloTabela.addRow(editalOject);				
 			}
 		} catch (NullPointerException e) {
 			System.out.println("FALHA AO ADICIONAR CANDIDATO A LISTA");
@@ -112,7 +112,7 @@ public class EditarEdital {
 						txtPeriodoFinal, spinnerQtdeVagasAmplaConcorrencia, spinnerQtdeVagasAcoesAfirmativas,
 						spinnerQtdeVagasDeficiente, comboBoxCriterio),
 				"EDITAR EDITAL", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE);
-		validarEdicaoDeEdital(cadastrarEdital, comboBoxCursos, comboBoxCampus, txtTitulo, txtPublicoAlvo,
+		validarEdicaoDeEdital(editalSelecionado.getId(), cadastrarEdital, comboBoxCursos, comboBoxCampus, txtTitulo, txtPublicoAlvo,
 				txtPeriodoInicial, txtPeriodoFinal, txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas,
 				txtQtdVagasDeficiente, comboBoxCriterio);
 	}
@@ -243,7 +243,7 @@ public class EditarEdital {
 		return criterios;
 	}
 
-	public void validarEdicaoDeEdital(int cadastrarEdital, JComboBox<Curso> comboBoxCursos,
+	public void validarEdicaoDeEdital(int id, int cadastrarEdital, JComboBox<Curso> comboBoxCursos,
 			JComboBox<Campus> comboBoxCampus, JTextField txtTitulo, JTextField txtPublicoAlvo,
 			JTextField txtPeriodoInicial, JTextField txtPeriodoFinal, JFormattedTextField txtQtdVagasAmplaConcorrencia,
 			JFormattedTextField txtQtdVagasAcoesAfirmativas, JFormattedTextField txtQtdVagasDeficiente,
@@ -251,9 +251,11 @@ public class EditarEdital {
 		if (cadastrarEdital == JOptionPane.OK_OPTION) {
 			Curso curso = (Curso) comboBoxCursos.getModel().getSelectedItem();
 			Campus campus = (Campus) comboBoxCampus.getModel().getSelectedItem();
-			campusController.atualizarEdital(txtTitulo, campus, curso, txtPublicoAlvo, txtPeriodoInicial,
+			campusController.atualizarEdital(id, txtTitulo, campus, curso, txtPublicoAlvo, txtPeriodoInicial,
 					txtPeriodoFinal, txtQtdVagasAmplaConcorrencia, txtQtdVagasAcoesAfirmativas, txtQtdVagasDeficiente,
 					comboBoxCriterio);
+			JOptionPane.showMessageDialog(null, "Edital atualizado, com sucesso !!!");
+			JOptionPane.getRootFrame().dispose();
 		}
 	}
 

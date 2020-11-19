@@ -88,15 +88,14 @@ public class ArquivoEditalController {
 
 		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
 		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
-
 		while ((linhaAtual = br.readLine()) != null) {
 			Edital editalAtual = quebrarAtributos(linhaAtual);
-			
+		
 			if (editalAtual.getId() == edital.getId()) {
 				editalAtual = edital;
 			}
 			
-			bw.write(concatenarEdital(editalAtual) + "\n");
+			bw.write(concatenarEditalEditadado(editalAtual) + "\n");
 		}
 		
 		bw.close();
@@ -138,13 +137,30 @@ public class ArquivoEditalController {
 
 	public void gravarEdital(final Edital edital) throws IOException {
 		FileWriter fw = new FileWriter(ARQUIVO, true);
-		fw.write(concatenarEdital(edital) + "\n");
+		fw.write(concatenarEditalNovo(edital) + "\n");
 		fw.close();
 	}
 	
-	private String concatenarEdital(final Edital edital) throws IOException {
+	private String concatenarEditalNovo(final Edital edital) throws IOException {
 		StringBuilder linha = new StringBuilder()//.append(edital.getId()).append(SEPARADOR)
 				.append(ultimoId()).append(SEPARADOR)
+				.append(edital.getTitulo()).append(SEPARADOR)
+				.append(edital.getCampus().getId()).append(SEPARADOR)
+				.append(edital.getCurso().getId()).append(SEPARADOR)
+				.append(edital.getPublicoAlvo()).append(SEPARADOR)
+				.append(edital.getPeriodoInicial().toString()).append(SEPARADOR)
+				.append(edital.getPeriodoFinal().toString()).append(SEPARADOR)
+				.append(edital.getAmplaConcorrencia()).append(SEPARADOR)
+				.append(edital.getAcoesAfirmativas()).append(SEPARADOR)
+				.append(edital.getDeficiente()).append(SEPARADOR)
+				.append(edital.getCriterio()).append(SEPARADOR);
+		
+		return linha.toString();
+	}
+	
+	private String concatenarEditalEditadado(final Edital edital) throws IOException {
+		StringBuilder linha = new StringBuilder()
+				.append(edital.getId()).append(SEPARADOR)
 				.append(edital.getTitulo()).append(SEPARADOR)
 				.append(edital.getCampus().getId()).append(SEPARADOR)
 				.append(edital.getCurso().getId()).append(SEPARADOR)

@@ -98,10 +98,11 @@ public class CampusController {
 
 	}
 	
-	public void atualizarEdital(JTextField txtTitulo, Campus campus, Curso curso,
+	public void atualizarEdital(int id, JTextField txtTitulo, Campus campus, Curso curso,
 			JTextField txtPublicoAlvo, JTextField txtPeriodoInicial, JTextField txtPeriodoFinal,
 			JFormattedTextField txtQtdVagasAmplaConcorrencia, JFormattedTextField txtQtdVagasAcoesAfirmativas,
 			JFormattedTextField txtQtdVagasDeficiente, JComboBox<String> comboBoxCriterio) throws Exception {
+		edital.setId(id);
 		edital.setTitulo(txtTitulo.getText());
 		edital.setCampus(campus);
 		edital.setCurso(curso);
