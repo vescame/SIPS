@@ -16,24 +16,25 @@ public class CandidatoController {
 
 	public CandidatoController() {
 		this.bdCandidato = new ArquivoCandidatoController();
+		try {
+			this.candidatos = bdCandidato.listarCandidatos();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Candidato getPorId(int id) {
 		Candidato candidato = null;
-		
-		// para dados em ordem decrescente oferece o melhor custo benefício
+
 		ShellSortCandidatos shellSort = new ShellSortCandidatos();
 
 		try {
-			if (candidatos == null) {
-				candidatos = bdCandidato.listarCandidatos();
+			if (candidatos.espiar(0).getId() != 1) {
 				shellSort.shellSort(candidatos.primeiro, candidatos.getTamanho());
 			}
 
 			No<Candidato> p = candidatos.primeiro;
 			candidato = new BuscaBinariaCandidato().buscaBinaria(p, id).getElemento();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} finally {
 			if (candidato == null) {
 				System.out.println("candidato de id " + id + " nao encontrado");
@@ -44,27 +45,36 @@ public class CandidatoController {
 	}
 
 	public ListaLigadaSimples<Candidato> listarCandidatosOrdenados() {
+		ListaLigadaSimples<Candidato> candidatosOrdenados = new ListaLigadaSimples<>();
+		final int tamanho = this.candidatos.getTamanho();
+		
+		Candidato[] vetorCandidatos = new Candidato[tamanho];
+		
+		MergeSortCandidatos mergeSortCandidatos = new MergeSortCandidatos();
+		
+		for (int i = 0; i < tamanho; ++i) {
+			vetorCandidatos[i] = this.candidatos.espiar(i);
+		}
+		
+		vetorCandidatos = mergeSortCandidatos.sort(vetorCandidatos);
+		
+		for (int i = 0; i < tamanho; ++i) {
+			candidatosOrdenados.adicionar(vetorCandidatos[i]);
+		}
+		
+		return candidatosOrdenados;
+	}
+
+	public ListaLigadaSimples<Candidato> listarCandidatos() {
 		ListaLigadaSimples<Candidato> candidatos = null;
+
 		try {
 			candidatos = this.bdCandidato.listarCandidatos();
-			
-			MergeSortCandidatos mergeSortCandidatos = new MergeSortCandidatos();
-			mergeSortCandidatos.mergeSort(candidatos.primeiro);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		return candidatos;
-	}
-
-	public ListaLigadaSimples<Candidato> listarCandidatos() {
-		try {
-			return this.bdCandidato.listarCandidatos();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return null;
 	}
 
 	public void salvar(final Candidato candidato) {
@@ -78,6 +88,14 @@ public class CandidatoController {
 	public void atualizar(final Candidato candidato) {
 		try {
 			this.bdCandidato.atualizarCandidato(candidato);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void atualizar(final ListaLigadaSimples<Candidato> candidatos) {
+		try {
+			this.bdCandidato.atualizarCandidatos(candidatos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

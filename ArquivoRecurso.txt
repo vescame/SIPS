@@ -14,3 +14,5 @@
 14;1;Análise de Currículo;null;false;false
 15;1;Entrevista;Caro responsável, fui barrado na porta.;false;false
 16;4;Entrevista;Estou insatisfeito, por favor me atendam.;false;false
+17;1236;Incrição;null;false;false
+18;1113;Análise de Currículo;null;false;false

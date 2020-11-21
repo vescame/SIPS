@@ -1,16 +1,16 @@
 package edu.fatec.sips.data_structure.sorting;
 
-import edu.fatec.sips.model.Candidato;
+import edu.fatec.sips.model.ResultadoPreliminar;
 
-public class MergeSortCandidatos {
-	public final Candidato[] sort(final Candidato[] vetor) {
+public class MergeSortResultadoPreliminarPorNota {
+	public final ResultadoPreliminar[] sort(final ResultadoPreliminar[] vetor) {
 		if (vetor.length <= 1) {
 			return vetor;
 		}
 
 		final int meioDoVetor = vetor.length / 2;
-		Candidato[] elementosEsquerda = new Candidato[meioDoVetor];
-		Candidato[] elementosDireita = new Candidato[vetor.length - meioDoVetor];
+		ResultadoPreliminar[] elementosEsquerda = new ResultadoPreliminar[meioDoVetor];
+		ResultadoPreliminar[] elementosDireita = new ResultadoPreliminar[vetor.length - meioDoVetor];
 
 		final int tamanhoEsquerda = elementosEsquerda.length;
 		final int tamanhoDireita = elementosDireita.length;
@@ -29,19 +29,21 @@ public class MergeSortCandidatos {
 		return merge(elementosEsquerda, elementosDireita);
 	}
 
-	private final Candidato[] merge(final Candidato[] elementosEsquerda, final Candidato[] elementosDireita) {
-		final Candidato[] elementosOrdenados = new Candidato[elementosEsquerda.length + elementosDireita.length];
-		
+	private final ResultadoPreliminar[] merge(final ResultadoPreliminar[] elementosEsquerda,
+			final ResultadoPreliminar[] elementosDireita) {
+		final ResultadoPreliminar[] elementosOrdenados = new ResultadoPreliminar[elementosEsquerda.length
+				+ elementosDireita.length];
+
 		int indiceEsquerda = 0;
 		int indiceDireita = 0;
 		int indiceResultado = 0;
 
 		while (indiceEsquerda < elementosEsquerda.length && indiceDireita < elementosDireita.length) {
-			Candidato candAuxEsq = elementosEsquerda[indiceEsquerda];
-			Candidato candAuxDir = elementosDireita[indiceDireita];
-			String nomeEsq = candAuxEsq.getNome() + " " + candAuxEsq.getSobrenome(); 
-			String nomeDir = candAuxDir.getNome() + " " + candAuxDir.getSobrenome();
-			if (nomeEsq.compareTo(nomeDir) < 1) {
+			ResultadoPreliminar resPrelimAuxEsq = elementosEsquerda[indiceEsquerda];
+			ResultadoPreliminar resPrelimAuxDir = elementosDireita[indiceDireita];
+			int idEditalEsq = resPrelimAuxEsq.getCandidato().getNota();
+			int idEditalDir = resPrelimAuxDir.getCandidato().getNota();
+			if (idEditalEsq > idEditalDir) {
 				elementosOrdenados[indiceResultado++] = elementosEsquerda[indiceEsquerda++];
 			} else {
 				elementosOrdenados[indiceResultado++] = elementosDireita[indiceDireita++];

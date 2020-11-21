@@ -70,15 +70,20 @@ public class ArquivoResultadoFinalController {
 		return resultado;
 	}
 
-	public void gravarCandidato(final ResultadoFinal resultado) throws IOException {
+	public void salvarResultadosFinais(final ListaLigadaSimples<ResultadoFinal> resultados) throws IOException {
+		final int qtdResultados = resultados.getTamanho();
 		FileWriter fw = new FileWriter(ARQUIVO, true);
-		fw.write(concatenarCandidato(resultado) + "\n");
+		for (int i = 0; i < qtdResultados; ++i) {
+			ResultadoFinal resFinal = resultados.espiar(i);
+			resFinal.setId(i + 1);
+			fw.write(concatenarResultado(resFinal) + "\n");
+		}
 		fw.close();
 	}
 
-	private String concatenarCandidato(final ResultadoFinal resultado) {
+	private String concatenarResultado(final ResultadoFinal resultado) {
 		StringBuilder linha = new StringBuilder().append(resultado.getId()).append(SEPARADOR)
-				.append(String.valueOf(resultado.isAprovado())).append(SEPARADOR)
+				.append(resultado.getCandidato().getId()).append(SEPARADOR)
 				.append(this.sdf.format(resultado.getDataAprovacao())).append(SEPARADOR);
 
 		return linha.toString();

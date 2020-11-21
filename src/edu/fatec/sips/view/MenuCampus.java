@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import edu.fatec.sips.controller.CampusController;
+import edu.fatec.sips.controller.ResultadoFinalController;
 
 public class MenuCampus {
 
@@ -19,9 +20,10 @@ public class MenuCampus {
 				+ "<tr><td>5</td><td>Visualizar recursos</td></tr>"
 				+ "<tr><td>6</td><td>Definir resultado preliminar</td></tr>"
 				+ "<tr><td>7</td><td>Visualizar resultado preliminar</td></tr>"
-				+ "<tr><td>8</td><td>Editar resultados finais</td></tr>"
-				+ "<tr><td>9</td><td>Visualizar resultado final</td></tr>"
-				+ "<tr><td>10</td><td>Visualizar cronograma de atividades</td></tr>"
+				+ "<tr><td>8</td><td>Editar resultados preliminares</td></tr>"
+				+ "<tr><td>9</td><td>Definir resultado final</td></tr>"
+				+ "<tr><td>10</td><td>Visualizar resultado final</td></tr>"
+				+ "<tr><td>11</td><td>Visualizar cronograma de atividades</td></tr>"
 				+ "<tr><td>99</td><td>Sair</td></tr>" + "</table>" + "</body>" + "</html>";
 		if (opcao != 99) {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,
@@ -60,9 +62,12 @@ public class MenuCampus {
 			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
 			break;
 		case 9:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			new ResultadoFinalController().iniciarResultado();
 			break;
 		case 10:
+			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+			break;
+		case 11:
 			new ListarCronograma().visualizarCronograDeAtividades();
 			break;
 		case 99:

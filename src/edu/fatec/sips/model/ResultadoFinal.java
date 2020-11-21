@@ -6,6 +6,13 @@ public class ResultadoFinal {
 	private int id;
 	private Candidato candidato;
 	private Date dataAprovacao;
+	
+	public ResultadoFinal() { }
+	
+	public ResultadoFinal(final Candidato candidato) {
+		this.candidato = candidato;
+		this.dataAprovacao = new Date();
+	}
 
 	public int getId() {
 		return id;

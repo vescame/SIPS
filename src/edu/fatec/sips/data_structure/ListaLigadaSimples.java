@@ -58,18 +58,20 @@ public class ListaLigadaSimples<T> {
 	}
 
 	public T removerPrimeiro() {
-		No<T> no = primeiro;
+		T elemento = null;
 		if (estaVazia()) {
-			System.err.println("LISTA VAZIAT");
+			System.err.println("LISTA VAZIA");
 		} else if (this.tamanho == 1) {
+			elemento = primeiro.getElemento();
 			this.primeiro = null;
 			this.tamanho--;
 		} else {
+			elemento = primeiro.getElemento();
 			this.primeiro = this.primeiro.getProximo();
 			this.tamanho--;
 		}
 
-		return no.getElemento();
+		return elemento;
 	}
 
 	public T removerUltimo() {
