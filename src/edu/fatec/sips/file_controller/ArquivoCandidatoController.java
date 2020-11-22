@@ -95,8 +95,17 @@ public class ArquivoCandidatoController {
 		final int qtdCandidatos = candidatos.getTamanho();
 
 		ShellSortCandidatos shellSort = new ShellSortCandidatos();
+		Candidato[] vetorCandidatos = new Candidato[qtdCandidatos];
 
-		shellSort.shellSort(candidatos.primeiro, qtdCandidatos);
+		for (int i = 0; i < qtdCandidatos; ++i) {
+			vetorCandidatos[i] = candidatos.removerPrimeiro();
+		}
+
+		shellSort.sort(vetorCandidatos);
+
+		for (int i = 0; i < qtdCandidatos; ++i) {
+			candidatos.adicionar(vetorCandidatos[i]);
+		}
 
 		File arquivoEntrada = new File(this.ARQUIVO);
 		File arquivoTemporario = new File("tmp." + this.ARQUIVO);
@@ -111,7 +120,7 @@ public class ArquivoCandidatoController {
 
 			if (i < qtdCandidatos) {
 				Candidato candidato = new BuscaBinariaCandidato()
-						.buscaBinaria(candidatos.primeiro, candidatos.espiar(j).getId()).getElemento();
+						.buscaBinaria(candidatos.primeiro, vetorCandidatos[j].getId()).getElemento();
 				if (candidatoAtual.getId() == candidato.getId()) {
 					candidatoAtual = candidato;
 					j++;
