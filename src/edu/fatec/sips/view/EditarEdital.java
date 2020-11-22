@@ -78,7 +78,7 @@ public class EditarEdital {
 			}
 		}
 		tabelaDeEditais.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaDeEditais), "LISTA DE EDITAIS",
+		JOptionPane.showMessageDialog(null, new JScrollPane(tabelaDeEditais), "EDITAR EDITAIS (Clique no edital para editar)",
 				JOptionPane.PLAIN_MESSAGE);
 	}
 

@@ -3,3 +3,4 @@
 3;Gerar Resultados Preliminares;20/11/2020;01/01/2020
 4;Resultado Final;01/01/2020;12/12/2021
 5;Entrevista;12/12/2021;01/01/2022
+6;Atividade 2;07/05/2020;08/05/2020

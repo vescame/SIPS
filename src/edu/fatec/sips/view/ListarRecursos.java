@@ -67,7 +67,7 @@ public class ListarRecursos {
 		int indexLinhaSelecionada = tabelaRecursos.getSelectedRow();
 		int idSelecionado = (int) this.modeloTabela.getValueAt(indexLinhaSelecionada, colunaId);
 		Recurso tmp = buscaBinariaRecurso(idSelecionado);
-		int resposta = JOptionPane.showConfirmDialog(null, "Aprovar?\n" + tmp.getDescricao(),"",JOptionPane.PLAIN_MESSAGE);
+		int resposta = JOptionPane.showConfirmDialog(null, "Aprovar?\n" + tmp.getDescricao(),"",JOptionPane.OK_CANCEL_OPTION);
 		if (resposta != JOptionPane.CANCEL_OPTION) {
 			if (resposta == JOptionPane.YES_OPTION) {
 				this.recursoController.aprovarRecurso(tmp.getId());

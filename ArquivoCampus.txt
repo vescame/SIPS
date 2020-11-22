@@ -11,3 +11,4 @@
 11;Fatec;Leste
 12;Fatec;Sul
 13;Fatec;Ourinhos
+14;Televisao;Casas Bahia

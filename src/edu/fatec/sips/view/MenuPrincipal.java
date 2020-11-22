@@ -25,16 +25,16 @@ public class MenuPrincipal {
 				+ "<body>"
 				+ "<table>"
 				+ "<tr><th colspan='2'>MENU PRINCIPAL</th></tr>"
-				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr<th>C?digo</th><th>Op??o</th></tr>"
 				+ "<tr><td>1</td><td>Menu Candidato</td></tr>"
-				+ "<tr><td>2</td><td>Menu CPS (Comissão do Processo Seletivo)</td></tr>"
+				+ "<tr><td>2</td><td>Menu CPS (Comiss?o do Processo Seletivo)</td></tr>"
 				+ "<tr><td>3</td><td>Menu Campus</td></tr>"
 				+ "<tr><td>99</td><td>Sair</td></tr>"
 				+ "</table>"
 				+ "</body>"
 				+ "</html>";
 		if (opcao != 99) {
-			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscrição de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, textoMenu,"SIPS - Sistema de Inscri??o de Processo Seletivo", JOptionPane.PLAIN_MESSAGE));
 			avaliarOpcao(opcao);
 			return menuPrincipal(opcao);
 		} else {
@@ -57,7 +57,7 @@ public class MenuPrincipal {
 			JOptionPane.showMessageDialog(null, "Finalizando SIPS ...");
 			break;
 		default:
-			JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
+			JOptionPane.showMessageDialog(null, "Op??o Inv?lida !!!");
 		}
 	}
 }
