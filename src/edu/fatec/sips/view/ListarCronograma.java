@@ -22,7 +22,7 @@ public class ListarCronograma {
 		FilaImplementacaoDinamica<CronogramaDeAtividades> cronograma = cronoController.listarAtividade();
 		String[] coluna = {"ID", "DESCRIÇÃO", "INÍCIO", "ENTREGA"};
 		DefaultTableModel tableModel = new DefaultTableModel(coluna, 0);
-		for(int i = 0; i < cronograma.getSize(); i++) {
+		for(int i = 0; i < cronograma.getTamanho(); i++) {
 			Object atividades[] = {cronograma.coletar(i).getIdAtividade(), cronograma.coletar(i).getDescricaoAtividade(), 
 			sdf.format(cronograma.coletar(i).getDataInicio()), sdf.format(cronograma.coletar(i).getDataEntrega())};
 			tableModel.addRow(atividades);

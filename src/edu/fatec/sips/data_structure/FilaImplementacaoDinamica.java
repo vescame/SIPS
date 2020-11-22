@@ -11,7 +11,7 @@ public class FilaImplementacaoDinamica <T> {
 	}
 
 	public void inserirNoFinal(T elemento) {
-		if (isEmpty()) {
+		if (estaVazia()) {
 			No<T> no = new No<T>(elemento);
 			primeiro = no;
 			tamanho++;
@@ -29,7 +29,7 @@ public class FilaImplementacaoDinamica <T> {
 
 	public T removerNoInicio() {
 		T elemento_removido = null;
-		if (isEmpty()) {
+		if (estaVazia()) {
 			System.out.println("Impossível remover, a Fila está vazia");
 		} else {
 			elemento_removido = primeiro.getElemento();
@@ -52,7 +52,7 @@ public class FilaImplementacaoDinamica <T> {
 	
 	public T coletar(int posicao) {
 		T elemento = null;	
-		if (isEmpty()) {
+		if (estaVazia()) {
 			System.err.println("FILA VAZIA");
 			return null;
 		} else if (posicao < 0 || posicao >= tamanho) {
@@ -69,11 +69,11 @@ public class FilaImplementacaoDinamica <T> {
 		return elemento;
 	}
 	
-	public int getSize() {
+	public int getTamanho() {
 		return this.tamanho;
 	}
 
-	public boolean isEmpty() {
+	public boolean estaVazia() {
 
 		if (primeiro == null) {
 			return true;
