@@ -73,7 +73,7 @@ public class ResultadoPreliminarController {
 		for (int i = 0; i < listaDeCandidato.getTamanho(); i++) {
 			final Candidato c = listaDeCandidato.espiar(i);
 			if (c.getNota() >= 7) {
-				if (c.getEdital() != null) {
+				if (c.getEdital().getTitulo() != null) {
 					ResultadoPreliminar resultadoPreliminar = new ResultadoPreliminar();
 					resultadoPreliminar.setCandidato(c);
 					this.resultados.adicionar(resultadoPreliminar);
