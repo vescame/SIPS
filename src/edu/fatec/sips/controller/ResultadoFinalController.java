@@ -5,8 +5,13 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.data_structure.No;
+import edu.fatec.sips.data_structure.search.BuscaBinariaCandidato;
+import edu.fatec.sips.data_structure.search.BuscaBinariaResultadoFinalCandidato;
+import edu.fatec.sips.data_structure.sorting.MergeSortCandidatos;
 import edu.fatec.sips.data_structure.sorting.MergeSortResultadoPreliminarPorNota;
 import edu.fatec.sips.data_structure.sorting.QuickSortResultadoPreliminarEdital;
+import edu.fatec.sips.data_structure.sorting.ShellSortResultadoFinalPorCurso;
 import edu.fatec.sips.file_controller.ArquivoResultadoFinalController;
 import edu.fatec.sips.model.Candidato;
 import edu.fatec.sips.model.Edital;
@@ -15,36 +20,58 @@ import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class ResultadoFinalController {
 	private final ArquivoResultadoFinalController bdResFinal;
-	private final ResultadoPreliminarController ctrlResPrelim;
 	private final EditalController ctrlEdital;
 	private final CandidatoController ctrlCandidato;
 	private final ListaLigadaSimples<ResultadoFinal> resultadosFinais;
 	private final ListaLigadaSimples<ResultadoPreliminar> resultadosPreliminares;
-	private final ListaLigadaSimples<Edital> editais;
-	private ListaLigadaSimples<Candidato> candidatos;
+	private final ListaLigadaSimples<Candidato> candidatos;
 
 	public ResultadoFinalController() {
 		this.bdResFinal = new ArquivoResultadoFinalController();
 		this.resultadosFinais = new ListaLigadaSimples<ResultadoFinal>();
 
-		this.ctrlResPrelim = new ResultadoPreliminarController();
-		this.resultadosPreliminares = this.ctrlResPrelim.listarResultadoPreliminar();
+		ResultadoPreliminarController ctrlResPrelim = new ResultadoPreliminarController();
+		this.resultadosPreliminares = ctrlResPrelim.listarResultadoPreliminar();
 
 		this.ctrlEdital = new EditalController();
-		this.editais = this.ctrlEdital.listarEditais();
 
 		this.ctrlCandidato = new CandidatoController();
 		this.candidatos = new ListaLigadaSimples<Candidato>();
 	}
 
 	public ResultadoFinal getPorCandidato(int id) {
-		return null;
+		ListaLigadaSimples<ResultadoFinal> res;
+		No<ResultadoFinal> encontrado = null;
+		try {
+			res = this.bdResFinal.listarResultado();
+			BuscaBinariaResultadoFinalCandidato bbResCandidato = new BuscaBinariaResultadoFinalCandidato();
+			encontrado = bbResCandidato.buscaBinaria(res.primeiro, id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return encontrado != null ? encontrado.getElemento() : null;
 	}
 
 	public ListaLigadaSimples<ResultadoFinal> listarResultados() {
 		ListaLigadaSimples<ResultadoFinal> resultados = null;
 		try {
 			resultados = this.bdResFinal.listarResultado();
+			final int tamanho = resultados.getTamanho();
+			ResultadoFinal[] vetor = new ResultadoFinal[tamanho];
+
+			for (int i = 0; i < tamanho; ++i) {
+				vetor[i] = resultados.removerPrimeiro();
+			}
+
+			ShellSortResultadoFinalPorCurso shellSortCurso = new ShellSortResultadoFinalPorCurso();
+
+			shellSortCurso.sort(vetor);
+
+			for (int i = 0; i < tamanho; ++i) {
+			    resultados.adicionar(vetor[i]);
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,13 +86,14 @@ public class ResultadoFinalController {
 		}
 
 		final ListaLigadaSimples<ListaLigadaSimples<ResultadoPreliminar>> resultados = new ListaLigadaSimples<>();
-		final int qtdEdital = editais.getTamanho();
 
-		final ListaLigadaSimples<ResultadoPreliminar> ordenadoPorEdital = ordenarCandidatosPorEdital(
-				this.resultadosPreliminares);
+		final ListaLigadaSimples<ResultadoPreliminar> ordenadoPorEdital = ordenarCandidatosPorEdital(this.resultadosPreliminares);
+
+		final ListaLigadaSimples<Edital> editais = this.ctrlEdital.listarEditais();
+		int qtdEdital = editais.getTamanho();
 
 		for (int i = 0; i < qtdEdital; ++i) {
-			ListaLigadaSimples<ResultadoPreliminar> r = dividirEditais(this.editais.espiar(i), ordenadoPorEdital);
+			ListaLigadaSimples<ResultadoPreliminar> r = dividirEditais(editais.espiar(i), ordenadoPorEdital);
 			resultados.adicionar(r);
 		}
 
@@ -75,7 +103,8 @@ public class ResultadoFinalController {
 			resultados.adicionar(r);
 			final int qtdCandidatosPorEdital = r.getTamanho();
 			for (int j = 0; j < qtdCandidatosPorEdital; ++j) {
-				this.candidatos.adicionar(r.espiar(j).getCandidato());
+				Candidato c = r.espiar(j).getCandidato();
+				this.candidatos.adicionar(c);
 			}
 		}
 
@@ -87,7 +116,11 @@ public class ResultadoFinalController {
 
 		try {
 			Candidato c = null;
-			while ((c = this.candidatos.removerPrimeiro()) != null) {
+
+			final int tamanho = this.candidatos.getTamanho();
+
+			for (int i = 0; i < tamanho; ++i) {
+			    c = this.candidatos.espiar(i);
 				ResultadoFinal r = new ResultadoFinal(c);
 				this.resultadosFinais.adicionar(r);
 			}
@@ -104,20 +137,26 @@ public class ResultadoFinalController {
 		boolean editalEncontrado = false;
 
 		int i = 0;
-		while (!editalEncontrado) {
-			final ResultadoPreliminar r = resPreliOrdenadosPorEdital.espiar(i);
-			if (r.getCandidato().getEdital().getId() == edital.getId()) {
+		ResultadoPreliminar r;
+
+		do {
+			r = resPreliOrdenadosPorEdital.espiar(i);
+			if (r != null && r.getCandidato().getEdital().getId() == edital.getId()) {
 				editalEncontrado = true;
 			}
 			i++;
-		}
+		} while (!editalEncontrado);
 
-		--i;
-		ResultadoPreliminar r;
-		while ((r = resPreliOrdenadosPorEdital.espiar(i)) != null
-				&& r.getCandidato().getEdital().getId() == edital.getId()) {
-			resPorEdital.adicionar(r);
-			i++;
+
+		if (!resPreliOrdenadosPorEdital.estaVazia()) {
+			--i;
+			while ((r = resPreliOrdenadosPorEdital.espiar(i)) != null
+					&& r.getCandidato().getEdital().getId() == edital.getId()) {
+				if (r.getCandidato().getEdital() != null) {
+					resPorEdital.adicionar(r);
+					i++;
+				}
+			}
 		}
 
 		return resPorEdital;
@@ -175,17 +214,21 @@ public class ResultadoFinalController {
 		final QuickSortResultadoPreliminarEdital qs = new QuickSortResultadoPreliminarEdital();
 		final int tamanho = res.getTamanho();
 
-		final ResultadoPreliminar[] vetor = new ResultadoPreliminar[tamanho];
+		if (tamanho != 0) {
+			final ResultadoPreliminar[] vetor = new ResultadoPreliminar[tamanho];
 
-		for (int i = 0; i < tamanho; ++i) {
-			vetor[i] = res.espiar(i);
-		}
+			for (int i = 0; i < tamanho; ++i) {
+				vetor[i] = res.espiar(i);
+			}
 
-		qs.sort(vetor, 0, tamanho - 1);
+			qs.sort(vetor, 0, tamanho - 1);
 
-		for (int i = 0; i < tamanho; ++i) {
-			final ResultadoPreliminar tmpResPrelim = vetor[i];
-			tmp.adicionar(tmpResPrelim);
+			for (int i = 0; i < tamanho; ++i) {
+				final ResultadoPreliminar tmpResPrelim = vetor[i];
+				if (tmpResPrelim.getCandidato().getEdital() != null) {
+					tmp.adicionar(tmpResPrelim);
+				}
+			}
 		}
 
 		return tmp;

@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import edu.fatec.sips.data_structure.ArvoreBinaria;
+import edu.fatec.sips.data_structure.ArvoreBinariaDocumentos;
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
 import edu.fatec.sips.model.Documento;
 
@@ -30,8 +30,8 @@ public class ArquivoDocumentoCandidatoController {
 		return tempDocumento.getId() + 1;
 	}
 
-	public ArvoreBinaria carregarDocumentos() throws IOException {
-		ArvoreBinaria documentos = new ArvoreBinaria();
+	public ArvoreBinariaDocumentos carregarDocumentos() throws IOException {
+		ArvoreBinariaDocumentos documentos = new ArvoreBinariaDocumentos();
 		String linha = new String();
 
 		BufferedReader br = new BufferedReader(new FileReader(ARQUIVO));

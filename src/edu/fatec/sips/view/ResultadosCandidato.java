@@ -36,7 +36,8 @@ public class ResultadosCandidato {
 			final Candidato candidato = this.escolherCandidato(null);
 			if (etapa == Etapa.RESULTADO_FINAL) {
 				ResultadoFinal resFinal = new ResultadoFinalController().getPorCandidato(candidato.getId());
-				visualizarResultadoFinal(resFinal.isAprovado());
+				boolean resultado = resFinal != null;
+				visualizarResultadoFinal(resultado);
 			} else if (etapa == Etapa.RESULTADO_PRELIMINAR) {
 				try {
 					this.visualizarResultadoPreliminar(candidato.getId());

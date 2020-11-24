@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import edu.fatec.sips.data_structure.ListaLigadaSimples;
+import edu.fatec.sips.data_structure.No;
 import edu.fatec.sips.data_structure.search.BuscaBinariaCandidato;
 import edu.fatec.sips.data_structure.sorting.ShellSortCandidatos;
 import edu.fatec.sips.model.Candidato;
@@ -113,20 +114,17 @@ public class ArquivoCandidatoController {
 		BufferedReader br = new BufferedReader(new FileReader(arquivoEntrada));
 		BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoTemporario));
 
-		int i = 0;
-		int j = 0;
 		while ((linhaAtual = br.readLine()) != null) {
 			Candidato candidatoAtual = quebrarAtributos(linhaAtual);
 
-			if (i < qtdCandidatos) {
-				Candidato candidato = new BuscaBinariaCandidato()
-						.buscaBinaria(candidatos.primeiro, vetorCandidatos[j].getId()).getElemento();
+			No<Candidato> encontrado = new BuscaBinariaCandidato()
+					.buscaBinaria(candidatos.primeiro, candidatoAtual.getId());
+			if  (encontrado != null) {
+				Candidato candidato = encontrado.getElemento();
 				if (candidatoAtual.getId() == candidato.getId()) {
 					candidatoAtual = candidato;
-					j++;
 				}
 			}
-			i++;
 			bw.write(concatenarCandidato(candidatoAtual) + "\n");
 		}
 
@@ -143,8 +141,8 @@ public class ArquivoCandidatoController {
 
 	private Candidato quebrarAtributos(String linha) {
 		Candidato candidato = new Candidato();
+		String[] atribs = linha.split(SEPARADOR);
 		try {
-			String[] atribs = linha.split(SEPARADOR);
 			candidato.setId(Integer.valueOf(atribs[0]));
 			candidato.setNome(atribs[1]);
 			candidato.setSobrenome(atribs[2]);
@@ -156,12 +154,24 @@ public class ArquivoCandidatoController {
 			candidato.setDesistente(Boolean.valueOf(atribs[6]));
 			candidato.setDocumentos(documentos.listarDocumentos(candidato.getId()));
 			candidato.setRecursos(this.recursos.buscarPorIdCandidato(candidato.getId()));
-			Edital edital = this.editais.buscarPorId(Integer.valueOf(atribs[7]));
-			candidato.setEdital(edital);
 			candidato.setNota(Integer.valueOf(atribs[8]));
 			candidato.setCriterio(Integer.valueOf(atribs[9]));
 		} catch (Exception e) {
 			System.out.println("falha ao obter atributo candidato");
+		}
+
+		try {
+			int idEdital = Integer.valueOf(atribs[7]);
+			Edital edital = this.editais.buscarPorId(idEdital);
+			if (edital == null) {
+				Edital e = new Edital();
+				e.setId(idEdital);
+				candidato.setEdital(e);
+			} else {
+				candidato.setEdital(edital);
+			}
+		} catch (IOException e) {
+			System.out.println("falhar ao inserir edital piroca");
 		}
 
 		return candidato;
@@ -174,12 +184,17 @@ public class ArquivoCandidatoController {
 	}
 
 	private String concatenarCandidato(final Candidato candidato) {
-		StringBuilder linha = new StringBuilder().append(candidato.getId()).append(SEPARADOR)
-				.append(candidato.getNome()).append(SEPARADOR).append(candidato.getSobrenome()).append(SEPARADOR)
+		StringBuilder linha = new StringBuilder()
+				.append(candidato.getId()).append(SEPARADOR)
+				.append(candidato.getNome()).append(SEPARADOR)
+				.append(candidato.getSobrenome()).append(SEPARADOR)
 				.append(sdf.format(candidato.getDataNascimento())).append(SEPARADOR)
-				.append(candidato.getCurso().getId()).append(SEPARADOR).append(candidato.isAprovado()).append(SEPARADOR)
-				.append(candidato.isDesistente()).append(SEPARADOR).append(candidato.getEdital().getId())
-				.append(SEPARADOR).append(candidato.getNota()).append(SEPARADOR).append(candidato.getCriterio());
+				.append(candidato.getCurso().getId()).append(SEPARADOR)
+				.append(candidato.isAprovado()).append(SEPARADOR)
+				.append(candidato.isDesistente()).append(SEPARADOR)
+				.append(candidato.getEdital().getId()).append(SEPARADOR)
+				.append(candidato.getNota()).append(SEPARADOR)
+				.append(candidato.getCriterio());
 
 		return linha.toString();
 	}

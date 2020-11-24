@@ -2,10 +2,10 @@ package edu.fatec.sips.data_structure;
 
 import edu.fatec.sips.model.Documento;
 
-public class ArvoreBinaria {
+public class ArvoreBinariaDocumentos {
 	public NoArvoreDocumento raiz;
 
-	public ArvoreBinaria() {
+	public ArvoreBinariaDocumentos() {
 		raiz = null;
 	}
 

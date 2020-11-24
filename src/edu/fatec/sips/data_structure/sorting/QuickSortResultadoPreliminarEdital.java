@@ -1,5 +1,6 @@
 package edu.fatec.sips.data_structure.sorting;
 
+import edu.fatec.sips.model.Edital;
 import edu.fatec.sips.model.ResultadoPreliminar;
 
 public class QuickSortResultadoPreliminarEdital {
@@ -23,7 +24,9 @@ public class QuickSortResultadoPreliminarEdital {
 
 		for (int j = inicioOrdenacao; j < finalOrdenacao; j++) {
 
-			if (vetor[j].getCandidato().getEdital().getId() < pivo.getCandidato().getEdital().getId()) {
+			Edital editalJ = vetor[j].getCandidato().getEdital();
+			Edital editalPivo = pivo.getCandidato().getEdital();
+			if ((editalJ != null && editalPivo != null) && editalJ.getId() < editalPivo.getId()) {
 				indice += 1;
 
 				ResultadoPreliminar temp = vetor[indice];

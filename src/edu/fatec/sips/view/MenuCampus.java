@@ -61,7 +61,7 @@ public class MenuCampus {
 			new ResultadoFinalController().iniciarResultado();
 			break;
 		case 9:
-			JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
+		    new ResultadoFinalView().visualizarResultadoFinal();
 			break;
 		case 10:
 			new ListarCronograma().visualizarCronograDeAtividades();

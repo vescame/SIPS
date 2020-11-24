@@ -8,13 +8,13 @@ public class ShellSortCandidatos {
 
 		for (int gap = n / 2; gap > 0; gap /= 2) {
 			for (int i = gap; i < n; i++) {
-				Candidato key = vetorCandidatos[i];
+				Candidato c = vetorCandidatos[i];
 				int j = i;
-				while (j >= gap && vetorCandidatos[j - gap].getId() > key.getId()) {
+				while (j >= gap && vetorCandidatos[j - gap].getId() > c.getId()) {
 					vetorCandidatos[j] = vetorCandidatos[j - gap];
 					j -= gap;
 				}
-				vetorCandidatos[j] = key;
+				vetorCandidatos[j] = c;
 			}
 		}
 	}

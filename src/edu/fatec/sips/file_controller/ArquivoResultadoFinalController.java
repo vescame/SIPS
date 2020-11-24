@@ -47,7 +47,7 @@ public class ArquivoResultadoFinalController {
 
 		while ((linha = br.readLine()) != null) {
 			ResultadoFinal tmpResultado = quebrarAtributos(linha);
-			resultados.inserirPrimeiro(tmpResultado);
+			resultados.adicionar(tmpResultado);
 		}
 
 		br.close();
