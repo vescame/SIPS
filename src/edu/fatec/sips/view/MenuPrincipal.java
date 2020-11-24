@@ -25,7 +25,8 @@ public class MenuPrincipal {
 				+ "<body>"
 				+ "<table>"
 				+ "<tr><th colspan='2'>MENU PRINCIPAL</th></tr>"
-				+ "<tr<th>Código</th><th>Opção</th></tr>"
+				+ "<tr<th>Código</th>"
+				+" <th>Opção</th></tr>"
 				+ "<tr><td>1</td><td>Menu Candidato</td></tr>"
 				+ "<tr><td>2</td><td>Menu CPS (Comissão do Processo Seletivo)</td></tr>"
 				+ "<tr><td>3</td><td>Menu Campus</td></tr>"
@@ -57,7 +58,7 @@ public class MenuPrincipal {
 			JOptionPane.showMessageDialog(null, "Finalizando SIPS ...");
 			break;
 		default:
-			JOptionPane.showMessageDialog(null, "Op??o Inv?lida !!!");
+			JOptionPane.showMessageDialog(null, "Opção Inválida !!!");
 		}
 	}
 }

@@ -19,7 +19,8 @@ public class MenuCPS {
 				+ "<body>"
 				+ "<table>"
                 + "<tr><th colspan='2'>MENU CPS (Comissão do Processo Seletivo)</th></tr>"
-                + "<tr<th>Código</th><th>Opção</th></tr>"
+                + "<tr<th>Código</th>"
+                + "<th>Opção</th></tr>"
                 + "<tr><td>1</td><td>Cadastrar Campus</td></tr>"
 				+ "<tr><td>2</td><td>Visualizar Campus</td></tr>"
                 + "<tr><td>3</td><td>Gerenciar Cronograma de Atividades</td></tr>"
@@ -40,15 +41,12 @@ public class MenuCPS {
     public void avaliarOpcao(int opcao) throws NumberFormatException, HeadlessException, IOException, ParseException {
         switch (opcao) {
             case 1:
-                JOptionPane.showMessageDialog(null, "FUNÇÃO SENDO DESENVOLVIDA \n\n Tente mais tarde :)");
-                break;
-            case 2:
                 new CadastrarCampus().cadastrarCampus();
                 break;
-            case 3:
+            case 2:
                 new VisualizarCampus().visualizarCampus();
                 break;
-            case 4:
+            case 3:
                 new MenuCronograma().menuCronogramaDeAtividades(0);
                 break;
             case 99:
